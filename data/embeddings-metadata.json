@@ -1,0 +1,11 @@
+{
+  "totalDocuments": 20,
+  "documentTypes": [
+    "profile",
+    "project",
+    "contact"
+  ],
+  "generatedAt": "2025-08-14T13:11:42.350Z",
+  "embeddingModel": "text-embedding-ada-002",
+  "embeddingDimensions": 1536
+}
