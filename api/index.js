@@ -14,7 +14,7 @@ export default function handler(req, res) {
                 conversationHistory: "Optional previous messages"
             }
         },
-        portfolio: "https://jgchoti.vercel.app",
+        portfolio: "https://jgchoti.github.io",
         github: "https://github.com/jgchoti"
     });
 }

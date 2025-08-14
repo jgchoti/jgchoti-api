@@ -6,12 +6,11 @@
   "scripts": {
     "dev": "vercel dev",
     "deploy": "vercel --prod",
-    "generate-embeddings": "node scripts/generate-embeddings.js",
-    "test-rag": "node scripts/test-rag.js",
-    "test-local": "node scripts/test-local-api.js"
+    "generate-embeddings": "node scripts/generate-embeddings.js"
   },
   "dependencies": {
     "openai": "^4.0.0",
+    "@google/generative-ai": "^0.21.0",
     "cors": "^2.8.5"
   },
   "devDependencies": {

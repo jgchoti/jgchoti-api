@@ -1,14 +1,11 @@
-// scripts/generate-embeddings.js - Run this during build time
-import OpenAI from 'openai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
-// Load environment variables from .env.local
 dotenv.config({ path: '.env.local' });
 
-// Your data imports
 import { projectData } from '../data/projectData.js';
 import { profileData } from '../data/profileData.js';
 import { contactInfo } from '../data/contactInfo.js';
@@ -16,15 +13,10 @@ import { contactInfo } from '../data/contactInfo.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
-// Create documents from your data
 function createDocuments() {
     const documents = [];
 
-    // Profile documents
+
     profileData.forEach((section, index) => {
         documents.push({
             id: `profile-${index}`,
@@ -37,7 +29,7 @@ function createDocuments() {
         });
     });
 
-    // Project documents
+
     projectData.forEach((project, index) => {
         const content = `Project: ${project.name}
 Description: ${project.description}
@@ -59,7 +51,7 @@ ${project.shortDescription ? `Summary: ${project.shortDescription}` : ''}`;
         });
     });
 
-    // Contact document
+
     const contactContent = contactInfo.map(contact =>
         `${contact.platform}: ${contact.name}`
     ).join('\n');
@@ -77,7 +69,14 @@ ${project.shortDescription ? `Summary: ${project.shortDescription}` : ''}`;
 }
 
 async function generateEmbeddings() {
-    console.log('🚀 Starting embeddings generation...');
+    console.log('🚀 Starting Gemini embeddings generation...');
+
+    if (!process.env.GEMINI_API_KEY) {
+        throw new Error('GEMINI_API_KEY environment variable is required');
+    }
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
 
     const documents = createDocuments();
     const embeddingsData = [];
@@ -87,17 +86,15 @@ async function generateEmbeddings() {
         console.log(`📄 Processing document ${i + 1}/${documents.length}: ${doc.id}`);
 
         try {
-            // Get embedding from OpenAI
-            const response = await openai.embeddings.create({
-                model: "text-embedding-ada-002",
-                input: doc.content,
-            });
+            // Get embedding from Gemini
+            const result = await model.embedContent(doc.content);
+            const embedding = result.embedding;
 
             embeddingsData.push({
                 id: doc.id,
                 content: doc.content,
                 metadata: doc.metadata,
-                embedding: response.data[0].embedding
+                embedding: embedding.values
             });
 
             // Add small delay to avoid rate limits
@@ -111,7 +108,7 @@ async function generateEmbeddings() {
 
     // Save embeddings to JSON file
     const outputDir = path.join(__dirname, '../data');
-    const outputPath = path.join(outputDir, 'embeddings.json');
+    const outputPath = path.join(outputDir, 'embeddings-gemini.json');
 
     // Ensure data directory exists
     if (!fs.existsSync(outputDir)) {
@@ -120,7 +117,7 @@ async function generateEmbeddings() {
 
     fs.writeFileSync(outputPath, JSON.stringify(embeddingsData, null, 2));
 
-    console.log(`✅ Embeddings saved to ${outputPath}`);
+    console.log(`✅ Gemini embeddings saved to ${outputPath}`);
     console.log(`📊 Generated embeddings for ${embeddingsData.length} documents`);
 
     // Generate metadata summary
@@ -128,11 +125,12 @@ async function generateEmbeddings() {
         totalDocuments: embeddingsData.length,
         documentTypes: [...new Set(embeddingsData.map(d => d.metadata.type))],
         generatedAt: new Date().toISOString(),
-        embeddingModel: "text-embedding-ada-002",
-        embeddingDimensions: embeddingsData[0]?.embedding.length || 0
+        embeddingModel: "text-embedding-004",
+        embeddingDimensions: embeddingsData[0]?.embedding.length || 0,
+        provider: "google-gemini"
     };
 
-    const summaryPath = path.join(outputDir, 'embeddings-metadata.json');
+    const summaryPath = path.join(outputDir, 'embeddings-gemini-metadata.json');
     fs.writeFileSync(summaryPath, JSON.stringify(summary, null, 2));
 
     console.log('📋 Summary:', summary);
@@ -143,11 +141,11 @@ async function generateEmbeddings() {
 if (import.meta.url === `file://${process.argv[1]}`) {
     generateEmbeddings()
         .then(() => {
-            console.log('🎉 Embeddings generation completed successfully!');
+            console.log('🎉 Gemini embeddings generation completed successfully!');
             process.exit(0);
         })
         .catch((error) => {
-            console.error('💥 Embeddings generation failed:', error);
+            console.error('💥 Gemini embeddings generation failed:', error);
             process.exit(1);
         });
 }
