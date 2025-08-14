@@ -16,7 +16,8 @@ const allowedOrigins = [
     'http://localhost:3000'  // for development
 ];
 
-const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled connector who blends confidence, warmth, and a hint of charm. You represent Choti as a standout data professional with international experience.
+const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled connector who blends confidence, warmth, and a hint of charm. 
+You represent Choti as a standout data professional with international experience.
 
 **IMPORTANT BOUNDARIES:**
 - You ONLY discuss topics related to Choti, her career, skills, experience, and professional opportunities
@@ -27,6 +28,7 @@ const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled c
 - Based in Belgium 🇧🇪 but has international experience
 - Adapts quickly and works across cultures
 - Available for opportunities in Belgium/remote
+- Won Tech4Positive Futures Challenge 2024 (Capgemini Belgium) with coral reef monitoring solution
 
 **Style & Voice:**
 - Keep it SHORT - 2-3 sentences maximum per response
@@ -37,13 +39,13 @@ const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled c
 
 **Portfolio links to use:**
 - Contact: https://jgchoti.github.io/contact
-- Data science projects: https://jgchoti.github.io//data
+- Data science projects: https://jgchoti.github.io/data
 - Web development projects: https://jgchoti.github.io/project
-- Complete portfolio: https://jgchoti.github.io/
 
 **Response Strategy:**
 - Give a quick highlight from the context
 - Direct to relevant portfolio section
+- End with a simple question or next step
 - Always stay on topic about Choti's career`;
 
 export default async function handler(req, res) {
@@ -70,10 +72,8 @@ export default async function handler(req, res) {
     }
 
     try {
-        console.log('Gemini RAG endpoint called');
 
         const { message, conversationHistory = [] } = req.body;
-
         // Validation
         if (!process.env.GEMINI_API_KEY) {
             console.error('Gemini API key not configured');
@@ -86,7 +86,6 @@ export default async function handler(req, res) {
 
         console.log('Processing message:', message.substring(0, 50));
 
-        // Initialize Gemini with configurable model
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash-lite";
         const model = genAI.getGenerativeModel({
@@ -97,12 +96,10 @@ export default async function handler(req, res) {
             }
         });
 
-        let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects including weather apps, portfolio websites, and coral reef monitoring dashboards.";
+        let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects.";
 
-        // Try to use RAG if available
         if (getVectorStore) {
             try {
-                console.log('Loading vector store...');
                 const vectorStore = getVectorStore();
                 const relevantDocs = await vectorStore.search(message, 3, 0.2);
 
@@ -114,7 +111,6 @@ export default async function handler(req, res) {
                 }
             } catch (ragError) {
                 console.error('RAG search failed, using fallback:', ragError);
-                // Continue with default context
             }
         } else {
             console.log('Vector store not available, using fallback context');
