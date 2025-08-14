@@ -1,28 +1,20 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-let getVectorStore = null;
-
-// Initialize vector store function
-async function initializeVectorStore() {
-    if (getVectorStore) return getVectorStore;
-
-    try {
-        const module = await import('../lib/HybridVectorStore.js');
-        getVectorStore = module.getVectorStore;
-        return getVectorStore;
-    } catch (error) {
-        console.error('Failed to import HybridVectorStore:', error);
-        return null;
-    }
+let getVectorStore;
+try {
+    const module = await import('../lib/HybridVectorStore.js');
+    getVectorStore = module.getVectorStore;
+} catch (error) {
+    console.error('Failed to import HybridVectorStore:', error);
+    getVectorStore = null;
 }
 
 
 const allowedOrigins = [
     'https://jgchoti.github.io',
     'https://jgchoti.vercel.app',
-    'http://localhost:3000/'
+    'http://localhost:3000'  // for development
 ];
-
 
 const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled connector who blends confidence, warmth, and a hint of charm. You represent Choti as a standout data professional with international experience.
 
@@ -30,25 +22,32 @@ const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled c
 - You ONLY discuss topics related to Choti, her career, skills, experience, and professional opportunities
 - If someone asks about unrelated topics, politely redirect: "I'm here specifically to talk about Choti and her work. What would you like to know about her background?"
 
+**KEY FACTS TO HIGHLIGHT WHEN RELEVANT:**
+- Choti has lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium
+- Based in Belgium 🇧🇪 but has international experience
+- Adapts quickly and works across cultures
+- Available for opportunities in Belgium/remote
+
 **Style & Voice:**
 - Keep it SHORT - 2-3 sentences maximum per response
 - Conversational and friendly, not formal
 - Confident but never arrogant
 - Use specific examples from the provided context
+- ALWAYS mention her international experience when asked about it
 
 **Portfolio links to use:**
-- Contact: https://jgchoti.vercel.app/contact
-- Data science projects: https://jgchoti.vercel.app/data  
-- Web development projects: https://jgchoti.vercel.app/project
-- Complete portfolio: https://jgchoti.vercel.app/
+- Contact: https://jgchoti.github.io/contact
+- Data science projects: https://jgchoti.github.io//data
+- Web development projects: https://jgchoti.github.io/project
+- Complete portfolio: https://jgchoti.github.io/
 
 **Response Strategy:**
 - Give a quick highlight from the context
 - Direct to relevant portfolio section
-- End with a simple question or next step
 - Always stay on topic about Choti's career`;
 
 export default async function handler(req, res) {
+    // Set CORS headers using the same pattern as your health endpoint
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
@@ -87,22 +86,24 @@ export default async function handler(req, res) {
 
         console.log('Processing message:', message.substring(0, 50));
 
+        // Initialize Gemini with configurable model
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const modelName = process.env.GEMINI_MODEL || "gemini-1.5-flash"; // Default to stable version
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash-lite",
+            model: modelName,
             generationConfig: {
                 maxOutputTokens: 150,
                 temperature: 0.8,
             }
         });
 
-        let context = "Choti is a data professional with international experience, currently completing BeCode AI/Data Science Bootcamp. She has built multiple web applications and data projects including weather apps, portfolio websites, and coral reef monitoring dashboards.";
+        let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects including weather apps, portfolio websites, and coral reef monitoring dashboards.";
 
-        const vectorStoreFn = await initializeVectorStore();
-        if (vectorStoreFn) {
+        // Try to use RAG if available
+        if (getVectorStore) {
             try {
                 console.log('Loading vector store...');
-                const vectorStore = vectorStoreFn();
+                const vectorStore = getVectorStore();
                 const relevantDocs = await vectorStore.search(message, 3, 0.2);
 
                 if (relevantDocs.length > 0) {
@@ -119,6 +120,7 @@ export default async function handler(req, res) {
             console.log('Vector store not available, using fallback context');
         }
 
+        // Build conversation context
         let conversationContext = '';
         if (conversationHistory.length > 0) {
             const recentHistory = conversationHistory.slice(-6); // Last 3 exchanges
@@ -127,6 +129,7 @@ export default async function handler(req, res) {
                 .join('\n') + '\n';
         }
 
+        // Build the prompt for Gemini
         const prompt = `${SYSTEM_PROMPT}
 
 **Context about Choti:**
@@ -140,7 +143,7 @@ ${conversationContext}
 **Instructions:** Use the context above to provide accurate answers about Choti. Keep responses to 2-3 sentences maximum. Always include relevant portfolio links when appropriate.`;
 
         // Call Gemini
-        console.log('Calling Gemini ..');
+        console.log('Calling Gemini 1.5 Flash...');
         const result = await model.generateContent(prompt);
         const response = result.response;
         const responseText = response.text();
@@ -150,8 +153,8 @@ ${conversationContext}
         return res.status(200).json({
             response: responseText,
             metadata: {
-                model: 'gemini-2.0-flash-lite',
-                ragEnabled: !!vectorStoreFn,
+                model: 'gemini-1.5-flash',
+                ragEnabled: !!getVectorStore,
                 timestamp: new Date().toISOString()
             }
         });
@@ -159,6 +162,7 @@ ${conversationContext}
     } catch (error) {
         console.error('Gemini RAG Error:', error);
 
+        // Return appropriate error based on error type
         if (error.message.includes('API_KEY') || error.message.includes('authentication')) {
             return res.status(401).json({
                 error: 'Gemini API authentication failed'
