@@ -1,21 +1,37 @@
 {
-  "name": "choti-portfolio-api",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vercel dev",
-    "build": "echo 'Using pre-generated embeddings'",
-    "deploy": "vercel --prod",
-    "generate-embeddings": "node scripts/generate-embeddings.js",
-    "test-rag": "node scripts/test-rag.js",
-    "test-local": "node scripts/test-local-api.js"
+  "version": 2,
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 30
+    }
   },
-  "dependencies": {
-    "openai": "^4.0.0",
-    "cors": "^2.8.5"
-  },
-  "devDependencies": {
-    "dotenv": "^16.0.0",
-    "vercel": "^32.0.0"
-  }
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "Access-Control-Max-Age",
+          "value": "86400"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ]
 }
