@@ -1,8 +1,14 @@
+// scripts/generate-embeddings.js - Run this during build time
 import OpenAI from 'openai';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
+// Load environment variables from .env.local
+dotenv.config({ path: '.env.local' });
+
+// Your data imports
 import { projectData } from '../data/projectData.js';
 import { profileData } from '../data/profileData.js';
 import { contactInfo } from '../data/contactInfo.js';

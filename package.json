@@ -1,12 +1,21 @@
 {
-  "name": "jgchoti_api",
+  "name": "choti-portfolio-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vercel dev",
+    "build": "npm run generate-embeddings",
+    "deploy": "vercel --prod",
+    "generate-embeddings": "node scripts/generate-embeddings.js",
+    "test-rag": "node scripts/test-rag.js",
+    "test-local": "node scripts/test-local-api.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "cors": "^2.8.5",
+    "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.6.1",
+    "vercel": "^32.0.0"
+  }
 }
