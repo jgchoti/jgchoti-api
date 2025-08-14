@@ -1,6 +1,7 @@
 const allowedOrigins = [
     'https://jgchoti.github.io',
-    'https://jgchoti.vercel.app'
+    'https://jgchoti.vercel.app',
+    'http://localhost:3000/'
 ];
 
 export default function handler(req, res) {

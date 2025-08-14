@@ -1,0 +1,86 @@
+import express from 'express';
+import cors from 'cors';
+import { config } from 'dotenv';
+import chatRagHandler from './api/chat-rag.js';
+import healthHandler from './api/health.js';
+import indexHandler from './api/index.js';
+
+// Load environment variables
+config({ path: '.env.local' });
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Mock request/response objects for Vercel functions
+function createMockReqRes(method, body = {}, headers = {}) {
+    const req = {
+        method,
+        body,
+        headers: {
+            origin: 'http://localhost:3000',
+            ...headers
+        }
+    };
+
+    const res = {
+        status: (code) => ({
+            json: (data) => ({ statusCode: code, data }),
+            end: () => ({ statusCode: code })
+        }),
+        setHeader: () => { },
+        end: () => { }
+    };
+
+    return { req, res };
+}
+
+// API endpoints
+app.get('/api/health', async (req, res) => {
+    const { req: mockReq, res: mockRes } = createMockReqRes('GET');
+    const result = await healthHandler(mockReq, mockRes);
+    res.status(result.statusCode).json(result.data);
+});
+
+app.get('/api/', async (req, res) => {
+    const { req: mockReq, res: mockRes } = createMockReqRes('GET');
+    const result = await indexHandler(mockReq, mockRes);
+    res.status(result.statusCode).json(result.data);
+});
+
+app.post('/api/chat-rag', async (req, res) => {
+    const { req: mockReq, res: mockRes } = createMockReqRes('POST', req.body);
+    const result = await chatRagHandler(mockReq, mockRes);
+    res.status(result.statusCode).json(result.data);
+});
+
+// Health check for the dev server
+app.get('/dev/health', (req, res) => {
+    res.json({
+        status: 'healthy',
+        message: 'Development server is running',
+        timestamp: new Date().toISOString(),
+        endpoints: {
+            health: '/api/health',
+            index: '/api/',
+            chat: '/api/chat-rag'
+        }
+    });
+});
+
+app.listen(PORT, () => {
+    console.log(`🚀 Development server running on http://localhost:${PORT}`);
+    console.log('');
+    console.log('📡 API Endpoints:');
+    console.log(`  GET  http://localhost:${PORT}/api/health`);
+    console.log(`  GET  http://localhost:${PORT}/api/`);
+    console.log(`  POST http://localhost:${PORT}/api/chat-rag`);
+    console.log('');
+    console.log('🔧 Dev Endpoints:');
+    console.log(`  GET  http://localhost:${PORT}/dev/health`);
+    console.log('');
+    console.log('💡 Use Ctrl+C to stop the server');
+});

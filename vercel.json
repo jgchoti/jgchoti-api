@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "devCommand": "node --version",
   "functions": {
     "api/**/*.js": {
       "maxDuration": 30

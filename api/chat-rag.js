@@ -19,7 +19,8 @@ async function initializeVectorStore() {
 
 const allowedOrigins = [
     'https://jgchoti.github.io',
-    'https://jgchoti.vercel.app'
+    'https://jgchoti.vercel.app',
+    'http://localhost:3000/'
 ];
 
 
@@ -88,7 +89,7 @@ export default async function handler(req, res) {
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({
-            model: "gemini-1.5-flash",
+            model: "gemini-2.0-flash-lite",
             generationConfig: {
                 maxOutputTokens: 150,
                 temperature: 0.8,
@@ -139,7 +140,7 @@ ${conversationContext}
 **Instructions:** Use the context above to provide accurate answers about Choti. Keep responses to 2-3 sentences maximum. Always include relevant portfolio links when appropriate.`;
 
         // Call Gemini
-        console.log('Calling Gemini 1.5 Flash...');
+        console.log('Calling Gemini ..');
         const result = await model.generateContent(prompt);
         const response = result.response;
         const responseText = response.text();

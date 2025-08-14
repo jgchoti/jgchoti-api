@@ -4,14 +4,19 @@
   "type": "module",
   "main": "api/chat-rag.js",
   "scripts": {
-    "dev": "vercel dev",
+    "start": "vercel dev",
+    "dev": "node dev-server.js",
     "deploy": "vercel --prod",
-    "generate-embeddings": "node scripts/generate-embeddings.js"
+    "generate-embeddings": "node scripts/generate-embeddings.js",
+    "generate-embeddings-gemini": "node scripts/generate-embeddings-gemini.js",
+    "test-rag": "node scripts/test-rag.js",
+    "test-local": "node scripts/test-local-api.js"
   },
   "dependencies": {
     "openai": "^4.0.0",
     "@google/generative-ai": "^0.24.1",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
