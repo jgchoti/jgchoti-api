@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
+
 let getVectorStore;
 try {
     const module = await import('../lib/HybridVectorStore.js');
@@ -10,12 +11,10 @@ try {
 }
 
 
-const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Max-Age': '86400',
-};
+const allowedOrigins = [
+    'https://jgchoti.github.io',
+    'https://jgchoti.vercel.app'
+];
 
 
 const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled connector who blends confidence, warmth, and a hint of charm. You represent Choti as a standout data professional with international experience.
@@ -43,17 +42,20 @@ const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled c
 - Always stay on topic about Choti's career`;
 
 export default async function handler(req, res) {
-
-    if (req.method === 'OPTIONS') {
-        Object.entries(corsHeaders).forEach(([key, value]) => {
-            res.setHeader(key, value);
-        });
-        return res.status(200).json({});
+    // Set CORS headers using the same pattern as your health endpoint
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
     }
 
-    Object.entries(corsHeaders).forEach(([key, value]) => {
-        res.setHeader(key, value);
-    });
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Max-Age', '86400');
+
+    // Handle CORS preflight requests
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
 
     if (req.method !== 'POST') {
         return res.status(405).json({
@@ -79,6 +81,7 @@ export default async function handler(req, res) {
 
         console.log('Processing message:', message.substring(0, 50));
 
+        // Initialize Gemini
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
@@ -90,7 +93,7 @@ export default async function handler(req, res) {
 
         let context = "Choti is a data professional with international experience, currently completing BeCode AI/Data Science Bootcamp. She has built multiple web applications and data projects including weather apps, portfolio websites, and coral reef monitoring dashboards.";
 
-
+        // Try to use RAG if available
         if (getVectorStore) {
             try {
                 console.log('Loading vector store...');
@@ -105,21 +108,22 @@ export default async function handler(req, res) {
                 }
             } catch (ragError) {
                 console.error('RAG search failed, using fallback:', ragError);
-
+                // Continue with default context
             }
         } else {
             console.log('Vector store not available, using fallback context');
         }
 
+        // Build conversation context
         let conversationContext = '';
         if (conversationHistory.length > 0) {
-            const recentHistory = conversationHistory.slice(-6);
+            const recentHistory = conversationHistory.slice(-6); // Last 3 exchanges
             conversationContext = recentHistory
                 .map(msg => `${msg.type === 'user' ? 'Human' : 'Assistant'}: ${msg.content}`)
                 .join('\n') + '\n';
         }
 
-
+        // Build the prompt for Gemini
         const prompt = `${SYSTEM_PROMPT}
 
 **Context about Choti:**
@@ -151,6 +155,7 @@ ${conversationContext}
 
     } catch (error) {
         console.error('Gemini RAG Error:', error);
+
         if (error.message.includes('API_KEY') || error.message.includes('authentication')) {
             return res.status(401).json({
                 error: 'Gemini API authentication failed'
