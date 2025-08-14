@@ -150,7 +150,7 @@ ${conversationContext}
         return res.status(200).json({
             response: responseText,
             metadata: {
-                model: 'gemini-1.5-flash',
+                model: 'gemini-2.0-flash-lite',
                 ragEnabled: !!vectorStoreFn,
                 timestamp: new Date().toISOString()
             }
