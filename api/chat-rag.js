@@ -1,13 +1,19 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
+let getVectorStore = null;
 
-let getVectorStore;
-try {
-    const module = await import('../lib/HybridVectorStore.js');
-    getVectorStore = module.getVectorStore;
-} catch (error) {
-    console.error('Failed to import HybridVectorStore:', error);
-    getVectorStore = null;
+// Initialize vector store function
+async function initializeVectorStore() {
+    if (getVectorStore) return getVectorStore;
+
+    try {
+        const module = await import('../lib/HybridVectorStore.js');
+        getVectorStore = module.getVectorStore;
+        return getVectorStore;
+    } catch (error) {
+        console.error('Failed to import HybridVectorStore:', error);
+        return null;
+    }
 }
 
 
@@ -42,7 +48,6 @@ const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled c
 - Always stay on topic about Choti's career`;
 
 export default async function handler(req, res) {
-    // Set CORS headers using the same pattern as your health endpoint
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
@@ -81,7 +86,6 @@ export default async function handler(req, res) {
 
         console.log('Processing message:', message.substring(0, 50));
 
-        // Initialize Gemini
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
@@ -93,11 +97,11 @@ export default async function handler(req, res) {
 
         let context = "Choti is a data professional with international experience, currently completing BeCode AI/Data Science Bootcamp. She has built multiple web applications and data projects including weather apps, portfolio websites, and coral reef monitoring dashboards.";
 
-        // Try to use RAG if available
-        if (getVectorStore) {
+        const vectorStoreFn = await initializeVectorStore();
+        if (vectorStoreFn) {
             try {
                 console.log('Loading vector store...');
-                const vectorStore = getVectorStore();
+                const vectorStore = vectorStoreFn();
                 const relevantDocs = await vectorStore.search(message, 3, 0.2);
 
                 if (relevantDocs.length > 0) {
@@ -114,7 +118,6 @@ export default async function handler(req, res) {
             console.log('Vector store not available, using fallback context');
         }
 
-        // Build conversation context
         let conversationContext = '';
         if (conversationHistory.length > 0) {
             const recentHistory = conversationHistory.slice(-6); // Last 3 exchanges
@@ -123,7 +126,6 @@ export default async function handler(req, res) {
                 .join('\n') + '\n';
         }
 
-        // Build the prompt for Gemini
         const prompt = `${SYSTEM_PROMPT}
 
 **Context about Choti:**
@@ -148,7 +150,7 @@ ${conversationContext}
             response: responseText,
             metadata: {
                 model: 'gemini-1.5-flash',
-                ragEnabled: !!getVectorStore,
+                ragEnabled: !!vectorStoreFn,
                 timestamp: new Date().toISOString()
             }
         });
