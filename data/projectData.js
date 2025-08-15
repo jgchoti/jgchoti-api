@@ -35,7 +35,7 @@ export const projectData = [
     {
         id: 3,
         name: "Monitoring Dashboard",
-        type: "web",
+        type: "data",
         description: "A data visualization tool designed to monitor coral health using data from Smart Buoy sensors. Developed as part of Tech4Sustainable Futures Challenge's presentation, this dashboard leverages Chart.js for real-time data visualization and Leaflet.js for interactive mapping. It provides insights into key coral health metrics like temperature and pH levels, helping communities and researchers make informed decisions to protect coral reefs.",
         shortDescription: "Built with HTML, CSS, JavaScript, Chart.js, and Leaflet.js",
         technologies: [
