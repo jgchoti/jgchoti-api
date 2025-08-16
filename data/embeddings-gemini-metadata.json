@@ -1,11 +1,11 @@
 {
-  "totalDocuments": 21,
+  "totalDocuments": 22,
   "documentTypes": [
     "profile",
     "project",
     "contact"
   ],
-  "generatedAt": "2025-08-15T09:12:37.710Z",
+  "generatedAt": "2025-08-16T20:29:30.346Z",
   "embeddingModel": "text-embedding-004",
   "embeddingDimensions": 768,
   "provider": "google-gemini"

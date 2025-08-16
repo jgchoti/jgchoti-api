@@ -207,6 +207,25 @@ export const projectData = [
         ],
         linkUrl: "https://chotirat.netlify.app/",
         webUrl: "https://chotirat.netlify.app/"
+    }, {
+        id: 14,
+        name: "SQL Assistant",
+        type: "data",
+        description: "Convert natural language questions into SQL queries and get instant results from your database. Built with React, Flask, and LangChain with Google Gemini AI. Supports database uploads (.sqlite/.db), AI-generated SQL queries, real-time query execution, and intelligent data analysis. Deployed on Vercel (frontend) and Render (backend).",
+        shortDescription: "Ask questions in plain English, get AI-generated SQL queries, and see results instantly.",
+        technologies: [
+            { name: "Python" },
+            { name: "Flask" },
+            { name: "React" },
+            { name: "Material-UI" },
+            { name: "LangChain" },
+            { name: "Google Gemini" },
+            { name: "SQLAlchemy" },
+            { name: "Render" },
+            { name: "GitHub" }
+        ],
+        linkUrl: "https://sql-assist.vercel.app",
+        webUrl: "https://sql-assist.vercel.app"
     }
 ];
 
