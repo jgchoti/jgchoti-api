@@ -13,7 +13,7 @@ export const projectData = [
             { name: "Render" },
             { name: "GitHub" }
         ],
-        linkUrl: "https://too-lazy-as-a-service.onrender.com/docs",
+        githubUrl: "https://github.com/jgchoti/tlaas",
         webUrl: "https://too-lazy-as-a-service.onrender.com/docs"
     },
     {
@@ -29,8 +29,8 @@ export const projectData = [
             { name: "SEO" },
             { name: "Squarespace" }
         ],
-        linkUrl: "https://jakobegeens.com",
-        webUrl: "https://jakobegeens.com"
+        webUrl: "https://jakobegeens.com",
+        blogUrl: "https://medium.com/@jgchoti/solving-a-language-switching-nav-bar-using-only-css-on-squarespace-add859c95ef9"
     },
     {
         id: 3,
@@ -46,7 +46,7 @@ export const projectData = [
             { name: "Leaflet.js" },
             { name: "GitHub" }
         ],
-        linkUrl: "https://coral-game.netlify.app/map",
+        githubUrl: "https://github.com/jgchoti/coral-game",
         webUrl: "https://coral-game.netlify.app/map"
     },
     {
@@ -62,7 +62,7 @@ export const projectData = [
             { name: "Twine" },
             { name: "GitHub" }
         ],
-        linkUrl: "https://coral-game.netlify.app/",
+        githubUrl: "https://github.com/jgchoti/coral-game",
         webUrl: "https://coral-game.netlify.app/"
     },
     {
@@ -79,7 +79,7 @@ export const projectData = [
             { name: "React" },
             { name: "API" }
         ],
-        linkUrl: "https://retro-english-dictionary.netlify.app/",
+        githubUrl: "https://github.com/jgchoti/dictionary-react",
         webUrl: "https://retro-english-dictionary.netlify.app/"
     },
     {
@@ -95,7 +95,7 @@ export const projectData = [
             { name: "GitHub" },
             { name: "API" }
         ],
-        linkUrl: "https://jgchoti.github.io/harry-potter-searcher/",
+        githubUrl: "https://github.com/jgchoti/harry-potter-searcher",
         webUrl: "https://jgchoti.github.io/harry-potter-searcher/"
     },
     {
@@ -111,7 +111,7 @@ export const projectData = [
             { name: "GitHub" },
             { name: "API" }
         ],
-        linkUrl: "https://jgchoti.github.io/studio-ghibli-searcher/",
+        githubUrl: "https://github.com/jgchoti/studio-ghibli-searcher/",
         webUrl: "https://jgchoti.github.io/studio-ghibli-searcher/"
     },
     {
@@ -126,7 +126,7 @@ export const projectData = [
             { name: "JavaScript" },
             { name: "GitHub" }
         ],
-        linkUrl: "https://jgchoti.github.io/to-do-list/",
+        githubUrl: "https://github.com/jgchoti/to-do-list",
         webUrl: "https://jgchoti.github.io/to-do-list/"
     },
     {
@@ -142,7 +142,7 @@ export const projectData = [
             { name: "GitHub" },
             { name: "Bootstrap" }
         ],
-        linkUrl: "https://fietsateljee-berchem.netlify.app/",
+        githubUrl: "https://github.com/jgchoti/fietsateljee-berchem",
         webUrl: "https://fietsateljee-berchem.netlify.app/"
     },
     {
@@ -157,7 +157,7 @@ export const projectData = [
             { name: "JavaScript" },
             { name: "GitHub" }
         ],
-        linkUrl: "https://choti-calculator.netlify.app/",
+        githubUrl: "https://github.com/jgchoti/basic-calculator",
         webUrl: "https://choti-calculator.netlify.app/"
     },
     {
@@ -174,7 +174,7 @@ export const projectData = [
             { name: "React" },
             { name: "API" }
         ],
-        linkUrl: "https://weather2024.netlify.app/",
+        githubUrl: 'https://github.com/jgchoti/weather-react',
         webUrl: "https://weather2024.netlify.app/"
     },
     {
@@ -190,7 +190,7 @@ export const projectData = [
             { name: "GitHub" },
             { name: "API" }
         ],
-        linkUrl: "https://weather2023.netlify.app/",
+        githubUrl: 'https://github.com/jgchoti/weather-app',
         webUrl: "https://weather2023.netlify.app/"
     },
     {
@@ -205,7 +205,7 @@ export const projectData = [
             { name: "JavaScript" },
             { name: "GitHub" }
         ],
-        linkUrl: "https://chotirat.netlify.app/",
+        githubUrl: 'https://github.com/jgchoti/cv',
         webUrl: "https://chotirat.netlify.app/"
     }, {
         id: 14,
@@ -224,8 +224,28 @@ export const projectData = [
             { name: "Render" },
             { name: "GitHub" }
         ],
-        linkUrl: "https://sql-assist.vercel.app",
+        githubUrl: "https://sql-assist.vercel.app",
         webUrl: "https://sql-assist.vercel.app"
+    }, {
+        "id": 15,
+        "demoCallToAction": "**Try it now**: Ask me 'What data science experience does Choti have?' or 'Tell me about her international background' to see how the vector search retrieves relevant context and generates personalized responses!",
+        "name": "AI Career Agent Chatbot",
+        "type": "data",
+        "description": "An AI RAG-powered chatbot that serves as Choti's professional career agent. Built with Node.js, Express, and Google Gemini AI with vector search using semantic embeddings. Features real-time context retrieval from portfolio data, professional career guidance, and conversational AI that accurately represents Choti's background, skills, and experience. Deployed as a serverless API with CORS support for web integration.",
+        "shortDescription": "Intelligent career agent that answers questions about Choti's professional background using AI and vector search.",
+        "demoNote": "**Live Demo**: You're currently using this system! Ask me anything about Choti's background, skills, or projects to experience the RAG technology firsthand.",
+        "technologies": [
+            { "name": "Node.js" },
+            { "name": "Express" },
+            { "name": "Google Gemini AI" },
+            { "name": "RAG (Retrieval Augmented Generation)" },
+            { "name": "Vector Search" },
+            { "name": "Semantic Embeddings" },
+            { "name": "JavaScript" },
+            { "name": "Vercel" },
+            { "name": "GitHub" }
+        ],
+        "webUrl": "https://jgchoti.github.io"
     }
 ];
 
