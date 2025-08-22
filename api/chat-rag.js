@@ -9,11 +9,10 @@ try {
     getVectorStore = null;
 }
 
-
 const allowedOrigins = [
     'https://jgchoti.github.io',
     'https://jgchoti.vercel.app',
-    'http://localhost:3000'  // for development
+    'http://localhost:3000'
 ];
 
 const SYSTEM_PROMPT = `You are Choti's professional career agent — a skilled connector who blends confidence, warmth, and a hint of charm. 
@@ -28,7 +27,7 @@ You represent Choti as a standout data professional with international experienc
 - Based in Belgium 🇧🇪 but has international experience
 - Adapts quickly and works across cultures
 - Available for opportunities in Belgium/remote
-- Won Tech4Positive Futures Challenge 2024 (Capgemini Belgium) with coral reef monitoring solution
+- In November, 2024 - Won Tech4Positive Futures Challenge 2024 (Capgemini Belgium) with coral reef monitoring solution
 - Contact: https://jgchoti.github.io/contact
 
 **Style & Voice:**
@@ -71,8 +70,8 @@ export default async function handler(req, res) {
     }
 
     try {
-
         const { message, conversationHistory = [] } = req.body;
+
         // Validation
         if (!process.env.GEMINI_API_KEY) {
             console.error('Gemini API key not configured');
@@ -83,7 +82,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        console.log('Processing message:', message.substring(0, 50));
+        console.log('🔍 Processing message:', message.substring(0, 100));
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash-lite";
@@ -95,24 +94,92 @@ export default async function handler(req, res) {
             }
         });
 
+        // Default fallback context
         let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects.";
+        let vectorUsed = false;
+        let vectorDebugInfo = {};
 
+        // Try to use vector store
         if (getVectorStore) {
             try {
+                console.log('🔧 Initializing vector store...');
                 const vectorStore = getVectorStore();
-                const relevantDocs = await vectorStore.search(message, 3, 0.2);
 
-                if (relevantDocs.length > 0) {
-                    context = relevantDocs
-                        .map(doc => `[${doc.metadata.type}] ${doc.content}`)
-                        .join('\n\n');
-                    console.log(`Found ${relevantDocs.length} relevant documents`);
+                // Get stats first
+                const stats = await vectorStore.getStats();
+                console.log('📊 Vector store stats:', {
+                    totalDocuments: stats.totalDocuments,
+                    documentTypes: stats.documentTypes,
+                    isReady: stats.isReady,
+                    provider: stats.provider
+                });
+
+                if (!stats.isReady || stats.totalDocuments === 0) {
+                    console.warn('⚠️ Vector store not ready or empty');
+                } else {
+                    // Perform search with very low threshold to see what we get
+                    console.log('🔍 Searching with query:', message);
+                    const allResults = await vectorStore.search(message, 10, 0.0); // Get top 10, no threshold
+
+                    console.log('🎯 Raw search results:', {
+                        totalFound: allResults.length,
+                        topScores: allResults.slice(0, 5).map(d => ({
+                            similarity: d.similarity?.toFixed(3),
+                            type: d.metadata?.type,
+                            contentPreview: d.content?.substring(0, 80) + '...'
+                        }))
+                    });
+
+                    // Filter for good results
+                    const goodResults = allResults.filter(doc => doc.similarity > 0.1);
+                    console.log(`✅ Good results (similarity > 0.1): ${goodResults.length}`);
+
+                    if (goodResults.length > 0) {
+                        // Use top 3 good results
+                        const topResults = goodResults.slice(0, 3);
+                        context = topResults
+                            .map(doc => `[${doc.metadata?.type || 'unknown'}] ${doc.content}`)
+                            .join('\n\n');
+
+                        vectorUsed = true;
+                        vectorDebugInfo = {
+                            resultsUsed: topResults.length,
+                            topSimilarity: topResults[0].similarity,
+                            types: topResults.map(d => d.metadata?.type),
+                            similarities: topResults.map(d => d.similarity)
+                        };
+
+                        console.log('🚀 Using vector context:', {
+                            resultsUsed: topResults.length,
+                            topSimilarity: topResults[0].similarity?.toFixed(3),
+                            contextLength: context.length
+                        });
+                    } else if (allResults.length > 0) {
+                        // Even the best results are below 0.1 - let's use them anyway but with lower weight
+                        console.log('📝 All similarities below 0.1, using top result anyway');
+                        const topResult = allResults[0];
+                        context = `${context}\n\n**Additional Context:**\n[${topResult.metadata?.type}] ${topResult.content}`;
+
+                        vectorUsed = true;
+                        vectorDebugInfo = {
+                            resultsUsed: 1,
+                            topSimilarity: topResult.similarity,
+                            types: [topResult.metadata?.type],
+                            lowConfidence: true
+                        };
+                    } else {
+                        console.log('❌ No search results found');
+                    }
                 }
             } catch (ragError) {
-                console.error('RAG search failed, using fallback:', ragError);
+                console.error('💥 RAG search failed:', {
+                    message: ragError.message,
+                    stack: ragError.stack?.split('\n')[0]
+                });
+                vectorDebugInfo = { error: ragError.message };
             }
         } else {
-            console.log('Vector store not available, using fallback context');
+            console.log('⚠️ Vector store not available, using fallback context');
         }
 
         // Build conversation context
@@ -138,24 +205,31 @@ ${conversationContext}
 **Instructions:** Use the context above to provide accurate answers about Choti. Keep responses to 2-3 sentences maximum. Always include relevant portfolio links when appropriate.`;
 
         // Call Gemini
-        console.log('Calling Gemini ...');
+        console.log('🤖 Calling Gemini with context length:', context.length);
         const result = await model.generateContent(prompt);
         const response = result.response;
         const responseText = response.text();
 
-        console.log('Response generated successfully');
+        console.log('✅ Response generated successfully');
+        console.log('📤 Final response preview:', responseText.substring(0, 100));
 
         return res.status(200).json({
             response: responseText,
             metadata: {
                 model: 'gemini-2.0-flash-lite',
                 ragEnabled: !!getVectorStore,
+                vectorUsed,
+                vectorDebugInfo,
+                contextLength: context.length,
                 timestamp: new Date().toISOString()
             }
         });
 
     } catch (error) {
-        console.error('Gemini RAG Error:', error);
+        console.error('💥 Gemini RAG Error:', {
+            message: error.message,
+            stack: error.stack?.split('\n')[0]
+        });
 
         // Return appropriate error based on error type
         if (error.message.includes('API_KEY') || error.message.includes('authentication')) {
