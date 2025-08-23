@@ -13,7 +13,7 @@ import { contactInfo } from '../data/contactInfo.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Helper functions for flexible data career positioning
+
 function getDataSkillCategories(technologies) {
     const techNames = technologies.map(t => t.name.toLowerCase());
     const skillCategories = [];
@@ -50,7 +50,6 @@ function getCareerPathRelevance(project) {
     const techNames = project.technologies.map(t => t.name.toLowerCase());
     const paths = {};
 
-    // Score relevance to different career paths (0-10) - Junior level focus
     paths.dataEngineering = 0;
     paths.dataScience = 0;
     paths.backendDev = 0;
@@ -82,7 +81,6 @@ function getCareerPathRelevance(project) {
 function createDocuments() {
     const documents = [];
 
-    // Enhanced profile processing - flexible positioning
     profileData.forEach((section, index) => {
         let enhancedContent = `${section.title}: ${section.content}${section.subtitle ? ` ${section.subtitle}` : ''}`;
 
@@ -110,7 +108,7 @@ function createDocuments() {
                 type: 'profile',
                 section: section.title,
                 source: 'profile',
-                careerRelevance: 'high' // All profile sections are highly relevant
+                careerRelevance: 'high'
             }
         });
     });
@@ -219,7 +217,7 @@ function getCareerPathApplications(project, careerPaths) {
     return applications.length > 0 ? applications.join('\n') : '• Versatile project demonstrating foundational skills applicable across data careers';
 }
 
-// Rest of your generateEmbeddings function...
+
 async function generateEmbeddings() {
     console.log('🚀 Starting flexible data professional embeddings generation...');
 
