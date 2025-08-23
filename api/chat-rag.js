@@ -160,7 +160,6 @@ export default async function handler(req, res) {
                             contextLength: context.length
                         });
                     } else if (allResults.length > 0) {
-                        // Even the best results are below 0.1 - let's use them anyway but with lower weight
                         console.log('📝 All similarities below 0.1, using top result anyway');
                         const topResult = allResults[0];
                         context = `${context}\n\n**Additional Context:**\n[${topResult.metadata?.type}] ${topResult.content}`;
@@ -190,7 +189,7 @@ export default async function handler(req, res) {
         // Build conversation context
         let conversationContext = '';
         if (conversationHistory.length > 0) {
-            const recentHistory = conversationHistory.slice(-6); // Last 3 exchanges
+            const recentHistory = conversationHistory.slice(-6);
             conversationContext = recentHistory
                 .map(msg => `${msg.type === 'user' ? 'Human' : 'Assistant'}: ${msg.content}`)
                 .join('\n') + '\n';
