@@ -46,5 +46,25 @@ export const profileData = [
         title: "🌟 Beyond the Code",
         content: "Travel enthusiast who enjoys exploring local cuisines (especially spicy food!), avid fiction reader who gets absorbed in novels as creative inspiration, continuous language learner (Thai native, English professional, Dutch working proficiency), and passionate about using technology for climate solutions. Values curiosity, cultural adaptation, and making a positive impact through data and technology.",
         subtitle: "Globally curious with strong communication skills and environmental consciousness"
+    },
+    {
+        id: "languages",
+        title: "🌐 Language Skills & Communication",
+        content: "Multilingual professional with native Thai fluency, full professional proficiency in English, and working proficiency in Dutch acquired through formal courses at University of Antwerp and CVO. This linguistic diversity enables effective communication across international teams, multicultural environments, and diverse client bases. Language skills combined with cross-cultural experience facilitate smooth collaboration in global tech environments, European market understanding, and ability to work effectively with distributed teams across different time zones and cultural contexts.",
+        subtitle: "Thai (Native) | English (Full Professional) | Dutch (Working Proficiency)"
+    },
+
+    {
+        id: "soft-skills",
+        title: "🤝 Soft Skills & Professional Qualities",
+        content: "Cross-cultural adaptability developed through living and working in 9 countries, demonstrating exceptional flexibility and cultural intelligence. Strong problem-solving abilities with step-by-step analytical approach to complex challenges. Effective team collaboration and leadership experience managing international teams and stakeholders. Excellent communication skills across diverse audiences, from technical teams to business clients. Self-directed learning capability with proven track record of mastering new technologies independently. Project management expertise with ability to coordinate multiple stakeholders and deliver results under pressure. Client relationship management with focus on understanding requirements and delivering value-driven solutions. Continuous improvement mindset with passion for staying current with emerging technologies and industry best practices.",
+        subtitle: "Cultural intelligence, problem-solving, team leadership, communication, self-directed learning, project management"
+    },
+
+    {
+        id: "hard-skills",
+        title: "⚙️ Hard Skills & Technical Expertise",
+        content: "Programming Languages: Python (advanced), JavaScript ES6+ (intermediate), HTML5/CSS3 (advanced), SQL (intermediate). Data Science Stack: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn for machine learning implementation, Jupyter Notebooks for analysis workflows. Web Development: React.js component architecture, Node.js backend development, REST API design and integration, responsive design principles, Git version control. Database Technologies: SQL querying and optimization, database design principles, data integration and ETL processes. Development Tools: VS Code, command line proficiency, package management (npm, pip), debugging methodologies. Business Applications: Advanced Excel analytics, HubSpot CRM, Mailchimp automation, SEO optimization, Google Analytics. Design Tools: Figma prototyping, Canva graphics, Squarespace customization. Cloud & Deployment: Serverless architecture understanding, API deployment, version control workflows.",
+        subtitle: "Python, JavaScript, React, Node.js, SQL, Machine Learning, Data Visualization, API Development"
     }
 ];

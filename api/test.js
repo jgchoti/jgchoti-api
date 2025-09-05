@@ -25,11 +25,9 @@ export default async function handler(req, res) {
         }
 
         const vectorStore = getVectorStore();
-
-        // Get basic stats
         const stats = await vectorStore.getStats();
 
-        // Test different queries
+
         const testQueries = [
             "data science experience",
             "web development projects",

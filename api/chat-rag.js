@@ -21,6 +21,8 @@ You represent Choti as a standout data professional with international experienc
 **IMPORTANT BOUNDARIES:**
 - You ONLY discuss topics related to Choti, her career, skills, experience, and professional opportunities
 - If someone asks about unrelated topics, politely redirect: "I'm here specifically to talk about Choti and her work. What would you like to know about her background?"
+- NEVER assume or infer information not explicitly provided in the context
+- If asked about something not in your knowledge base, say "I don't have that specific information about Choti" rather than guessing
 
 **SPECIAL META-AWARENESS:**
 - When someone asks about the chatbot, AI system, or this conversation system itself, remind them: "I'm the AI career agent Choti built using RAG technology with Google Gemini AI."
@@ -53,7 +55,6 @@ You represent Choti as a standout data professional with international experienc
 - Always stay on topic about Choti's career`;
 
 export default async function handler(req, res) {
-    // Set CORS headers using the same pattern as your health endpoint
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
@@ -63,7 +64,7 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Max-Age', '86400');
 
-    // Handle CORS preflight requests
+
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
@@ -78,7 +79,6 @@ export default async function handler(req, res) {
     try {
         const { message, conversationHistory = [] } = req.body;
 
-        // Validation
         if (!process.env.GEMINI_API_KEY) {
             console.error('Gemini API key not configured');
             return res.status(500).json({ error: 'Gemini API key not configured' });
@@ -100,18 +100,15 @@ export default async function handler(req, res) {
             }
         });
 
-        // Default fallback context
         let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects.";
         let vectorUsed = false;
         let vectorDebugInfo = {};
 
-        // Try to use vector store
         if (getVectorStore) {
             try {
                 console.log('🔧 Initializing vector store...');
                 const vectorStore = getVectorStore();
 
-                // Get stats first
                 const stats = await vectorStore.getStats();
                 console.log('📊 Vector store stats:', {
                     totalDocuments: stats.totalDocuments,
@@ -123,9 +120,9 @@ export default async function handler(req, res) {
                 if (!stats.isReady || stats.totalDocuments === 0) {
                     console.warn('⚠️ Vector store not ready or empty');
                 } else {
-                    // Perform search with very low threshold to see what we get
+
                     console.log('🔍 Searching with query:', message);
-                    const allResults = await vectorStore.search(message, 10, 0.0); // Get top 10, no threshold
+                    const allResults = await vectorStore.search(message, 10, 0.0);
 
                     console.log('🎯 Raw search results:', {
                         totalFound: allResults.length,
@@ -136,7 +133,6 @@ export default async function handler(req, res) {
                         }))
                     });
 
-                    // Filter for good results
                     const goodResults = allResults.filter(doc => doc.similarity > 0.1);
                     console.log(`✅ Good results (similarity > 0.1): ${goodResults.length}`);
 
@@ -187,7 +183,7 @@ export default async function handler(req, res) {
             console.log('⚠️ Vector store not available, using fallback context');
         }
 
-        // Build conversation context
+
         let conversationContext = '';
         if (conversationHistory.length > 0) {
             const recentHistory = conversationHistory.slice(-6);
@@ -196,7 +192,6 @@ export default async function handler(req, res) {
                 .join('\n') + '\n';
         }
 
-        // Build the prompt for Gemini
         const prompt = `${SYSTEM_PROMPT}
 
 **Context about Choti:**
@@ -209,8 +204,7 @@ ${conversationContext}
 
 **Instructions:** Use the context above to provide accurate answers about Choti. Keep responses to 2-3 sentences maximum. Always include relevant portfolio links when appropriate.`;
 
-        // Call Gemini
-        console.log('🤖 Calling Gemini with context length:', context.length);
+
         const result = await model.generateContent(prompt);
         const response = result.response;
         const responseText = response.text();
@@ -236,7 +230,6 @@ ${conversationContext}
             stack: error.stack?.split('\n')[0]
         });
 
-        // Return appropriate error based on error type
         if (error.message.includes('API_KEY') || error.message.includes('authentication')) {
             return res.status(401).json({
                 error: 'Gemini API authentication failed'
