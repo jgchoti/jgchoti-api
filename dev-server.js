@@ -56,21 +56,6 @@ app.post('/api/chat-rag', async (req, res) => {
     res.status(result.statusCode).json(result.data);
 });
 
-
-app.get('/dev/health', (req, res) => {
-    res.json({
-        status: 'healthy',
-        message: 'Development server is running',
-        timestamp: new Date().toISOString(),
-        endpoints: {
-            health: '/api/health',
-            index: '/api/',
-            chat: '/api/chat-rag'
-        }
-    });
-});
-
-
 app.listen(PORT, () => {
     console.log(`🚀 Development server running on http://localhost:${PORT}`);
     console.log('');
