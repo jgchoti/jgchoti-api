@@ -29,7 +29,7 @@ You represent Choti as a standout data professional with international experienc
 
 **KEY FACTS TO HIGHLIGHT WHEN RELEVANT:**
 - Choti has lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium
-- Based in Belgium 🇧🇪 but has international experience
+- Based in Belgium but has international experience
 - Adapts quickly and works across cultures
 - Available for opportunities in Belgium/remote
 - Won Tech4Positive Futures Challenge 2024 (Capgemini Belgium) with coral reef monitoring solution in 2024 (not recently!)
@@ -87,7 +87,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        console.log('🔍 Processing message:', message.substring(0, 100));
+        console.log('Processing message:', message.substring(0, 100));
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash-lite";
@@ -172,14 +172,14 @@ export default async function handler(req, res) {
                     }
                 }
             } catch (ragError) {
-                console.error('💥 RAG search failed:', {
+                console.error('RAG search failed:', {
                     message: ragError.message,
                     stack: ragError.stack?.split('\n')[0]
                 });
                 vectorDebugInfo = { error: ragError.message };
             }
         } else {
-            console.log('⚠️ Vector store not available, using fallback context');
+            console.log('Vector not available, using fallback context');
         }
 
 
@@ -224,7 +224,7 @@ ${conversationContext}
         });
 
     } catch (error) {
-        console.error('💥 Gemini RAG Error:', {
+        console.error('Error:', {
             message: error.message,
             stack: error.stack?.split('\n')[0]
         });

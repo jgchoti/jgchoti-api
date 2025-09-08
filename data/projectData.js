@@ -1,4 +1,3 @@
-// data/projectData.js - Plain text version for API based on actual projects
 export const projectData = [
     {
         id: 1,

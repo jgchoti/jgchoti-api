@@ -197,7 +197,7 @@ Specializations: Data processing, Python development, API development, data visu
     return documents;
 }
 
-// Helper function for career path applications
+
 function getCareerPathApplications(project, careerPaths) {
     const applications = [];
 
