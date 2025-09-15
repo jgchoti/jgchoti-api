@@ -201,6 +201,15 @@ ${conversationContext}
             }
         }
 
+
+        if ((context.includes('[github-project]') || context.includes('[project]')) &&
+            !responseText.includes('https://jgchoti.github.io/') &&
+            !responseText.includes('portfolio')) {
+            const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
+            const portfolioLink = isDataProject ? 'https://jgchoti.github.io/data' : 'https://jgchoti.github.io/project';
+            responseText += `\n\nSee more projects: ${portfolioLink}`;
+        }
+
         console.log('✅ Response generated successfully');
         console.log('📤 Final response preview:', responseText.substring(0, 100));
 
