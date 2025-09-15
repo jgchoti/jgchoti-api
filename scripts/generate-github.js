@@ -241,7 +241,7 @@ class GitHubPortfolioProcessor {
                 /\b(HTML|CSS|Sass|Tailwind|Bootstrap|Material-UI|Chakra)\b/gi,
 
                 // Data engineering / workflow / big data
-                /\b(Airflow|Spark|Kafka|Hadoop|Beam|Flink|NiFi)\b/gi
+                /\b(Apache\s+Airflow|Airflow|Spark|Kafka|Hadoop|Beam|Flink|NiFi)\b/gi
             ];
 
             techPatterns.forEach(pattern => {
