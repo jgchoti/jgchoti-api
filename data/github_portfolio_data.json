@@ -66,29 +66,6 @@
     }
   },
   {
-    "repoName": "challenge-card-game-becode",
-    "displayName": "Challenge Card Game Becode",
-    "description": "- This card game randomly distribute cards to players and display card played in each round. - This project is aimed to built using **Object-Oriented Programming**, the project is modular, readable, and easy to extend.",
-    "technologies": [
-      "Python"
-    ],
-    "projectType": "Software Project",
-    "githubUrl": "https://github.com/jgchoti/challenge-card-game-becode",
-    "demoLinks": [],
-    "stars": 0,
-    "lastUpdated": "2025-06-10T16:38:27Z",
-    "businessSummary": "Project: Challenge Card Game Becode | Type: Software Project | Description: - This card game randomly distribute cards to players and display card played in each round. - This project is aimed to built using **Object-Oriented Programming**, the project is modular, readable, and easy to extend. | Technologies: Python",
-    "embeddingText": "Project: Challenge Card Game Becode | Type: Software Project | Description: - This card game randomly distribute cards to players and display card played in each round. - This project is aimed to built using **Object-Oriented Programming**, the project is modular, readable, and easy to extend. | Technologies: Python | Skills demonstrated: Python | Suitable for clients needing software project solutions",
-    "metadata": {
-      "source": "github",
-      "repoName": "challenge-card-game-becode",
-      "projectType": "Software Project",
-      "technologies": [
-        "Python"
-      ]
-    }
-  },
-  {
     "repoName": "challenge-ci-cd-github",
     "displayName": "Challenge Ci Cd Github",
     "description": "[](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/ci-git.yml) [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/cd.yml)",
@@ -141,21 +118,23 @@
     "displayName": "Challenge Data Analysis Sql",
     "description": "Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios.",
     "technologies": [
-      "Jupyter Notebook"
+      "Jupyter Notebook",
+      "SQLite"
     ],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/challenge-data-analysis-sql",
     "demoLinks": [],
     "stars": 0,
     "lastUpdated": "2025-07-25T14:41:46Z",
-    "businessSummary": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook",
-    "embeddingText": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook | Skills demonstrated: Jupyter Notebook | Suitable for clients needing software project solutions",
+    "businessSummary": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook, SQLite",
+    "embeddingText": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook, SQLite | Skills demonstrated: Jupyter Notebook, SQLite | Suitable for clients needing software project solutions",
     "metadata": {
       "source": "github",
       "repoName": "challenge-data-analysis-sql",
       "projectType": "Software Project",
       "technologies": [
-        "Jupyter Notebook"
+        "Jupyter Notebook",
+        "SQLite"
       ]
     }
   },
@@ -267,21 +246,23 @@
     "description": "A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations.",
     "technologies": [
       "Python",
+      "FastAPI",
       "Docker"
     ],
-    "projectType": "Software Project",
+    "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/elastic-search-music-explorer",
     "demoLinks": [],
     "stars": 0,
     "lastUpdated": "2025-09-05T17:41:53Z",
-    "businessSummary": "Project: Elastic Search Music Explorer | Type: Software Project | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, Docker",
-    "embeddingText": "Project: Elastic Search Music Explorer | Type: Software Project | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, Docker | Skills demonstrated: Python, Docker | Suitable for clients needing software project solutions",
+    "businessSummary": "Project: Elastic Search Music Explorer | Type: Backend API | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, FastAPI, Docker",
+    "embeddingText": "Project: Elastic Search Music Explorer | Type: Backend API | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, FastAPI, Docker | Skills demonstrated: Python, FastAPI, Docker | Suitable for clients needing backend api solutions",
     "metadata": {
       "source": "github",
       "repoName": "elastic-search-music-explorer",
-      "projectType": "Software Project",
+      "projectType": "Backend API",
       "technologies": [
         "Python",
+        "FastAPI",
         "Docker"
       ]
     }
@@ -368,25 +349,27 @@
     "technologies": [
       "Python",
       "PostgreSQL",
-      "Docker"
+      "Docker",
+      "Airflow"
     ],
-    "projectType": "Software Project",
+    "projectType": "Data Science/ML",
     "githubUrl": "https://github.com/jgchoti/immoeliza-airflow",
     "demoLinks": [
       "https://immo-be.streamlit.app/"
     ],
     "stars": 0,
     "lastUpdated": "2025-09-14T18:30:55Z",
-    "businessSummary": "Project: Immoeliza Airflow | Type: Software Project | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker",
-    "embeddingText": "Project: Immoeliza Airflow | Type: Software Project | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker | Skills demonstrated: Python, PostgreSQL, Docker | Suitable for clients needing software project solutions",
+    "businessSummary": "Project: Immoeliza Airflow | Type: Data Science/ML | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow",
+    "embeddingText": "Project: Immoeliza Airflow | Type: Data Science/ML | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow | Skills demonstrated: Python, PostgreSQL, Docker, Airflow | Suitable for clients needing data science/ml solutions",
     "metadata": {
       "source": "github",
       "repoName": "immoeliza-airflow",
-      "projectType": "Software Project",
+      "projectType": "Data Science/ML",
       "technologies": [
         "Python",
         "PostgreSQL",
-        "Docker"
+        "Docker",
+        "Airflow"
       ]
     }
   },
@@ -429,6 +412,7 @@
       "Python",
       "React",
       "Node.js",
+      "SQLite",
       "Flask",
       "Material-UI",
       "CSS"
@@ -440,8 +424,8 @@
     ],
     "stars": 0,
     "lastUpdated": "2025-08-20T08:15:51Z",
-    "businessSummary": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, Flask, Material-UI",
-    "embeddingText": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, Flask, Material-UI | Skills demonstrated: Python, React, Node.js, Flask, Material-UI, CSS | Suitable for clients needing web application solutions",
+    "businessSummary": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, SQLite, Flask",
+    "embeddingText": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, SQLite, Flask | Skills demonstrated: Python, React, Node.js, SQLite, Flask, Material-UI, CSS | Suitable for clients needing web application solutions",
     "metadata": {
       "source": "github",
       "repoName": "nl-to-sql",
@@ -450,6 +434,7 @@
         "Python",
         "React",
         "Node.js",
+        "SQLite",
         "Flask",
         "Material-UI",
         "CSS"
@@ -517,15 +502,15 @@
   {
     "repoName": "studynote-data",
     "displayName": "Studynote Data",
-    "description": "As part of my Full Stack Development journey, I contributed to fellow students by sharing and recording knowledge and helping others improve their skills. This experience allowed me to strengthen what I’ve learned and make valuable contributions to the community. You can explo...",
+    "description": "As part of my Full Stack Development journey, I contributed to fellow students by sharing and recording knowledge and helping others improve their skills. This experience allowed me to strengthen what I’ve learned and make valuable contributions to the community. You can explore my Full Stack Development study notes here.",
     "technologies": [],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/studynote-data",
     "demoLinks": [],
     "stars": 0,
     "lastUpdated": "2025-06-05T06:59:46Z",
-    "businessSummary": "Project: Studynote Data | Type: Software Project | Description: As part of my Full Stack Development journey, I contributed to fellow students by sharing and recording knowledge and helping others improve their skills. This experience allowed me to strengthen what I’ve learned and make valuable contributions to the community. You can explo... | Technologies: ",
-    "embeddingText": "Project: Studynote Data | Type: Software Project | Description: As part of my Full Stack Development journey, I contributed to fellow students by sharing and recording knowledge and helping others improve their skills. This experience allowed me to strengthen what I’ve learned and make valuable contributions to the community. You can explo... | Technologies:  | Skills demonstrated:  | Suitable for clients needing software project solutions",
+    "businessSummary": "Project: Studynote Data | Type: Software Project | Description: As part of my Full Stack Development journey, I contributed to fellow students by sharing and recording knowledge and helping others improve their skills. This experience allowed me to strengthen what I’ve learned and make valuable contributions to the community. You can explore my Full Stack Development study notes here. | Technologies: ",
+    "embeddingText": "Project: Studynote Data | Type: Software Project | Description: As part of my Full Stack Development journey, I contributed to fellow students by sharing and recording knowledge and helping others improve their skills. This experience allowed me to strengthen what I’ve learned and make valuable contributions to the community. You can explore my Full Stack Development study notes here. | Technologies:  | Skills demonstrated:  | Suitable for clients needing software project solutions",
     "metadata": {
       "source": "github",
       "repoName": "studynote-data",
@@ -539,9 +524,10 @@
     "description": "(But let’s be honest, you're probably too lazy to read it.....)",
     "technologies": [
       "Python",
+      "FastAPI",
       "Docker"
     ],
-    "projectType": "Software Project",
+    "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/tlaas",
     "demoLinks": [
       "https://too-lazy-as-a-service.onrender.com/",
@@ -549,14 +535,15 @@
     ],
     "stars": 0,
     "lastUpdated": "2025-07-07T20:44:03Z",
-    "businessSummary": "Project: Tlaas | Type: Software Project | Description: (But let’s be honest, you're probably too lazy to read it.....) | Technologies: Python, Docker",
-    "embeddingText": "Project: Tlaas | Type: Software Project | Description: (But let’s be honest, you're probably too lazy to read it.....) | Technologies: Python, Docker | Skills demonstrated: Python, Docker | Suitable for clients needing software project solutions",
+    "businessSummary": "Project: Tlaas | Type: Backend API | Description: (But let’s be honest, you're probably too lazy to read it.....) | Technologies: Python, FastAPI, Docker",
+    "embeddingText": "Project: Tlaas | Type: Backend API | Description: (But let’s be honest, you're probably too lazy to read it.....) | Technologies: Python, FastAPI, Docker | Skills demonstrated: Python, FastAPI, Docker | Suitable for clients needing backend api solutions",
     "metadata": {
       "source": "github",
       "repoName": "tlaas",
-      "projectType": "Software Project",
+      "projectType": "Backend API",
       "technologies": [
         "Python",
+        "FastAPI",
         "Docker"
       ]
     }

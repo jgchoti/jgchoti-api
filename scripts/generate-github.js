@@ -92,7 +92,7 @@ class GitHubPortfolioProcessor {
             .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
             .replace(/\s+/g, ' ')
             .trim();
-        return clean.length > 280 ? `${clean.slice(0, 277)}...` : clean;
+        return clean.length > 500 ? `${clean.slice(0, 497)}...` : clean;
     }
 
     extractDemoLinks(readmeContent, repoUrl, repoHomepage) {
@@ -223,14 +223,25 @@ class GitHubPortfolioProcessor {
             technologies.push(...repoData.topics);
         }
 
-
         if (readmeContent) {
             const techPatterns = [
-                /\b(React|Vue|Angular|Node\.?js|Python|JavaScript|TypeScript|Java|C\+\+|C#)\b/gi,
-                /\b(MongoDB|PostgreSQL|MySQL|Redis|Firebase|Supabase)\b/gi,
-                /\b(Express|Django|Flask|Spring|Laravel)\b/gi,
+                // Languages & frameworks
+                /\b(React|Vue|Angular|Node\.?js|Python|JavaScript|TypeScript|Java|C\+\+|C#|Rust)\b/gi,
+
+                // Databases
+                /\b(MongoDB|PostgreSQL|MySQL|Redis|Firebase|Supabase|SQLite|Oracle)\b/gi,
+
+                // Backend frameworks
+                /\b(Express|Django|Flask|Spring|Laravel|FastAPI)\b/gi,
+
+                // Cloud & deployment
                 /\b(Docker|Kubernetes|AWS|Azure|GCP|Heroku|Vercel|Netlify)\b/gi,
-                /\b(HTML|CSS|Sass|Tailwind|Bootstrap|Material-UI|Chakra)\b/gi
+
+                // Frontend & styling
+                /\b(HTML|CSS|Sass|Tailwind|Bootstrap|Material-UI|Chakra)\b/gi,
+
+                // Data engineering / workflow / big data
+                /\b(Airflow|Spark|Kafka|Hadoop|Beam|Flink|NiFi)\b/gi
             ];
 
             techPatterns.forEach(pattern => {
