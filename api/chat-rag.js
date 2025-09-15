@@ -132,15 +132,7 @@ export default async function handler(req, res) {
                     console.log(`✅ Good results (similarity > 0.1): ${goodResults.length}`);
 
                     if (goodResults.length > 0) {
-
-                        const preferTypes = new Set(['profile', 'project', 'contact']);
-                        const portfolio = goodResults.filter(d => preferTypes.has(d.metadata?.type));
-                        const github = goodResults.filter(d => d.metadata?.type === 'github-project');
-                        const selected = [];
-                        for (const d of portfolio) { if (selected.length < 3) selected.push(d); }
-                        for (const d of github) { if (selected.length < 3) selected.push(d); }
-
-                        const topResults = selected.length > 0 ? selected : goodResults.slice(0, 3);
+                        const topResults = goodResults.slice(0, 3);
                         context = topResults
                             .map(doc => `[${doc.metadata?.type || 'unknown'}] ${doc.content}`)
                             .join('\n\n');
