@@ -181,7 +181,7 @@ ${conversationContext}
         let responseText = response.text();
 
 
-        const personalQueryRegex = /(about|bio|background|reading|read\b|hobby|hobbies|interest|interests)/i;
+        const personalQueryRegex = /(bio|background|reading|read\b|hobby|hobbies|interest|interests|personal|who\s+is|tell\s+me\s+about\s+choti)/i;
         if (personalQueryRegex.test(message) && !responseText.includes('https://jgchoti.github.io/about')) {
             responseText += `\n\nLearn more: https://jgchoti.github.io/about`;
         }
