@@ -191,6 +191,16 @@ ${conversationContext}
             responseText += `\n\nGet in touch: https://jgchoti.github.io/contact`;
         }
 
+        if (context.includes('[project]') || context.includes('[github-project]')) {
+            const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
+            const wrongLink = isDataProject ? 'https://jgchoti.github.io/project' : 'https://jgchoti.github.io/data';
+            const correctLink = isDataProject ? 'https://jgchoti.github.io/data' : 'https://jgchoti.github.io/project';
+
+            if (responseText.includes(wrongLink)) {
+                responseText = responseText.replace(wrongLink, correctLink);
+            }
+        }
+
         console.log('✅ Response generated successfully');
         console.log('📤 Final response preview:', responseText.substring(0, 100));
 
