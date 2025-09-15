@@ -178,7 +178,18 @@ ${conversationContext}
 
         const result = await model.generateContent(prompt);
         const response = result.response;
-        const responseText = response.text();
+        let responseText = response.text();
+
+
+        const personalQueryRegex = /(about|bio|background|reading|read\b|hobby|hobbies|interest|interests)/i;
+        if (personalQueryRegex.test(message) && !responseText.includes('https://jgchoti.github.io/about')) {
+            responseText += `\n\nLearn more: https://jgchoti.github.io/about`;
+        }
+
+        const contactQueryRegex = /(contact|hire|hiring|job|opportunity|opportunities|work|collaborate|reach|email|linkedin)/i;
+        if (contactQueryRegex.test(message) && !responseText.includes('https://jgchoti.github.io/contact')) {
+            responseText += `\n\nGet in touch: https://jgchoti.github.io/contact`;
+        }
 
         console.log('✅ Response generated successfully');
         console.log('📤 Final response preview:', responseText.substring(0, 100));
