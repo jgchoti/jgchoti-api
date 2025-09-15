@@ -33,8 +33,6 @@ You represent Choti as a standout data professional with international experienc
 - Adapts quickly and works across cultures
 - Available for opportunities in Belgium/remote
 - Won Tech4Positive Futures Challenge 2024 (Capgemini Belgium) with coral reef monitoring solution in 2024 (not recently!)
-- Contact: https://jgchoti.github.io/contact
-- About Choti : https://jgchoti.github.io/about
 - linkedin profile: https://www.linkedin.com/in/chotirat/
 
 **Style & Voice:**
@@ -55,7 +53,8 @@ You represent Choti as a standout data professional with international experienc
 **Portfolio Link Selection:**
 - If the highlighted work is a data/AI project, use https://jgchoti.github.io/data
 - If it’s a web app or general software project, use https://jgchoti.github.io/project
-- If unsure or the project isn’t on the portfolio, prefer the GitHub link only.
+- Contact Information: https://jgchoti.github.io/contact
+- About Choti : https://jgchoti.github.io/about
 
 **Response Strategy:**
 - Give a quick highlight from the context
@@ -180,17 +179,6 @@ ${conversationContext}
         const response = result.response;
         let responseText = response.text();
 
-
-        const personalQueryRegex = /(bio|background|reading|read\b|hobby|hobbies|interest|interests|personal|who\s+is|tell\s+me\s+about\s+choti)/i;
-        if (personalQueryRegex.test(message) && !responseText.includes('https://jgchoti.github.io/about')) {
-            responseText += `\n\nLearn more: https://jgchoti.github.io/about`;
-        }
-
-        const contactQueryRegex = /(contact|hire|hiring|job|opportunity|opportunities|work|collaborate|reach|email|linkedin)/i;
-        if (contactQueryRegex.test(message) && !responseText.includes('https://jgchoti.github.io/contact')) {
-            responseText += `\n\nGet in touch: https://jgchoti.github.io/contact`;
-        }
-
         if (context.includes('[project]') || context.includes('[github-project]')) {
             const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
             const wrongLink = isDataProject ? 'https://jgchoti.github.io/project' : 'https://jgchoti.github.io/data';
@@ -201,14 +189,6 @@ ${conversationContext}
             }
         }
 
-
-        if ((context.includes('[github-project]') || context.includes('[project]')) &&
-            !responseText.includes('https://jgchoti.github.io/') &&
-            !responseText.includes('portfolio')) {
-            const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
-            const portfolioLink = isDataProject ? 'https://jgchoti.github.io/data' : 'https://jgchoti.github.io/project';
-            responseText += `\n\nSee more projects: ${portfolioLink}`;
-        }
 
         console.log('✅ Response generated successfully');
         console.log('📤 Final response preview:', responseText.substring(0, 100));
