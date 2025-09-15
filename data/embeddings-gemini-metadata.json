@@ -1,8 +1,9 @@
 {
-  "totalDocuments": 27,
+  "totalDocuments": 52,
   "documentTypes": [
     "profile",
     "project",
+    "github-project",
     "contact"
   ],
   "careerApproach": "flexible-data-professional",
@@ -13,7 +14,7 @@
     "backend-development",
     "data-analysis"
   ],
-  "generatedAt": "2025-09-05T21:09:17.913Z",
+  "generatedAt": "2025-09-15T11:03:16.973Z",
   "embeddingModel": "text-embedding-004",
   "embeddingDimensions": 768,
   "provider": "google-gemini"

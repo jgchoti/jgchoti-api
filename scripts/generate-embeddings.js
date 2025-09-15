@@ -10,12 +10,31 @@ import { projectData } from '../data/projectData.js';
 import { profileData } from '../data/profileData.js';
 import { contactInfo } from '../data/contactInfo.js';
 
+let githubData = [];
+try {
+    const __jsonPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../data/github_portfolio_data.json');
+    if (fs.existsSync(__jsonPath)) {
+        githubData = JSON.parse(fs.readFileSync(__jsonPath, 'utf-8'));
+    }
+} catch (_) {
+    githubData = [];
+}
+// data/github_portfolio_data.json
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
+function normalizeTechNames(technologies) {
+    if (!technologies) return [];
+    return technologies.map(t => {
+        if (typeof t === 'string') return t.toLowerCase();
+        if (t && typeof t.name === 'string') return t.name.toLowerCase();
+        return String(t || '').toLowerCase();
+    });
+}
+
 function getDataSkillCategories(technologies) {
-    const techNames = technologies.map(t => t.name.toLowerCase());
+    const techNames = normalizeTechNames(technologies);
     const skillCategories = [];
 
     // Data Engineering skills
@@ -46,8 +65,8 @@ function getDataSkillCategories(technologies) {
     return skillCategories;
 }
 
-function getCareerPathRelevance(project) {
-    const techNames = project.technologies.map(t => t.name.toLowerCase());
+function getCareerPathRelevanceFromTechs(technologies) {
+    const techNames = normalizeTechNames(technologies);
     const paths = {};
 
     paths.dataEngineering = 0;
@@ -113,10 +132,9 @@ function createDocuments() {
         });
     });
 
-    // Enhanced project processing - multiple career path perspectives
     projectData.forEach((project, index) => {
         const skillCategories = getDataSkillCategories(project.technologies);
-        const careerPaths = getCareerPathRelevance(project);
+        const careerPaths = getCareerPathRelevanceFromTechs(project.technologies);
         const topPaths = Object.entries(careerPaths)
             .filter(([_, score]) => score >= 4)
             .map(([path, _]) => path)
@@ -146,7 +164,7 @@ Available at: ${project.githubUrl || project.webUrl || 'Contact for details'}`;
                 type: 'project',
                 projectName: project.name,
                 projectType: project.type,
-                technologies: project.technologies.map(t => t.name),
+                technologies: normalizeTechNames(project.technologies),
                 skillCategories: skillCategories,
                 careerPathScores: careerPaths,
                 topCareerPaths: Object.entries(careerPaths)
@@ -157,40 +175,64 @@ Available at: ${project.githubUrl || project.webUrl || 'Contact for details'}`;
         });
     });
 
-    // Career-focused contact section
-    const contactContent = `Contact Choti for data-focused opportunities across multiple career paths:
+    // GitHub portfolio projects to documents
+    githubData.forEach((repo, index) => {
+        const techs = normalizeTechNames(repo.technologies);
+        const skillCategories = getDataSkillCategories(techs);
+        const careerPaths = getCareerPathRelevanceFromTechs(techs);
+        const topPaths = Object.entries(careerPaths)
+            .filter(([_, score]) => score >= 4)
+            .map(([path, _]) => path)
+            .join(', ');
 
-${contactInfo.map(contact => {
-        switch (contact.platform.toLowerCase()) {
-            case 'email':
-            case 'e-mail':
-                return `📧 Email: ${contact.name} - Best for discussing junior data career opportunities (Data Engineering, Data Science, Backend Development, Data Analysis)`;
-            case 'github':
-                return `💻 GitHub: ${contact.name} - Explore data projects, Python implementations, and API development`;
-            case 'linkedin':
-                return `💼 LinkedIn: ${contact.name} - Professional network showcasing data career journey and technical growth`;
-            case 'instagram':
-                return `📸 Instagram: ${contact.name} - Personal insights and behind-the-scenes of international data professional life`;
-            default:
-                return `${contact.platform}: ${contact.name}`;
+        const content = `${repo.displayName || repo.repoName}: ${repo.description || repo.businessSummary}
+
+Multi-Path Career Relevance: This project demonstrates skills applicable to ${topPaths || 'multiple data career paths'}. The technical implementation showcases ${skillCategories.length > 0 ? skillCategories.join(', ') : 'versatile software engineering capabilities'}.
+
+Technical Stack: Built with ${techs.join(', ') || 'varied technologies'}.
+
+Detailed Summary: ${repo.businessSummary || repo.description}
+
+${repo.demoLinks && repo.demoLinks.length ? `Live Demo: ${repo.demoLinks[0]}` : ''}
+
+Repository: ${repo.githubUrl}`;
+
+        documents.push({
+            id: `github-${index}`,
+            content: content,
+            metadata: {
+                type: 'github-project',
+                projectName: repo.displayName || repo.repoName,
+                projectType: repo.projectType,
+                technologies: techs,
+                skillCategories: skillCategories,
+                careerPathScores: careerPaths,
+                topCareerPaths: Object.entries(careerPaths)
+                    .filter(([_, score]) => score >= 4)
+                    .map(([path, _]) => path),
+                source: 'github',
+                stars: repo.stars || 0
+            }
+        });
+    });
+
+    // Contact document
+    const contactLines = contactInfo.map(contact => {
+        const platform = contact.platform.toLowerCase();
+        if (platform === 'email' || platform === 'e-mail') {
+            return `Email: ${contact.name}`;
         }
-    }).join('\n')}
-
-Career Interests: Open to junior-level data roles including Data Engineering, Data Science, Backend Development, and Data Analysis positions.
-Location: Based in Belgium 🇧🇪, available for remote work and international opportunities across Europe and beyond.
-Unique Value: Combines technical data skills with international experience, adaptability, and full-stack perspective - ideal for junior roles with growth potential.
-Specializations: Data processing, Python development, API development, data visualization, and scalable system design.`;
+        return `${contact.platform}: ${contact.name}`;
+    }).join('\n');
 
     documents.push({
         id: 'contact-0',
-        content: contactContent,
+        content: `Contact Choti for data-focused opportunities.\n\n${contactLines}`,
         metadata: {
             type: 'contact',
+            source: 'contact',
             location: 'Belgium',
-            availability: 'remote-international',
-            careerPaths: ['data-engineering', 'data-science', 'backend-development', 'data-analysis'],
-            uniqueValue: ['international-experience', 'adaptability', 'full-stack-perspective'],
-            source: 'contact'
+            availability: 'remote-international'
         }
     });
 
