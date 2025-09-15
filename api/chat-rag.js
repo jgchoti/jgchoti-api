@@ -109,18 +109,10 @@ export default async function handler(req, res) {
 
         if (getVectorStore) {
             try {
-                console.log('🔧 Initializing vector store...');
                 const vectorStore = getVectorStore();
+                await vectorStore.initialize();
 
-                const stats = await vectorStore.getStats();
-                console.log('📊 Vector store stats:', {
-                    totalDocuments: stats.totalDocuments,
-                    documentTypes: stats.documentTypes,
-                    isReady: stats.isReady,
-                    provider: stats.provider
-                });
-
-                if (!stats.isReady || stats.totalDocuments === 0) {
+                if (!vectorStore) {
                     console.warn('⚠️ Vector store not ready or empty');
                 } else {
 
@@ -145,34 +137,7 @@ export default async function handler(req, res) {
                         context = topResults
                             .map(doc => `[${doc.metadata?.type || 'unknown'}] ${doc.content}`)
                             .join('\n\n');
-
                         vectorUsed = true;
-                        vectorDebugInfo = {
-                            resultsUsed: topResults.length,
-                            topSimilarity: topResults[0].similarity,
-                            types: topResults.map(d => d.metadata?.type),
-                            similarities: topResults.map(d => d.similarity)
-                        };
-
-                        console.log('🚀 Using vector context:', {
-                            resultsUsed: topResults.length,
-                            topSimilarity: topResults[0].similarity?.toFixed(3),
-                            contextLength: context.length
-                        });
-                    } else if (allResults.length > 0) {
-                        console.log('📝 All similarities below 0.1, using top result anyway');
-                        const topResult = allResults[0];
-                        context = `${context}\n\n**Additional Context:**\n[${topResult.metadata?.type}] ${topResult.content}`;
-
-                        vectorUsed = true;
-                        vectorDebugInfo = {
-                            resultsUsed: 1,
-                            topSimilarity: topResult.similarity,
-                            types: [topResult.metadata?.type],
-                            lowConfidence: true
-                        };
-                    } else {
-                        console.log('❌ No search results found');
                     }
                 }
             } catch (ragError) {
@@ -182,8 +147,6 @@ export default async function handler(req, res) {
                 });
                 vectorDebugInfo = { error: ragError.message };
             }
-        } else {
-            console.log('Vector not available, using fallback context');
         }
 
 
@@ -221,7 +184,6 @@ ${conversationContext}
                 model: 'gemini-2.0-flash-lite',
                 ragEnabled: !!getVectorStore,
                 vectorUsed,
-                vectorDebugInfo,
                 contextLength: context.length,
                 timestamp: new Date().toISOString()
             }
