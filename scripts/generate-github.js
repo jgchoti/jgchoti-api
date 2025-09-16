@@ -320,8 +320,8 @@ class GitHubPortfolioProcessor {
             return 'Backend API';
         } else if (['mobile', 'react native', 'flutter', 'android', 'ios'].some(word => combined.includes(word))) {
             return 'Mobile Application';
-        } else if (['ml', 'ai', 'machine learning', 'data', 'analysis'].some(word => combined.includes(word))) {
-            return 'Data Science/ML';
+        } else if (['ml', 'ai', 'machine learning', 'data', 'analysis', 'llm'].some(word => combined.includes(word))) {
+            return 'Data Science';
         } else if (['game', 'unity', 'pygame'].some(word => combined.includes(word))) {
             return 'Game Development';
         } else {

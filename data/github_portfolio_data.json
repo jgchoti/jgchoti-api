@@ -3,48 +3,26 @@
     "repoName": "ai-code-coach",
     "displayName": "Ai Code Coach",
     "description": "A charming farming-themed code coaching app inspired by **Stardew Valley**! Built with Flask and Google's Generative AI. 🌾 **This is purely a fun project** no commercial intent 🌻",
-    "technologies": [
-      "HTML",
-      "Python",
-      "JavaScript",
-      "Java",
-      "Flask",
-      "CSS"
-    ],
-    "projectType": "Data Science/ML",
+    "technologies": ["HTML", "Python", "JavaScript", "Java", "Flask", "CSS"],
+    "projectType": "Data Science",
     "githubUrl": "https://github.com/jgchoti/ai-code-coach",
-    "demoLinks": [
-      "https://ai-code-coach.onrender.com/"
-    ],
+    "demoLinks": ["https://ai-code-coach.onrender.com/"],
     "stars": 0,
     "lastUpdated": "2025-08-15T08:18:54Z",
-    "businessSummary": "Project: Ai Code Coach | Type: Data Science/ML | Description: A charming farming-themed code coaching app inspired by **Stardew Valley**! Built with Flask and Google's Generative AI. 🌾 **This is purely a fun project** no commercial intent 🌻 | Technologies: HTML, Python, JavaScript, Java, Flask",
-    "embeddingText": "Project: Ai Code Coach | Type: Data Science/ML | Description: A charming farming-themed code coaching app inspired by **Stardew Valley**! Built with Flask and Google's Generative AI. 🌾 **This is purely a fun project** no commercial intent 🌻 | Technologies: HTML, Python, JavaScript, Java, Flask | Skills demonstrated: HTML, Python, JavaScript, Java, Flask, CSS | Suitable for clients needing data science/ml solutions",
+    "businessSummary": "Project: Ai Code Coach | Type: Data Science | Description: A charming farming-themed code coaching app inspired by **Stardew Valley**! Built with Flask and Google's Generative AI. 🌾 **This is purely a fun project** no commercial intent 🌻 | Technologies: HTML, Python, JavaScript, Java, Flask",
+    "embeddingText": "Project: Ai Code Coach | Type: Data Science | Description: A charming farming-themed code coaching app inspired by **Stardew Valley**! Built with Flask and Google's Generative AI. 🌾 **This is purely a fun project** no commercial intent 🌻 | Technologies: HTML, Python, JavaScript, Java, Flask | Skills demonstrated: HTML, Python, JavaScript, Java, Flask, CSS | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "ai-code-coach",
-      "projectType": "Data Science/ML",
-      "technologies": [
-        "HTML",
-        "Python",
-        "JavaScript",
-        "Java",
-        "Flask",
-        "CSS"
-      ]
+      "projectType": "Data Science",
+      "technologies": ["HTML", "Python", "JavaScript", "Java", "Flask", "CSS"]
     }
   },
   {
     "repoName": "challenge-caching-csv-redis",
     "displayName": "Challenge Caching Csv Redis",
     "description": "This project demonstrates how to use Redis as a caching layer for processing large CSV files efficiently. It showcases advanced Redis features including hash operations (`HSET`/`HGET`) for chunked data storage and optimized configuration for large datasets.",
-    "technologies": [
-      "Python",
-      "Redis",
-      "PostgreSQL",
-      "MongoDB",
-      "Docker"
-    ],
+    "technologies": ["Python", "Redis", "PostgreSQL", "MongoDB", "Docker"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/challenge-caching-csv-redis",
     "demoLinks": [],
@@ -56,27 +34,17 @@
       "source": "github",
       "repoName": "challenge-caching-csv-redis",
       "projectType": "Software Project",
-      "technologies": [
-        "Python",
-        "Redis",
-        "PostgreSQL",
-        "MongoDB",
-        "Docker"
-      ]
+      "technologies": ["Python", "Redis", "PostgreSQL", "MongoDB", "Docker"]
     }
   },
   {
     "repoName": "challenge-ci-cd-github",
     "displayName": "Challenge Ci Cd Github",
     "description": "[](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/ci-git.yml) [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/cd.yml)",
-    "technologies": [
-      "Python"
-    ],
+    "technologies": ["Python"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/challenge-ci-cd-github",
-    "demoLinks": [
-      "https://pet-adoption-be.streamlit.app/"
-    ],
+    "demoLinks": ["https://pet-adoption-be.streamlit.app/"],
     "stars": 0,
     "lastUpdated": "2025-08-20T17:54:28Z",
     "businessSummary": "Project: Challenge Ci Cd Github | Type: Software Project | Description: [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/ci-git.yml) [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/cd.yml) | Technologies: Python",
@@ -85,18 +53,14 @@
       "source": "github",
       "repoName": "challenge-ci-cd-github",
       "projectType": "Software Project",
-      "technologies": [
-        "Python"
-      ]
+      "technologies": ["Python"]
     }
   },
   {
     "repoName": "challenge-collecting-data",
     "displayName": "Challenge Collecting Data",
     "description": "A Python project that scrapes real estate property listings from Zimmo.be to build a comprehensive dataset covering properties all over Belgium.",
-    "technologies": [
-      "Python"
-    ],
+    "technologies": ["Python"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/challenge-collecting-data",
     "demoLinks": [],
@@ -108,19 +72,14 @@
       "source": "github",
       "repoName": "challenge-collecting-data",
       "projectType": "Software Project",
-      "technologies": [
-        "Python"
-      ]
+      "technologies": ["Python"]
     }
   },
   {
     "repoName": "challenge-data-analysis-sql",
     "displayName": "Challenge Data Analysis Sql",
     "description": "Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios.",
-    "technologies": [
-      "Jupyter Notebook",
-      "SQLite"
-    ],
+    "technologies": ["Jupyter Notebook", "SQLite"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/challenge-data-analysis-sql",
     "demoLinks": [],
@@ -132,75 +91,55 @@
       "source": "github",
       "repoName": "challenge-data-analysis-sql",
       "projectType": "Software Project",
-      "technologies": [
-        "Jupyter Notebook",
-        "SQLite"
-      ]
+      "technologies": ["Jupyter Notebook", "SQLite"]
     }
   },
   {
     "repoName": "coral-game",
     "displayName": "Coral Game",
     "description": "using Twine making interactive game in saving corals",
-    "technologies": [
-      "HTML",
-      "JavaScript"
-    ],
-    "projectType": "Data Science/ML",
+    "technologies": ["HTML", "JavaScript"],
+    "projectType": "Data Science",
     "githubUrl": "https://github.com/jgchoti/coral-game",
-    "demoLinks": [
-      "https://coral-game.netlify.app/"
-    ],
+    "demoLinks": ["https://coral-game.netlify.app/"],
     "stars": 0,
     "lastUpdated": "2024-10-31T11:53:53Z",
-    "businessSummary": "Project: Coral Game | Type: Data Science/ML | Description: using Twine making interactive game in saving corals | Technologies: HTML, JavaScript",
-    "embeddingText": "Project: Coral Game | Type: Data Science/ML | Description: using Twine making interactive game in saving corals | Technologies: HTML, JavaScript | Skills demonstrated: HTML, JavaScript | Suitable for clients needing data science/ml solutions",
+    "businessSummary": "Project: Coral Game | Type: Data Science | Description: using Twine making interactive game in saving corals | Technologies: HTML, JavaScript",
+    "embeddingText": "Project: Coral Game | Type: Data Science | Description: using Twine making interactive game in saving corals | Technologies: HTML, JavaScript | Skills demonstrated: HTML, JavaScript | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "coral-game",
-      "projectType": "Data Science/ML",
-      "technologies": [
-        "HTML",
-        "JavaScript"
-      ]
+      "projectType": "Data Science",
+      "technologies": ["HTML", "JavaScript"]
     }
   },
   {
     "repoName": "cv",
     "displayName": "Cv",
     "description": "No description available",
-    "technologies": [
-      "HTML"
-    ],
-    "projectType": "Data Science/ML",
+    "technologies": ["HTML"],
+    "projectType": "Data Science",
     "githubUrl": "https://github.com/jgchoti/cv",
     "demoLinks": [],
     "stars": 0,
     "lastUpdated": "2024-06-25T10:27:08Z",
-    "businessSummary": "Project: Cv | Type: Data Science/ML | Description: No description available | Technologies: HTML",
-    "embeddingText": "Project: Cv | Type: Data Science/ML | Description: No description available | Technologies: HTML | Skills demonstrated: HTML | Suitable for clients needing data science/ml solutions",
+    "businessSummary": "Project: Cv | Type: Data Science | Description: No description available | Technologies: HTML",
+    "embeddingText": "Project: Cv | Type: Data Science | Description: No description available | Technologies: HTML | Skills demonstrated: HTML | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "cv",
-      "projectType": "Data Science/ML",
-      "technologies": [
-        "HTML"
-      ]
+      "projectType": "Data Science",
+      "technologies": ["HTML"]
     }
   },
   {
     "repoName": "dictionary-react",
     "displayName": "Dictionary React",
     "description": "This project was bootstrapped with Create React App.",
-    "technologies": [
-      "JavaScript",
-      "React"
-    ],
+    "technologies": ["JavaScript", "React"],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/dictionary-react",
-    "demoLinks": [
-      "https://retro-english-dictionary.netlify.app/"
-    ],
+    "demoLinks": ["https://retro-english-dictionary.netlify.app/"],
     "stars": 0,
     "lastUpdated": "2024-06-21T14:51:36Z",
     "businessSummary": "Project: Dictionary React | Type: Web Application | Description: This project was bootstrapped with Create React App. | Technologies: JavaScript, React",
@@ -209,24 +148,17 @@
       "source": "github",
       "repoName": "dictionary-react",
       "projectType": "Web Application",
-      "technologies": [
-        "JavaScript",
-        "React"
-      ]
+      "technologies": ["JavaScript", "React"]
     }
   },
   {
     "repoName": "disney-characters",
     "displayName": "Disney Characters",
     "description": "using Disney API to search for Disney characters",
-    "technologies": [
-      "JavaScript"
-    ],
+    "technologies": ["JavaScript"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/disney-characters",
-    "demoLinks": [
-      "https://jgchoti.github.io/disney-characters/"
-    ],
+    "demoLinks": ["https://jgchoti.github.io/disney-characters/"],
     "stars": 0,
     "lastUpdated": "2024-06-21T15:03:17Z",
     "businessSummary": "Project: Disney Characters | Type: Backend API | Description: using Disney API to search for Disney characters | Technologies: JavaScript",
@@ -235,20 +167,14 @@
       "source": "github",
       "repoName": "disney-characters",
       "projectType": "Backend API",
-      "technologies": [
-        "JavaScript"
-      ]
+      "technologies": ["JavaScript"]
     }
   },
   {
     "repoName": "elastic-search-music-explorer",
     "displayName": "Elastic Search Music Explorer",
     "description": "A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations.",
-    "technologies": [
-      "Python",
-      "FastAPI",
-      "Docker"
-    ],
+    "technologies": ["Python", "FastAPI", "Docker"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/elastic-search-music-explorer",
     "demoLinks": [],
@@ -260,25 +186,17 @@
       "source": "github",
       "repoName": "elastic-search-music-explorer",
       "projectType": "Backend API",
-      "technologies": [
-        "Python",
-        "FastAPI",
-        "Docker"
-      ]
+      "technologies": ["Python", "FastAPI", "Docker"]
     }
   },
   {
     "repoName": "giphy",
     "displayName": "Giphy",
     "description": "Giphy API practice project",
-    "technologies": [
-      "JavaScript"
-    ],
+    "technologies": ["JavaScript"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/giphy",
-    "demoLinks": [
-      "https://jgchoti.github.io/giphy/"
-    ],
+    "demoLinks": ["https://jgchoti.github.io/giphy/"],
     "stars": 0,
     "lastUpdated": "2024-05-26T11:45:21Z",
     "businessSummary": "Project: Giphy | Type: Backend API | Description: Giphy API practice project | Technologies: JavaScript",
@@ -287,23 +205,17 @@
       "source": "github",
       "repoName": "giphy",
       "projectType": "Backend API",
-      "technologies": [
-        "JavaScript"
-      ]
+      "technologies": ["JavaScript"]
     }
   },
   {
     "repoName": "harry-potter-searcher",
     "displayName": "Harry Potter Searcher",
     "description": "using Potter DB: API ",
-    "technologies": [
-      "JavaScript"
-    ],
+    "technologies": ["JavaScript"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/harry-potter-searcher",
-    "demoLinks": [
-      "https://jgchoti.github.io/harry-potter-searcher/"
-    ],
+    "demoLinks": ["https://jgchoti.github.io/harry-potter-searcher/"],
     "stars": 1,
     "lastUpdated": "2024-08-01T15:08:04Z",
     "businessSummary": "Project: Harry Potter Searcher | Type: Backend API | Description: using Potter DB: API  | Technologies: JavaScript | GitHub Stars: 1",
@@ -312,23 +224,17 @@
       "source": "github",
       "repoName": "harry-potter-searcher",
       "projectType": "Backend API",
-      "technologies": [
-        "JavaScript"
-      ]
+      "technologies": ["JavaScript"]
     }
   },
   {
     "repoName": "house-price-be",
     "displayName": "House Price Be",
     "description": "No description available",
-    "technologies": [
-      "Python"
-    ],
+    "technologies": ["Python"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/house-price-be",
-    "demoLinks": [
-      "https://house-price-be.streamlit.app/"
-    ],
+    "demoLinks": ["https://house-price-be.streamlit.app/"],
     "stars": 0,
     "lastUpdated": "2025-07-10T07:45:53Z",
     "businessSummary": "Project: House Price Be | Type: Software Project | Description: No description available | Technologies: Python",
@@ -337,9 +243,7 @@
       "source": "github",
       "repoName": "house-price-be",
       "projectType": "Software Project",
-      "technologies": [
-        "Python"
-      ]
+      "technologies": ["Python"]
     }
   },
   {
@@ -350,26 +254,29 @@
       "Python",
       "PostgreSQL",
       "Docker",
-      "Airflow"
+      "Airflow",
+      "Apache Airflow",
+      "ML",
+      "machine learning"
     ],
-    "projectType": "Data Science/ML",
+    "projectType": "Data Science",
     "githubUrl": "https://github.com/jgchoti/immoeliza-airflow",
-    "demoLinks": [
-      "https://immo-be.streamlit.app/"
-    ],
+    "demoLinks": ["https://immo-be.streamlit.app/"],
     "stars": 0,
     "lastUpdated": "2025-09-14T18:30:55Z",
-    "businessSummary": "Project: Immoeliza Airflow | Type: Data Science/ML | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow",
-    "embeddingText": "Project: Immoeliza Airflow | Type: Data Science/ML | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow | Skills demonstrated: Python, PostgreSQL, Docker, Airflow | Suitable for clients needing data science/ml solutions",
+    "businessSummary": "Project: Immoeliza Airflow | Type: Data Science | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow, Apache Airflow",
+    "embeddingText": "Project: Immoeliza Airflow | Type: Data Science | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow, Apache Airflow | Skills demonstrated: Python, PostgreSQL, Docker, Airflow, Apache Airflow | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "immoeliza-airflow",
-      "projectType": "Data Science/ML",
+      "projectType": "Data Science",
       "technologies": [
         "Python",
         "PostgreSQL",
         "Docker",
-        "Airflow"
+        "Airflow",
+        "Apache Airflow",
+        "ml"
       ]
     }
   },
@@ -377,11 +284,7 @@
     "repoName": "jgchoti.github.io",
     "displayName": "Jgchoti.github.io",
     "description": "Welcome! This portfolio showcases my work as a data professional and web developer, blending data science expertise with full-stack web development skills.",
-    "technologies": [
-      "JavaScript",
-      "React",
-      "Vercel"
-    ],
+    "technologies": ["JavaScript", "React", "Vercel"],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/jgchoti.github.io",
     "demoLinks": [
@@ -397,11 +300,7 @@
       "source": "github",
       "repoName": "jgchoti.github.io",
       "projectType": "Web Application",
-      "technologies": [
-        "JavaScript",
-        "React",
-        "Vercel"
-      ]
+      "technologies": ["JavaScript", "React", "Vercel"]
     }
   },
   {
@@ -419,9 +318,7 @@
     ],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/nl-to-sql",
-    "demoLinks": [
-      "https://nl-to-sql-pied.vercel.app"
-    ],
+    "demoLinks": ["https://nl-to-sql-pied.vercel.app"],
     "stars": 0,
     "lastUpdated": "2025-08-20T08:15:51Z",
     "businessSummary": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, SQLite, Flask",
@@ -445,14 +342,10 @@
     "repoName": "studio-ghibli-searcher",
     "displayName": "Studio Ghibli Searcher",
     "description": "using The Studio Ghibli API",
-    "technologies": [
-      "JavaScript"
-    ],
+    "technologies": ["JavaScript"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/studio-ghibli-searcher",
-    "demoLinks": [
-      "https://jgchoti.github.io/studio-ghibli-searcher/"
-    ],
+    "demoLinks": ["https://jgchoti.github.io/studio-ghibli-searcher/"],
     "stars": 1,
     "lastUpdated": "2024-07-20T07:34:03Z",
     "businessSummary": "Project: Studio Ghibli Searcher | Type: Backend API | Description: using The Studio Ghibli API | Technologies: JavaScript | GitHub Stars: 1",
@@ -461,27 +354,17 @@
       "source": "github",
       "repoName": "studio-ghibli-searcher",
       "projectType": "Backend API",
-      "technologies": [
-        "JavaScript"
-      ]
+      "technologies": ["JavaScript"]
     }
   },
   {
     "repoName": "studynote",
     "displayName": "Studynote",
     "description": "Full Stack Development Study Note ",
-    "technologies": [
-      "JavaScript",
-      "Node.js",
-      "Express",
-      "HTML",
-      "CSS"
-    ],
+    "technologies": ["JavaScript", "Node.js", "Express", "HTML", "CSS"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/studynote",
-    "demoLinks": [
-      "https://choti.gitbook.io/study-note"
-    ],
+    "demoLinks": ["https://choti.gitbook.io/study-note"],
     "stars": 0,
     "lastUpdated": "2025-05-28T12:43:35Z",
     "businessSummary": "Project: Studynote | Type: Backend API | Description: Full Stack Development Study Note  | Technologies: JavaScript, Node.js, Express, HTML, CSS",
@@ -490,13 +373,7 @@
       "source": "github",
       "repoName": "studynote",
       "projectType": "Backend API",
-      "technologies": [
-        "JavaScript",
-        "Node.js",
-        "Express",
-        "HTML",
-        "CSS"
-      ]
+      "technologies": ["JavaScript", "Node.js", "Express", "HTML", "CSS"]
     }
   },
   {
@@ -522,11 +399,7 @@
     "repoName": "tlaas",
     "displayName": "Tlaas",
     "description": "(But let’s be honest, you're probably too lazy to read it.....)",
-    "technologies": [
-      "Python",
-      "FastAPI",
-      "Docker"
-    ],
+    "technologies": ["Python", "FastAPI", "Docker"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/tlaas",
     "demoLinks": [
@@ -541,25 +414,17 @@
       "source": "github",
       "repoName": "tlaas",
       "projectType": "Backend API",
-      "technologies": [
-        "Python",
-        "FastAPI",
-        "Docker"
-      ]
+      "technologies": ["Python", "FastAPI", "Docker"]
     }
   },
   {
     "repoName": "to-do-list",
     "displayName": "To Do List",
     "description": "This application was developed as part of my studies with HackYourFuture Belgium, aimed at deepening my understanding of JavaScript.",
-    "technologies": [
-      "JavaScript"
-    ],
+    "technologies": ["JavaScript"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/to-do-list",
-    "demoLinks": [
-      "https://jgchoti.github.io/to-do-list/"
-    ],
+    "demoLinks": ["https://jgchoti.github.io/to-do-list/"],
     "stars": 0,
     "lastUpdated": "2024-05-17T14:17:36Z",
     "businessSummary": "Project: To Do List | Type: Software Project | Description: This application was developed as part of my studies with HackYourFuture Belgium, aimed at deepening my understanding of JavaScript. | Technologies: JavaScript",
@@ -568,24 +433,17 @@
       "source": "github",
       "repoName": "to-do-list",
       "projectType": "Software Project",
-      "technologies": [
-        "JavaScript"
-      ]
+      "technologies": ["JavaScript"]
     }
   },
   {
     "repoName": "weather-react",
     "displayName": "Weather React",
     "description": "This project was bootstrapped with Create React App.",
-    "technologies": [
-      "JavaScript",
-      "React"
-    ],
+    "technologies": ["JavaScript", "React"],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/weather-react",
-    "demoLinks": [
-      "https://weather2024.netlify.app/"
-    ],
+    "demoLinks": ["https://weather2024.netlify.app/"],
     "stars": 1,
     "lastUpdated": "2024-08-01T15:11:47Z",
     "businessSummary": "Project: Weather React | Type: Web Application | Description: This project was bootstrapped with Create React App. | Technologies: JavaScript, React | GitHub Stars: 1",
@@ -594,20 +452,14 @@
       "source": "github",
       "repoName": "weather-react",
       "projectType": "Web Application",
-      "technologies": [
-        "JavaScript",
-        "React"
-      ]
+      "technologies": ["JavaScript", "React"]
     }
   },
   {
     "repoName": "wikipedia-scraper",
     "displayName": "Wikipedia Scraper",
     "description": "A Python project that fetches information about world leaders via API, scrapes their biographies from Wikipedia, and exports everything into a JSON file. Built as part of my learning at BeCode to deepen experience with APIs, web scraping, and data handling using Python",
-    "technologies": [
-      "Jupyter Notebook",
-      "Python"
-    ],
+    "technologies": ["Jupyter Notebook", "Python"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/wikipedia-scraper",
     "demoLinks": [],
@@ -619,24 +471,17 @@
       "source": "github",
       "repoName": "wikipedia-scraper",
       "projectType": "Software Project",
-      "technologies": [
-        "Jupyter Notebook",
-        "Python"
-      ]
+      "technologies": ["Jupyter Notebook", "Python"]
     }
   },
   {
     "repoName": "wikipedia-searcher",
     "displayName": "Wikipedia Searcher",
     "description": "wikipedia API practice project",
-    "technologies": [
-      "CSS"
-    ],
+    "technologies": ["CSS"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/wikipedia-searcher",
-    "demoLinks": [
-      "https://jgchoti.github.io/wikipedia-searcher/"
-    ],
+    "demoLinks": ["https://jgchoti.github.io/wikipedia-searcher/"],
     "stars": 0,
     "lastUpdated": "2025-05-28T12:44:01Z",
     "businessSummary": "Project: Wikipedia Searcher | Type: Backend API | Description: wikipedia API practice project | Technologies: CSS",
@@ -645,9 +490,7 @@
       "source": "github",
       "repoName": "wikipedia-searcher",
       "projectType": "Backend API",
-      "technologies": [
-        "CSS"
-      ]
+      "technologies": ["CSS"]
     }
   }
 ]
