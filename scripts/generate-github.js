@@ -226,7 +226,7 @@ class GitHubPortfolioProcessor {
         if (readmeContent) {
             const techPatterns = [
                 // Languages & frameworks
-                /\b(React|Vue|Angular|Node\.?js|Python|JavaScript|TypeScript|Java|C\+\+|C#|Rust)\b/gi,
+                /\b(React|Vue|Angular|Node\.?js|Python|JavaScript|TypeScript|C\+\+|C#|Rust)\b/gi,
 
                 // Databases
                 /\b(MongoDB|PostgreSQL|MySQL|Redis|Firebase|Supabase|SQLite|Oracle|Elasticsearch)\b/gi,
