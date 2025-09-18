@@ -229,7 +229,7 @@ class GitHubPortfolioProcessor {
                 /\b(React|Vue|Angular|Node\.?js|Python|JavaScript|TypeScript|Java|C\+\+|C#|Rust)\b/gi,
 
                 // Databases
-                /\b(MongoDB|PostgreSQL|MySQL|Redis|Firebase|Supabase|SQLite|Oracle)\b/gi,
+                /\b(MongoDB|PostgreSQL|MySQL|Redis|Firebase|Supabase|SQLite|Oracle|Elasticsearch)\b/gi,
 
                 // Backend frameworks
                 /\b(Express|Django|Flask|Spring|Laravel|FastAPI)\b/gi,

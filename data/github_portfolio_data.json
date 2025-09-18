@@ -3,7 +3,15 @@
     "repoName": "ai-code-coach",
     "displayName": "Ai Code Coach",
     "description": "A charming farming-themed code coaching app inspired by **Stardew Valley**! Built with Flask and Google's Generative AI. 🌾 **This is purely a fun project** no commercial intent 🌻",
-    "technologies": ["HTML", "Python", "JavaScript", "Java", "Flask", "CSS"],
+    "technologies": [
+      "HTML",
+      "Python",
+      "JavaScript",
+      "Java",
+      "Flask",
+      "CSS",
+      "llm"
+    ],
     "projectType": "Data Science",
     "githubUrl": "https://github.com/jgchoti/ai-code-coach",
     "demoLinks": ["https://ai-code-coach.onrender.com/"],
@@ -15,7 +23,7 @@
       "source": "github",
       "repoName": "ai-code-coach",
       "projectType": "Data Science",
-      "technologies": ["HTML", "Python", "JavaScript", "Java", "Flask", "CSS"]
+      "technologies": ["HTML", "Python", "JavaScript", "Flask", "CSS", "llm"]
     }
   },
   {
@@ -60,19 +68,19 @@
     "repoName": "challenge-collecting-data",
     "displayName": "Challenge Collecting Data",
     "description": "A Python project that scrapes real estate property listings from Zimmo.be to build a comprehensive dataset covering properties all over Belgium.",
-    "technologies": ["Python"],
-    "projectType": "Software Project",
+    "technologies": ["Python", "PostgreSQL", "HTML"],
+    "projectType": "Data Science",
     "githubUrl": "https://github.com/jgchoti/challenge-collecting-data",
     "demoLinks": [],
     "stars": 0,
-    "lastUpdated": "2025-09-08T09:05:53Z",
-    "businessSummary": "Project: Challenge Collecting Data | Type: Software Project | Description: A Python project that scrapes real estate property listings from Zimmo.be to build a comprehensive dataset covering properties all over Belgium. | Technologies: Python",
-    "embeddingText": "Project: Challenge Collecting Data | Type: Software Project | Description: A Python project that scrapes real estate property listings from Zimmo.be to build a comprehensive dataset covering properties all over Belgium. | Technologies: Python | Skills demonstrated: Python | Suitable for clients needing software project solutions",
+    "lastUpdated": "2025-09-18T16:55:04Z",
+    "businessSummary": "Project: Challenge Collecting Data | Type: Data Science | Description: A Python project that scrapes real estate property listings from Zimmo.be to build a comprehensive dataset covering properties all over Belgium. | Technologies: Python, PostgreSQL, HTML",
+    "embeddingText": "Project: Challenge Collecting Data | Type: Data Science | Description: A Python project that scrapes real estate property listings from Zimmo.be to build a comprehensive dataset covering properties all over Belgium. | Technologies: Python, PostgreSQL, HTML | Skills demonstrated: Python, PostgreSQL, HTML | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "challenge-collecting-data",
-      "projectType": "Software Project",
-      "technologies": ["Python"]
+      "projectType": "Data Science",
+      "technologies": ["Python", "PostgreSQL", "HTML"]
     }
   },
   {
@@ -174,19 +182,19 @@
     "repoName": "elastic-search-music-explorer",
     "displayName": "Elastic Search Music Explorer",
     "description": "A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations.",
-    "technologies": ["Python", "FastAPI", "Docker"],
+    "technologies": ["Python", "Elasticsearch", "FastAPI", "Docker"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/elastic-search-music-explorer",
     "demoLinks": [],
     "stars": 0,
     "lastUpdated": "2025-09-05T17:41:53Z",
-    "businessSummary": "Project: Elastic Search Music Explorer | Type: Backend API | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, FastAPI, Docker",
-    "embeddingText": "Project: Elastic Search Music Explorer | Type: Backend API | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, FastAPI, Docker | Skills demonstrated: Python, FastAPI, Docker | Suitable for clients needing backend api solutions",
+    "businessSummary": "Project: Elastic Search Music Explorer | Type: Backend API | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, Elasticsearch, FastAPI, Docker",
+    "embeddingText": "Project: Elastic Search Music Explorer | Type: Backend API | Description: A powerful music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data with advanced search and AI-powered recommendations. | Technologies: Python, Elasticsearch, FastAPI, Docker | Skills demonstrated: Python, Elasticsearch, FastAPI, Docker | Suitable for clients needing backend api solutions",
     "metadata": {
       "source": "github",
       "repoName": "elastic-search-music-explorer",
       "projectType": "Backend API",
-      "technologies": ["Python", "FastAPI", "Docker"]
+      "technologies": ["Python", "Elasticsearch", "FastAPI", "Docker"]
     }
   },
   {
@@ -230,20 +238,20 @@
   {
     "repoName": "house-price-be",
     "displayName": "House Price Be",
-    "description": "No description available",
-    "technologies": ["Python"],
+    "description": "Real Estate Predictions Accessible Through Smart UI Design",
+    "technologies": ["Python", "CSS"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/house-price-be",
     "demoLinks": ["https://house-price-be.streamlit.app/"],
     "stars": 0,
-    "lastUpdated": "2025-07-10T07:45:53Z",
-    "businessSummary": "Project: House Price Be | Type: Software Project | Description: No description available | Technologies: Python",
-    "embeddingText": "Project: House Price Be | Type: Software Project | Description: No description available | Technologies: Python | Skills demonstrated: Python | Suitable for clients needing software project solutions",
+    "lastUpdated": "2025-09-18T17:21:02Z",
+    "businessSummary": "Project: House Price Be | Type: Software Project | Description: Real Estate Predictions Accessible Through Smart UI Design | Technologies: Python, CSS",
+    "embeddingText": "Project: House Price Be | Type: Software Project | Description: Real Estate Predictions Accessible Through Smart UI Design | Technologies: Python, CSS | Skills demonstrated: Python, CSS | Suitable for clients needing software project solutions",
     "metadata": {
       "source": "github",
       "repoName": "house-price-be",
       "projectType": "Software Project",
-      "technologies": ["Python"]
+      "technologies": ["Python", "CSS"]
     }
   },
   {
@@ -254,6 +262,7 @@
       "Python",
       "PostgreSQL",
       "Docker",
+      "HTML",
       "Airflow",
       "Apache Airflow",
       "ML",
@@ -263,9 +272,9 @@
     "githubUrl": "https://github.com/jgchoti/immoeliza-airflow",
     "demoLinks": ["https://immo-be.streamlit.app/"],
     "stars": 0,
-    "lastUpdated": "2025-09-14T18:30:55Z",
-    "businessSummary": "Project: Immoeliza Airflow | Type: Data Science | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow, Apache Airflow",
-    "embeddingText": "Project: Immoeliza Airflow | Type: Data Science | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, Airflow, Apache Airflow | Skills demonstrated: Python, PostgreSQL, Docker, Airflow, Apache Airflow | Suitable for clients needing data science solutions",
+    "lastUpdated": "2025-09-16T08:21:23Z",
+    "businessSummary": "Project: Immoeliza Airflow | Type: Data Science | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, HTML, Airflow",
+    "embeddingText": "Project: Immoeliza Airflow | Type: Data Science | Description: This is an **extension** of my original Zimmo scraping project, now orchestrated with Apache Airflow. As a **first-timer with Airflow**, I've learned that: | Technologies: Python, PostgreSQL, Docker, HTML, Airflow | Skills demonstrated: Python, PostgreSQL, Docker, HTML, Airflow, Apache Airflow | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "immoeliza-airflow",
@@ -274,6 +283,7 @@
         "Python",
         "PostgreSQL",
         "Docker",
+        "HTML",
         "Airflow",
         "Apache Airflow",
         "ml"
@@ -287,11 +297,7 @@
     "technologies": ["JavaScript", "React", "Vercel"],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/jgchoti.github.io",
-    "demoLinks": [
-      "https://jgchoti.github.io/",
-      "https://jgchoti.vercel.app/](https://jgchoti.vercel.app/",
-      "https://www.linkedin.com/in/chotirat](https://www.linkedin.com/in/chotirat"
-    ],
+    "demoLinks": ["https://jgchoti.github.io/"],
     "stars": 0,
     "lastUpdated": "2025-09-13T20:38:43Z",
     "businessSummary": "Project: Jgchoti.github.io | Type: Web Application | Description: Welcome! This portfolio showcases my work as a data professional and web developer, blending data science expertise with full-stack web development skills. | Technologies: JavaScript, React, Vercel",
@@ -313,16 +319,17 @@
       "Node.js",
       "SQLite",
       "Flask",
+      "Vercel",
       "Material-UI",
       "CSS"
     ],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/nl-to-sql",
-    "demoLinks": ["https://nl-to-sql-pied.vercel.app"],
+    "demoLinks": ["https://sql-assist.vercel.app/"],
     "stars": 0,
-    "lastUpdated": "2025-08-20T08:15:51Z",
+    "lastUpdated": "2025-09-18T17:02:36Z",
     "businessSummary": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, SQLite, Flask",
-    "embeddingText": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, SQLite, Flask | Skills demonstrated: Python, React, Node.js, SQLite, Flask, Material-UI, CSS | Suitable for clients needing web application solutions",
+    "embeddingText": "Project: Nl To Sql | Type: Web Application | Description: A natural language to SQL query converter with a web interface. | Technologies: Python, React, Node.js, SQLite, Flask | Skills demonstrated: Python, React, Node.js, SQLite, Flask, Vercel, Material-UI, CSS | Suitable for clients needing web application solutions",
     "metadata": {
       "source": "github",
       "repoName": "nl-to-sql",
@@ -333,9 +340,29 @@
         "Node.js",
         "SQLite",
         "Flask",
+        "Vercel",
         "Material-UI",
         "CSS"
       ]
+    }
+  },
+  {
+    "repoName": "recommender-systems-pyspark",
+    "displayName": "Recommender Systems Pyspark",
+    "description": "Personalized movie recommendations powered by **PySpark’s ALS (Alternating Least Squares)** collaborative filtering.",
+    "technologies": ["Python", "PostgreSQL", "Spark"],
+    "projectType": "Software Project",
+    "githubUrl": "https://github.com/jgchoti/recommender-systems-pyspark",
+    "demoLinks": [],
+    "stars": 0,
+    "lastUpdated": "2025-09-18T12:38:43Z",
+    "businessSummary": "Project: Recommender Systems Pyspark | Type: Software Project | Description: Personalized movie recommendations powered by **PySpark’s ALS (Alternating Least Squares)** collaborative filtering. | Technologies: Python, Java, PostgreSQL, Spark",
+    "embeddingText": "Project: Recommender Systems Pyspark | Type: Software Project | Description: Personalized movie recommendations powered by **PySpark’s ALS (Alternating Least Squares)** collaborative filtering. | Technologies: Python, Java, PostgreSQL, Spark | Skills demonstrated: Python, Java, PostgreSQL, Spark | Suitable for clients needing software project solutions",
+    "metadata": {
+      "source": "github",
+      "repoName": "recommender-systems-pyspark",
+      "projectType": "Software Project",
+      "technologies": ["Python", "PostgreSQL", "Spark"]
     }
   },
   {
