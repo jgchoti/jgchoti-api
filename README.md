@@ -1,15 +1,27 @@
 # Choti Portfolio API — RAG Chatbot (Gemini)
 
+RAG-powered serverless API that answers questions about me and my work. It uses a lightweight in-memory vector store loaded from precomputed embeddings and Google Gemini for both embeddings and generation.
+
 [![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
 [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
 [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)
 
-RAG-powered serverless API that answers questions about Choti (AKA Me!) and my work. It uses a lightweight in-memory vector store loaded from precomputed embeddings and Google Gemini for both embeddings and generation.
+---
+
+## The Story Behind This API
+
+### Because "Please Please Please" Don't Give Me Generic Responses
+
+![pleasepleaseplease](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2lkbTVyYnJtOGg5M29scWU2eG1obGVpYm5ycnFla3ZiODFzM3V5bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eMHPMfxTKlAXyJV4AO/giphy.gif)
+
+Just like Sabrina sings about wanting something real — this API delivers context-rich answers about my portfolio instead of the same old chatbot nonsense. 🎵
 
 ## 📋 Table of Contents
 
 - [Choti Portfolio API — RAG Chatbot (Gemini)](#choti-portfolio-api--rag-chatbot-gemini)
+  - [The Story Behind This API](#the-story-behind-this-api)
+    - [Because "Please Please Please" Don't Give Me Generic Responses](#because-please-please-please-dont-give-me-generic-responses)
   - [📋 Table of Contents](#-table-of-contents)
   - [✨ Features](#-features)
   - [🛠️ Tech Stack](#️-tech-stack)
@@ -23,6 +35,7 @@ RAG-powered serverless API that answers questions about Choti (AKA Me!) and my w
       - [GET /api/](#get-api)
       - [POST /api/chat-rag](#post-apichat-rag)
   - [🔍 Embeddings and RAG](#-embeddings-and-rag)
+  - [🔍 Dynamic Portfolio Integration](#-dynamic-portfolio-integration)
     - [Generate/Refresh Embeddings](#generaterefresh-embeddings)
   - [🔧 Environment Variables](#-environment-variables)
   - [📁 Project Structure](#-project-structure)
@@ -196,6 +209,13 @@ curl -s -X POST https://jgchoti-api.vercel.app/api/chat-rag \
 
 The vector store (`lib/HybridVectorStore.js`) loads from `data/embeddings-gemini.json` and uses cosine similarity to retrieve relevant snippets. Query embeddings are computed on-the-fly using Gemini `text-embedding-004`, so `GEMINI_API_KEY` is required both to generate embeddings and to serve queries.
 
+## 🔍 Dynamic Portfolio Integration
+
+The system automatically enriches portfolio data through:
+
+- **GitHub API integration** (`scripts/generate-github.js`) that discovers and analyzes repositories and content extraction from README files and repository metadata
+- **Career path relevance scoring** for data engineering, data science, ML engineering, and backend development roles
+
 ### Generate/Refresh Embeddings
 
 ```bash
@@ -207,6 +227,7 @@ This script builds content from:
 - `data/profileData.js`
 - `data/projectData.js`
 - `data/contactInfo.js`
+- `data/github_portfolio_data.json`
 
 Creates embeddings with Gemini and writes:
 
@@ -310,3 +331,5 @@ jgchoti-api/
 ## 🤖 Demo
 
 Chat with the deployed bot at: [https://jgchoti.github.io/](https://jgchoti.github.io/)
+
+_Professional AI that actually understands context and delivers responses that make sense — no generic chatbot nonsense here. ✨_
