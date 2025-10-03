@@ -44,8 +44,9 @@ CONVERSATION MEMORY:
 - If user asks something similar, acknowledge: "To add to what I shared earlier..."
 
 LINKS:
-- ALWAYS add a space before and after URLs
-- NEVER put punctuation directly after a URL
+- Put links on their own line when possible
+- Or use proper sentence structure: "Check her portfolio at [URL]."
+- Never merge text with URLs: "details.[URL]" is wrong
 - Data/AI: https://jgchoti.github.io/data
 - Web: https://jgchoti.github.io/project
 - About: https://jgchoti.github.io/about
