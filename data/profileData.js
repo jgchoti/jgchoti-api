@@ -44,7 +44,7 @@ export const profileData = [
     {
         id: "learning",
         title: "🚀 My Learning Journey & Technical Development",
-        content: "I focus on learning by doing — building data science projects, implementing machine learning algorithms, experimenting with Python programming, and improving technical skills through real-world challenges and practical applications. From managing hotel Big Data implementation projects and data analytics in Malaysia to winning AI/data visualization challenges in Belgium, I believe in continuous learning, hands-on experimentation, and practical problem-solving. Self-taught programming during career break (November 2020-December 2023), completed intensive Dutch language courses at University of Antwerp and CVO, mastered full-stack development through HackYourFuture bootcamp, and currently advancing data science skills through BeCode AI program. Balance technical learning with motherhood, cultural adaptation, and international networking.",
+        content: "I focus on learning by doing — building data science projects, implementing machine learning algorithms, experimenting with Python programming, and improving technical skills through real-world challenges and practical applications. I believe in continuous learning, hands-on experimentation, and practical problem-solving. Self-taught programming during career break (November 2020-December 2023), completed intensive Dutch language courses at University of Antwerp and CVO, mastered full-stack development through HackYourFuture bootcamp, and currently advancing data science skills through BeCode AI program.",
         subtitle: "Hands-on approach combining self-directed learning, formal bootcamp training, continuous skill development across data science, machine learning, web technologies, and international languages",
         keywords: ["self-taught", "bootcamp", "continuous learning", "hands-on", "practical", "BeCode", "HackYourFuture", "Dutch language"],
         questions: [
@@ -57,7 +57,7 @@ export const profileData = [
     {
         id: "accomplishments",
         title: "🎯 Key Accomplishments & Awards",
-        content: "Winner of Tech4Positive Futures Challenge 2024 at Capgemini Belgium, developing innovative coral reef monitoring solutions using advanced data visualization, interactive dashboard development, machine learning applications, and engaging presentation technology to address climate change impacts. Successfully transitioned from international tourism and finance background into data science and tech industry, completing intensive HackYourFuture full-stack web development program and currently advancing through BeCode AI/Data Science bootcamp. Delivered multiple client websites and web applications with demonstrated 25% average traffic increases through strategic SEO optimization, technical implementation, and user experience improvements. Previous professional achievements include pioneering Big Data exploration projects in hotel operations at AVANI Resort Malaysia, achieving 20% membership renewal increases through data-driven member relations and targeted email campaigns at Pacific Asia Travel Association Thailand, and implementing inventory management systems resulting in 35% food cost reduction at Huvafen Fushi Resort Maldives.",
+        content: "Winner of Tech4Positive Futures Challenge 2024 at Capgemini Belgium, developing innovative coral reef monitoring solutions using advanced data visualization, interactive dashboard development, machine learning applications, and engaging presentation technology to address climate change impacts. Successfully transitioned from international tourism and finance background into data science and tech industry, completing intensive HackYourFuture full-stack web development program and currently advancing through BeCode AI/Data Science bootcamp. Delivered a client website and web applications with demonstrated 25% average traffic increases through strategic SEO optimization, technical implementation, and user experience improvements.",
         subtitle: "Award winner with proven track record in AI solutions, data-driven business results, international project management, and measurable client outcomes",
         keywords: ["Capgemini", "Tech4Positive", "hackathon winner", "coral reef", "climate change", "25% traffic increase", "20% renewal increase", "35% cost reduction"],
         questions: [
@@ -168,19 +168,6 @@ export const profileData = [
         ]
     },
     {
-        id: "projects-additional",
-        title: "🛠️ Additional Projects & Work",
-        content: "Hotel Big Data Implementation at AVANI Resort Malaysia: Managed a pioneering project exploring Big Data implementation for hotel operations. Integrated front-office and back-office platforms to create unified data systems. Reduced guest complaint resolution time by 40% through efficient data analysis and process optimization. Worked with hotel management systems, customer data, and operational metrics. Member Relations Data-Driven Campaigns at Pacific Asia Travel Association Thailand: Implemented targeted email campaigns using data analysis to identify key member segments. Achieved 20% increase in membership renewals through personalized outreach and data-driven strategies. Used CRM systems, email marketing tools, and data analytics. Inventory Management System at Huvafen Fushi Resort Maldives: Implemented data-driven inventory management system resulting in 35% food cost reduction. Analyzed inventory patterns, optimized ordering processes, and reduced waste through data analysis. All projects demonstrate ability to apply data analysis to solve real business problems, deliver measurable ROI, and work in international business environments.",
-        subtitle: "Big Data, CRM campaigns, and inventory optimization with proven results",
-        keywords: ["Big Data", "hotel industry", "40% reduction", "20% increase", "35% cost reduction", "data-driven", "business impact"],
-        questions: [
-            "What other projects has Choti worked on?",
-            "Has Choti worked with Big Data?",
-            "What business results has Choti achieved?",
-            "Does Choti have hotel industry experience?"
-        ]
-    },
-    {
         id: "experience-pata",
         title: "🌏 Pacific Asia Travel Association - Member Relations Executive",
         content: "Member Relations Executive at Pacific Asia Travel Association, Thailand (November 2019 - April 2020). Key responsibilities included recruiting new members through targeted outreach and engagement strategies, managing membership campaigns with personalized onboarding sessions, strengthening partner relations across the Asia-Pacific tourism industry, implementing data-driven email marketing campaigns to boost engagement. Major achievement: Successfully recruited 20+ new members and achieved 20% increase in membership renewals through strategic relationship management and personalized communication. Skills applied: CRM management, email marketing automation, stakeholder relationship management, data-driven campaign optimization, cross-cultural communication, B2B sales and marketing. This role demonstrated ability to work in international non-profit environment, manage diverse stakeholder relationships, use data to drive business results, and operate in professional English environment in Thailand.",
@@ -194,33 +181,7 @@ export const profileData = [
             "Tell me about Choti's work experience"
         ]
     },
-    {
-        id: "experience-avani",
-        title: "🏨 AVANI Sepang Goldcoast Resort - Assistant Finance Manager",
-        content: "Assistant Finance Manager at AVANI Sepang Goldcoast Resort, Malaysia (November 2015 - September 2016). Part of Minor Hotel Group's prestigious management development program. Key projects and responsibilities: Managed pioneering Big Data exploration project for hotel operations, analyzing guest data, operational metrics, and service patterns. Integrated front-office and back-office data platforms to create unified reporting systems. Achieved 40% reduction in guest complaint resolution time through efficient data analysis and process optimization. Assisted in departmental budgeting and financial planning, contributing insights on expense reduction and revenue generation to senior management team. Participated in financial reporting, cost analysis, and revenue management. Skills applied: Data analysis, system integration, financial planning, budgeting, process optimization, hotel management systems, cross-functional collaboration, stakeholder communication. This role was instrumental in transitioning from traditional finance to data-focused problem solving, working in multinational hotel chain environment.",
-        subtitle: "Big Data implementation with 40% efficiency improvement - Malaysia",
-        keywords: ["AVANI", "Malaysia", "finance", "Big Data", "hotel", "40% reduction", "Minor Hotel Group", "2015-2016"],
-        questions: [
-            "What was Choti's role at AVANI?",
-            "Has Choti worked in Malaysia?",
-            "Does Choti have finance experience?",
-            "What was the Big Data project about?",
-            "Has Choti worked in hospitality?"
-        ]
-    },
-    {
-        id: "experience-huvafen",
-        title: "🏝️ Huvafen Fushi Resort - Management Trainee",
-        content: "Management Trainee at Huvafen Fushi Resort, Maldives (April 2015 - November 2015). Part of Minor Hotel Group's international management trainee program rotating through luxury resort operations. Key project: Implemented data-driven inventory management system resulting in 35% food cost reduction through analyzing consumption patterns, optimizing ordering processes, and reducing waste. Planned and executed digital marketing initiatives including Facebook page development for Minor Hotel Group's management training program. Gained comprehensive experience in luxury hospitality operations across different departments including food & beverage, front office, and guest services. Skills developed: Inventory management, data analysis for cost optimization, digital marketing, social media management, luxury hospitality operations, multi-cultural team collaboration. This rotational program provided exposure to all aspects of resort operations while working in international, multi-cultural environment in the Maldives.",
-        subtitle: "Cost optimization achieving 35% reduction - Maldives",
-        keywords: ["Huvafen Fushi", "Maldives", "inventory management", "35% reduction", "luxury hospitality", "Minor Hotel Group", "2015"],
-        questions: [
-            "What was Choti's role in Maldives?",
-            "Has Choti worked in the Maldives?",
-            "What is Choti's hospitality experience?",
-            "Tell me about the inventory project"
-        ]
-    },
+
     {
         id: "experience-international",
         title: "🌍 International Professional Experience & Global Perspective",
@@ -278,18 +239,30 @@ export const profileData = [
         ]
     },
     {
-        id: "education-swiss",
-        title: "🎓 Swiss Hotel Management School",
-        content: "Postgraduate Diploma in Hotel, Resort & Spa Management from Swiss Hotel Management School, Switzerland (May 2008 - April 2012). Intensive postgraduate program in luxury hospitality management. Curriculum included: Hotel operations management, financial management for hospitality, food and beverage management, spa and wellness operations, guest services and customer experience, revenue management, human resources in hospitality, practical training in luxury hotel environments. The program emphasized Swiss hospitality excellence standards, attention to detail, customer service excellence, and operational efficiency. This education provided foundation for subsequent hotel management roles in Malaysia and Maldives. The Swiss education system's focus on practical training and operational excellence developed strong project management skills, attention to detail, and service quality standards that now apply to technical project delivery and client satisfaction in tech roles.",
-        subtitle: "Luxury hospitality management - Switzerland",
-        keywords: ["Swiss Hotel Management", "hospitality", "postgraduate", "Switzerland", "hotel management", "2008-2012"],
+        id: "experience-hospitality-condensed",
+        title: "🌏 Early Career & Data-Focused Projects",
+        content: "Early professional experience in Malaysia, Maldives, and Thailand involved roles in management and finance with focus on process optimization, data analysis, and stakeholder management. Delivered measurable improvements such as 40% efficiency gains and 35% cost reductions through data-driven decision making. Applied project management, reporting, and analytics skills in multinational environments, laying the foundation for transition into technology and data engineering roles.",
+        subtitle: "Data analysis, process optimization, and international experience",
+        keywords: ["data analysis", "process optimization", "international experience", "finance", "early career"],
         questions: [
-            "What is Choti's hospitality education?",
-            "Did Choti study in Switzerland?",
-            "What qualifications does Choti have in hospitality?",
-            "Where did Choti learn hotel management?"
+            "What was Choti's early career experience?",
+            "Does Choti have data analysis experience?",
+            "What skills did Choti gain from early roles?"
         ]
     },
+    {
+        id: "education-hospitality-condensed",
+        title: "🎓 Early Education in Hospitality Management",
+        content: "Postgraduate diploma in Hotel, Resort & Spa Management from Swiss Hotel Management School, Switzerland (2008-2012). Education emphasized operational efficiency, project management, process optimization, and analytical thinking. Developed transferable skills in managing data-driven projects, cross-functional collaboration, and attention to detail applicable to technology and data roles.",
+        subtitle: "Swiss hospitality education with transferable analytical and project management skills",
+        keywords: ["Swiss Hotel Management", "hospitality", "postgraduate", "project management", "process optimization"],
+        questions: [
+            "What is Choti's early education?",
+            "Did Choti study abroad?",
+            "What skills were gained from hospitality education?"
+        ]
+    }
+    ,
     {
         id: "education-bachelors",
         title: "🎓 Bachelor's Degree - Thammasat University",
@@ -516,7 +489,7 @@ export const profileData = [
     {
         id: "ideal-role",
         title: "🌟 Ideal Role & Company Culture",
-        content: "Ideal Position: Junior to Mid-level Data Engineer building data pipelines, ETL processes, and backend systems. Alternative roles: Backend Developer with Python/FastAPI, Data Analyst with engineering components, ML Engineer with focus on deployment and infrastructure, Full-Stack Developer with data engineering aspects. Company Size: Open to startups (fast learning, diverse responsibilities, close-knit team, rapid growth), scale-ups (established product, growth phase, opportunity to shape processes), established companies (structured environment, learning from experienced teams, clear career path). Tech Stack Preferences: Python-based data engineering stack, cloud platforms (Azure preferred, AWS also interested), modern data tools (Airflow, Databricks, etc.), API-first architecture, infrastructure as code, CI/CD pipelines. Company Culture Values: Continuous learning and professional development opportunities, diverse and inclusive international teams, work-life balance and flexibility, collaborative rather than competitive environment, meaningful projects with real-world impact, open communication and feedback culture, sustainability or social impact focus appreciated, remote-friendly or hybrid flexibility. Projects of Interest: Data infrastructure and pipeline development, backend services and APIs, data-driven products, climate tech and sustainability solutions, international or European market projects, business intelligence and analytics platforms, scalable systems and architecture. Deal Breakers to Avoid: Toxic work environment or poor work-life balance, no growth or learning opportunities, isolated work without team collaboration, unethical business practices, lack of support for diverse team members, micromanagement without autonomy.",
+        content: "Ideal Position: Junior Data Engineer building data pipelines, ETL processes, and backend systems. Alternative roles: Backend Developer with Python/FastAPI, Data Analyst with engineering components, ML Engineer with focus on deployment and infrastructure, Full-Stack Developer with data engineering aspects. Company Size: Open to startups (fast learning, diverse responsibilities, close-knit team, rapid growth), scale-ups (established product, growth phase, opportunity to shape processes), established companies (structured environment, learning from experienced teams, clear career path). Tech Stack Preferences: Python-based data engineering stack, cloud platforms (Azure preferred, AWS also interested), modern data tools (Airflow, Databricks, etc.), API-first architecture, infrastructure as code, CI/CD pipelines. Company Culture Values: Continuous learning and professional development opportunities, diverse and inclusive international teams, work-life balance and flexibility, collaborative rather than competitive environment, meaningful projects with real-world impact, open communication and feedback culture, sustainability or social impact focus appreciated, remote-friendly or hybrid flexibility. Projects of Interest: Data infrastructure and pipeline development, backend services and APIs, data-driven products, climate tech and sustainability solutions, international or European market projects, business intelligence and analytics platforms, scalable systems and architecture. Deal Breakers to Avoid: Toxic work environment or poor work-life balance, no growth or learning opportunities, isolated work without team collaboration, unethical business practices, lack of support for diverse team members, micromanagement without autonomy.",
         subtitle: "Data engineering role with learning opportunities and positive culture",
         keywords: ["ideal role", "data engineer", "company culture", "work-life balance", "learning", "collaborative", "impact"],
         questions: [
@@ -554,5 +527,18 @@ export const profileData = [
             "Common questions about Choti",
             "Frequently asked questions"
         ]
+    },
+    {
+        id: "philosophy",
+        title: "💡 My Philosophy",
+        content: "I believe in staying curious and ambitious: 'Stay hungry, stay foolish.' At the same time, I strive to 'be the senior I needed when I was a junior,' guiding my approach to mentorship, collaboration, and continuous learning. I aim to share knowledge, support growth, and tackle challenges creatively and persistently.",
+        keywords: ["mentorship", "continuous learning", "growth mindset", "philosophy", "quote", "curiosity", "innovation", "guidance"],
+        questions: [
+            "What is Choti's personal philosophy?",
+            "Does Choti value mentorship?",
+            "How does Choti approach learning and growth?",
+            "What drives Choti's curiosity and creativity?"
+        ]
     }
+
 ];
