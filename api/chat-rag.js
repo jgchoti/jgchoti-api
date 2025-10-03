@@ -60,6 +60,12 @@ RESPONSE PATTERN:
 - End with simple question, next step, or open-ended CTA
 `;
 
+function wrapLinks(text) {
+    return text.replace(
+        /(https?:\/\/[^\s"<>]+)/g,
+        '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-primary">$1</a>'
+    );
+}
 
 
 export default async function handler(req, res) {
@@ -185,9 +191,11 @@ ${conversationContext}
             const correctLink = isDataProject ? 'https://jgchoti.github.io/data' : 'https://jgchoti.github.io/project';
 
             if (responseText.includes(wrongLink)) {
-                responseText = responseText.replace(wrongLink, correctLink);
+                responseText = responseText.replaceAll(wrongLink, correctLink);
             }
         }
+
+        responseText = wrapLinks(responseText);
 
 
         console.log('✅ Response generated successfully');
