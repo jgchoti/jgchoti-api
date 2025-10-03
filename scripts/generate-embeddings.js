@@ -10,6 +10,7 @@ import { projectData } from '../data/projectData.js';
 import { profileData } from '../data/profileData.js';
 import { contactInfo } from '../data/contactInfo.js';
 import { blogData } from '../data/blogData.js';
+import { githubCrossReferences } from '../data/githubCrossReferences.js';
 
 let githubData = [];
 try {
@@ -20,7 +21,7 @@ try {
 } catch (_) {
     githubData = [];
 }
-// data/github_portfolio_data.json
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -98,13 +99,32 @@ function getCareerPathRelevanceFromTechs(technologies) {
     return paths;
 }
 
+function getCareerPathApplications(project, careerPaths) {
+    const applications = [];
+
+    if (careerPaths.dataEngineering >= 4) {
+        applications.push(`• Data Engineering: Demonstrates pipeline development, data processing, and system architecture skills`);
+    }
+    if (careerPaths.dataScience >= 4) {
+        applications.push(`• Data Science: Shows analytical thinking, ML implementation, and statistical analysis capabilities`);
+    }
+    if (careerPaths.backendDev >= 4) {
+        applications.push(`• Backend Development: Highlights API development, scalable architecture, and system integration`);
+    }
+    if (careerPaths.dataAnalyst >= 4) {
+        applications.push(`• Data Analysis: Showcases data visualization, reporting, and insight generation abilities`);
+    }
+
+    return applications.length > 0 ? applications.join('\n') : '• Versatile project demonstrating foundational skills applicable across data careers';
+}
+
 function createDocuments() {
     const documents = [];
 
+    // PROFILE DATA
     profileData.forEach((section, index) => {
         let enhancedContent = `${section.title}: ${section.content}${section.subtitle ? ` ${section.subtitle}` : ''}`;
 
-        // Add flexible career context
         if (section.title.includes('Technical Skills') || section.title.includes('Skills')) {
             enhancedContent += ` These versatile technical skills apply across multiple data career paths including Data Engineering, Data Science, ML Engineering, and Backend Development roles.`;
         }
@@ -133,6 +153,7 @@ function createDocuments() {
         });
     });
 
+    // PROJECT DATA
     projectData.forEach((project, index) => {
         const skillCategories = getDataSkillCategories(project.technologies);
         const careerPaths = getCareerPathRelevanceFromTechs(project.technologies);
@@ -176,12 +197,17 @@ Available at: ${project.githubUrl || project.webUrl || 'Contact for details'}`;
         });
     });
 
-    // GitHub portfolio projects to documents
+    // GITHUB DATA - ONLY ONE LOOP WITH CROSS-REFERENCES
     githubData.forEach((repo, index) => {
         const techs = normalizeTechNames(repo.technologies);
         const skillCategories = getDataSkillCategories(techs);
         const careerPaths = getCareerPathRelevanceFromTechs(techs);
-        const topPaths = Object.entries(careerPaths)
+
+        // Get cross-reference data
+        const crossRef = githubCrossReferences[repo.repoName] || {};
+        const finalCareerPaths = crossRef.careerRelevance || careerPaths;
+
+        const topPaths = Object.entries(finalCareerPaths)
             .filter(([_, score]) => score >= 4)
             .map(([path, _]) => path)
             .join(', ');
@@ -192,7 +218,15 @@ Multi-Path Career Relevance: This project demonstrates skills applicable to ${to
 
 Technical Stack: Built with ${techs.join(', ') || 'varied technologies'}.
 
+${crossRef.featured ? '⭐ Featured Project: Highlighted work demonstrating advanced capabilities.' : ''}
+${crossRef.bootcampProject ? `Bootcamp: ${crossRef.bootcampProject} training project` : ''}
+${crossRef.award ? `🏆 Award: ${crossRef.award}` : ''}
+${crossRef.teamProject ? '👥 Team Project: Collaborative development experience' : ''}
+
 Detailed Summary: ${repo.businessSummary || repo.description}
+
+${crossRef.relatedProjectData && crossRef.relatedProjectData.length > 0 ?
+                `Related Projects: ${crossRef.relatedProjectData.join(', ')}` : ''}
 
 ${repo.demoLinks && repo.demoLinks.length ? `Live Demo: ${repo.demoLinks[0]}` : ''}
 
@@ -207,17 +241,28 @@ Repository: ${repo.githubUrl}`;
                 projectType: repo.projectType,
                 technologies: techs,
                 skillCategories: skillCategories,
-                careerPathScores: careerPaths,
-                topCareerPaths: Object.entries(careerPaths)
+                careerPathScores: finalCareerPaths,
+                topCareerPaths: Object.entries(finalCareerPaths)
                     .filter(([_, score]) => score >= 4)
                     .map(([path, _]) => path),
                 source: 'github',
-                stars: repo.stars || 0
+                stars: repo.stars || 0,
+                relatedProfileSections: crossRef.relatedProfileSections || [],
+                relatedProjectData: crossRef.relatedProjectData || [],
+                skillsHighlighted: crossRef.skillsHighlighted || [],
+                bootcampProject: crossRef.bootcampProject,
+                featured: crossRef.featured || false,
+                award: crossRef.award,
+                teamProject: crossRef.teamProject || false,
+                passionProject: crossRef.passionProject || false,
+                firstProject: crossRef.firstProject || false,
+                completedDate: crossRef.completedDate,
+                tags: crossRef.tags || []
             }
         });
     });
 
-    // Contact document
+    // CONTACT DATA
     const contactLines = contactInfo.map(contact => {
         const platform = contact.platform.toLowerCase();
         if (platform === 'email' || platform === 'e-mail') {
@@ -237,6 +282,7 @@ Repository: ${repo.githubUrl}`;
         }
     });
 
+    // BLOG DATA
     blogData.forEach((blog, index) => {
         const content = `${blog.title}: ${blog.shortDescription || blog.summary || ''}
 
@@ -258,27 +304,8 @@ Career relevance: Demonstrates problem-solving, creative thinking, and technical
             }
         });
     });
+
     return documents;
-}
-
-
-function getCareerPathApplications(project, careerPaths) {
-    const applications = [];
-
-    if (careerPaths.dataEngineering >= 4) {
-        applications.push(`• Data Engineering: Demonstrates pipeline development, data processing, and system architecture skills`);
-    }
-    if (careerPaths.dataScience >= 4) {
-        applications.push(`• Data Science: Shows analytical thinking, ML implementation, and statistical analysis capabilities`);
-    }
-    if (careerPaths.backendDev >= 4) {
-        applications.push(`• Backend Development: Highlights API development, scalable architecture, and system integration`);
-    }
-    if (careerPaths.dataAnalyst >= 4) {
-        applications.push(`• Data Analysis: Showcases data visualization, reporting, and insight generation abilities`);
-    }
-
-    return applications.length > 0 ? applications.join('\n') : '• Versatile project demonstrating foundational skills applicable across data careers';
 }
 
 

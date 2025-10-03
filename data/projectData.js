@@ -13,7 +13,17 @@ export const projectData = [
             { name: "GitHub" }
         ],
         githubUrl: "https://github.com/jgchoti/tlaas",
-        webUrl: "https://too-lazy-as-a-service.onrender.com/docs"
+        webUrl: "https://too-lazy-as-a-service.onrender.com/docs",
+        relatedProfileSections: ["tech-stack-primary", "skills-cloud-devops", "learning"],
+        skillsHighlighted: ["Python", "FastAPI", "Docker", "API Development", "Deployment"],
+        careerRelevance: {
+            dataEngineering: 8,
+            backendDev: 9,
+            dataScience: 3,
+            dataAnalyst: 2
+        },
+        keyLearnings: ["FastAPI framework", "Pydantic validation", "Dockerization", "Render deployment"],
+        tags: ["api", "python", "backend", "deployment", "learning-project"]
     },
     {
         id: 2,
@@ -29,7 +39,18 @@ export const projectData = [
             { name: "Squarespace" }
         ],
         webUrl: "https://jakobegeens.com",
-        blogUrl: "https://medium.com/@jgchoti/solving-a-language-switching-nav-bar-using-only-css-on-squarespace-add859c95ef9"
+        blogUrl: "https://medium.com/@jgchoti/solving-a-language-switching-nav-bar-using-only-css-on-squarespace-add859c95ef9",
+        relatedProfileSections: ["projects-freelance", "tech-stack-web", "accomplishments"],
+        skillsHighlighted: ["Web Development", "SEO", "Client Work", "Squarespace"],
+        clientWork: true,
+        measurableResult: "25% traffic increase through SEO optimization",
+        careerRelevance: {
+            dataEngineering: 2,
+            backendDev: 3,
+            dataScience: 1,
+            dataAnalyst: 3
+        },
+        tags: ["freelance", "web", "seo", "client-project", "squarespace"]
     },
     {
         id: 3,
@@ -46,7 +67,21 @@ export const projectData = [
             { name: "GitHub" }
         ],
         githubUrl: "https://github.com/jgchoti/coral-game",
-        webUrl: "https://coral-game.netlify.app/map"
+        webUrl: "https://coral-game.netlify.app/map",
+
+        relatedProfileSections: ["projects-tech4positive", "accomplishments", "interests-values"],
+        relatedProjects: ["Save Corals"],
+        skillsHighlighted: ["Data Visualization", "Dashboard Development", "JavaScript", "Climate Tech"],
+        award: "Tech4Positive Futures Challenge 2024 Winner - Capgemini Belgium",
+        teamProject: true,
+        careerRelevance: {
+            dataEngineering: 6,
+            backendDev: 4,
+            dataScience: 7,
+            dataAnalyst: 9
+        },
+        impact: "Winner of sustainability hackathon, addressing climate change impacts on coral reefs",
+        tags: ["hackathon", "winner", "data-visualization", "climate-tech", "sustainability", "dashboard"]
     },
     {
         id: 4,
@@ -62,7 +97,19 @@ export const projectData = [
             { name: "GitHub" }
         ],
         githubUrl: "https://github.com/jgchoti/coral-game",
-        webUrl: "https://coral-game.netlify.app/"
+        webUrl: "https://coral-game.netlify.app/",
+        relatedProfileSections: ["projects-tech4positive", "accomplishments", "interests-values"],
+        relatedProjects: ["Monitoring Dashboard"], // Links to id 3
+        skillsHighlighted: ["Interactive Storytelling", "Game Development", "Educational Technology"],
+        award: "Part of Tech4Positive Futures Challenge 2024 Winner",
+        teamProject: true,
+        careerRelevance: {
+            dataEngineering: 2,
+            backendDev: 3,
+            dataScience: 4,
+            dataAnalyst: 5
+        },
+        tags: ["hackathon", "game", "education", "climate-tech", "sustainability"]
     },
     {
         id: 5,
@@ -79,7 +126,17 @@ export const projectData = [
             { name: "API" }
         ],
         githubUrl: "https://github.com/jgchoti/dictionary-react",
-        webUrl: "https://retro-english-dictionary.netlify.app/"
+        webUrl: "https://retro-english-dictionary.netlify.app/",
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning"],
+        skillsHighlighted: ["React", "API Integration", "JavaScript"],
+        bootcampProject: "HackYourFuture",
+        careerRelevance: {
+            dataEngineering: 4,
+            backendDev: 6,
+            dataScience: 2,
+            dataAnalyst: 3
+        },
+        tags: ["react", "api", "web-development", "bootcamp-project"]
     },
     {
         id: 6,
@@ -95,7 +152,18 @@ export const projectData = [
             { name: "API" }
         ],
         githubUrl: "https://github.com/jgchoti/harry-potter-searcher",
-        webUrl: "https://jgchoti.github.io/harry-potter-searcher/"
+        webUrl: "https://jgchoti.github.io/harry-potter-searcher/",
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning"],
+        skillsHighlighted: ["JavaScript", "API Integration", "Server-side Filtering", "Performance Optimization"],
+        bootcampProject: "HackYourFuture",
+        keyLearnings: ["Server-side filtering", "API optimization", "Data retrieval"],
+        careerRelevance: {
+            dataEngineering: 5,
+            backendDev: 7,
+            dataScience: 3,
+            dataAnalyst: 4
+        },
+        tags: ["javascript", "api", "web-development", "bootcamp-project", "optimization"]
     },
     {
         id: 7,
@@ -111,7 +179,19 @@ export const projectData = [
             { name: "API" }
         ],
         githubUrl: "https://github.com/jgchoti/studio-ghibli-searcher/",
-        webUrl: "https://jgchoti.github.io/studio-ghibli-searcher/"
+        webUrl: "https://jgchoti.github.io/studio-ghibli-searcher/",
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning", "beyond"],
+        skillsHighlighted: ["JavaScript", "State Management", "Client-side Filtering", "API Integration"],
+        bootcampProject: "HackYourFuture",
+        passionProject: true,
+        keyLearnings: ["Client-side filtering", "State management", "API integration"],
+        careerRelevance: {
+            dataEngineering: 4,
+            backendDev: 6,
+            dataScience: 2,
+            dataAnalyst: 3
+        },
+        tags: ["javascript", "api", "state-management", "bootcamp-project", "passion-project"]
     },
     {
         id: 8,
@@ -126,7 +206,18 @@ export const projectData = [
             { name: "GitHub" }
         ],
         githubUrl: "https://github.com/jgchoti/to-do-list",
-        webUrl: "https://jgchoti.github.io/to-do-list/"
+        webUrl: "https://jgchoti.github.io/to-do-list/",
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning"],
+        skillsHighlighted: ["JavaScript", "Local Storage", "DOM Manipulation", "User Experience"],
+        bootcampProject: "HackYourFuture",
+        keyLearnings: ["Local storage", "JavaScript fundamentals", "User-friendly design"],
+        careerRelevance: {
+            dataEngineering: 2,
+            backendDev: 4,
+            dataScience: 1,
+            dataAnalyst: 2
+        },
+        tags: ["javascript", "web-development", "bootcamp-project", "beginner-project"]
     },
     {
         id: 9,
@@ -142,7 +233,18 @@ export const projectData = [
             { name: "Bootstrap" }
         ],
         githubUrl: "https://github.com/jgchoti/fietsateljee-berchem",
-        webUrl: "https://fietsateljee-berchem.netlify.app/"
+        webUrl: "https://fietsateljee-berchem.netlify.app/",
+        relatedProfileSections: ["tech-stack-web", "projects-freelance", "learning"],
+        skillsHighlighted: ["Responsive Design", "Bootstrap", "Client Communication"],
+        clientWork: true,
+        localBusiness: true,
+        careerRelevance: {
+            dataEngineering: 2,
+            backendDev: 4,
+            dataScience: 1,
+            dataAnalyst: 2
+        },
+        tags: ["web-development", "bootstrap", "responsive-design", "local-business"]
     },
     {
         id: 10,
@@ -157,7 +259,18 @@ export const projectData = [
             { name: "GitHub" }
         ],
         githubUrl: "https://github.com/jgchoti/basic-calculator",
-        webUrl: "https://choti-calculator.netlify.app/"
+        webUrl: "https://choti-calculator.netlify.app/",
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning"],
+        skillsHighlighted: ["JavaScript Basics", "Clean Design", "Problem Solving"],
+        bootcampProject: "HackYourFuture",
+        firstProject: true,
+        careerRelevance: {
+            dataEngineering: 2,
+            backendDev: 3,
+            dataScience: 1,
+            dataAnalyst: 1
+        },
+        tags: ["javascript", "web-development", "bootcamp-project", "beginner-project", "first-project"]
     },
     {
         id: 11,
@@ -174,7 +287,19 @@ export const projectData = [
             { name: "API" }
         ],
         githubUrl: 'https://github.com/jgchoti/weather-react',
-        webUrl: "https://weather2024.netlify.app/"
+        webUrl: "https://weather2024.netlify.app/",
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning"],
+        relatedProjects: ["Weather App"], // Links to id 12
+        skillsHighlighted: ["React", "State Management", "Props", "Components", "API Integration"],
+        bootcampProject: "HackYourFuture",
+        keyLearnings: ["React fundamentals", "Component architecture", "State management"],
+        careerRelevance: {
+            dataEngineering: 4,
+            backendDev: 6,
+            dataScience: 2,
+            dataAnalyst: 4
+        },
+        tags: ["react", "api", "web-development", "bootcamp-project", "state-management"]
     },
     {
         id: 12,
@@ -190,7 +315,19 @@ export const projectData = [
             { name: "API" }
         ],
         githubUrl: 'https://github.com/jgchoti/weather-app',
-        webUrl: "https://weather2023.netlify.app/"
+        webUrl: "https://weather2023.netlify.app/",
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning"],
+        relatedProjects: ["Weather App 2.0"], // Links to id 11
+        skillsHighlighted: ["API Integration", "JavaScript", "Asynchronous Programming"],
+        bootcampProject: "HackYourFuture",
+        keyLearnings: ["Live API integration", "Async/await", "Data fetching"],
+        careerRelevance: {
+            dataEngineering: 5,
+            backendDev: 6,
+            dataScience: 2,
+            dataAnalyst: 4
+        },
+        tags: ["javascript", "api", "web-development", "bootcamp-project", "async"]
     },
     {
         id: 13,
@@ -205,8 +342,20 @@ export const projectData = [
             { name: "GitHub" }
         ],
         githubUrl: 'https://github.com/jgchoti/cv',
-        webUrl: "https://chotirat.netlify.app/"
-    }, {
+        webUrl: "https://chotirat.netlify.app/",
+        relatedProfileSections: ["tech-stack-web", "learning", "career-goals"],
+        skillsHighlighted: ["HTML", "CSS", "JavaScript Basics", "Responsive Design"],
+        firstProject: true,
+        milestone: "First web development project",
+        careerRelevance: {
+            dataEngineering: 1,
+            backendDev: 3,
+            dataScience: 1,
+            dataAnalyst: 2
+        },
+        tags: ["web-development", "first-project", "html", "css", "milestone"]
+    },
+    {
         id: 14,
         name: "SQL Assistant",
         type: "data",
@@ -223,49 +372,54 @@ export const projectData = [
             { name: "Render" },
             { name: "GitHub" }
         ],
-        githubUrl: "https://sql-assist.vercel.app",
-        webUrl: "https://sql-assist.vercel.app"
-    }, {
-        "id": 15,
-        "demoCallToAction": "**Try it now**: Ask me 'What data science experience does Choti have?' or 'Tell me about her international background' to see how the vector search retrieves relevant context and generates personalized responses!",
-        "name": "AI Career Agent Chatbot",
-        "type": "data",
-        "description": "An AI RAG-powered chatbot that serves as Choti's professional career agent. Built with Node.js, Express, and Google Gemini AI with vector search using semantic embeddings. Features real-time context retrieval from portfolio data, professional career guidance, and conversational AI that accurately represents Choti's background, skills, and experience. Deployed as a serverless API with CORS support for web integration.",
-        "shortDescription": "Intelligent career agent that answers questions about Choti's professional background using AI and vector search.",
-        "demoNote": "**Live Demo**: You're currently using this system! Ask me anything about Choti's background, skills, or projects to experience the RAG technology firsthand.",
-        "technologies": [
-            { "name": "Node.js" },
-            { "name": "Express" },
-            { "name": "Google Gemini AI" },
-            { "name": "RAG (Retrieval Augmented Generation)" },
-            { "name": "Vector Search" },
-            { "name": "Semantic Embeddings" },
-            { "name": "JavaScript" },
-            { "name": "Vercel" },
-            { "name": "GitHub" }
+        githubUrl: "https://github.com/jgchoti/sql-assistant",
+        webUrl: "https://sql-assist.vercel.app",
+        relatedProfileSections: ["tech-stack-primary", "skills-machine-learning", "education-becode", "skills-data-engineering"],
+        skillsHighlighted: ["Python", "Flask", "React", "LangChain", "AI Integration", "SQL", "Full-Stack"],
+        bootcampProject: "BeCode",
+        careerRelevance: {
+            dataEngineering: 9,
+            backendDev: 9,
+            dataScience: 7,
+            dataAnalyst: 8
+        },
+        keyLearnings: ["LangChain integration", "AI-powered applications", "Full-stack deployment", "Natural language processing"],
+        impact: "Demonstrates ability to build end-to-end AI applications",
+        tags: ["ai", "langchain", "sql", "python", "flask", "react", "full-stack", "bootcamp-project"]
+    },
+    {
+        id: 15,
+        demoCallToAction: "**Try it now**: Ask me 'What data science experience does Choti have?' or 'Tell me about her international background' to see how the vector search retrieves relevant context and generates personalized responses!",
+        name: "AI Career Agent Chatbot",
+        type: "data",
+        description: "An AI RAG-powered chatbot that serves as Choti's professional career agent. Built with Node.js, Express, and Google Gemini AI with vector search using semantic embeddings. Features real-time context retrieval from portfolio data, professional career guidance, and conversational AI that accurately represents Choti's background, skills, and experience. Deployed as a serverless API with CORS support for web integration.",
+        shortDescription: "Intelligent career agent that answers questions about Choti's professional background using AI and vector search.",
+        demoNote: "**Live Demo**: You're currently using this system! Ask me anything about Choti's background, skills, or projects to experience the RAG technology firsthand.",
+        technologies: [
+            { name: "Node.js" },
+            { name: "Express" },
+            { name: "Google Gemini AI" },
+            { name: "RAG (Retrieval Augmented Generation)" },
+            { name: "Vector Search" },
+            { name: "Semantic Embeddings" },
+            { name: "JavaScript" },
+            { name: "Vercel" },
+            { name: "GitHub" }
         ],
-        "webUrl": "https://jgchoti.github.io"
+        webUrl: "https://jgchoti.github.io",
+        githubUrl: "https://github.com/jgchoti/portfolio-rag-chatbot",
+        relatedProfileSections: ["projects-rag-bot", "tech-stack-primary", "skills-machine-learning", "skills-cloud-devops"],
+        skillsHighlighted: ["Node.js", "RAG Architecture", "Vector Search", "Gemini AI", "Semantic Embeddings", "API Development", "Serverless"],
+        featuredProject: true,
+        currentlyActive: true,
+        careerRelevance: {
+            dataEngineering: 9,
+            backendDev: 10,
+            dataScience: 8,
+            dataAnalyst: 6
+        },
+        keyLearnings: ["RAG architecture", "Vector embeddings", "Semantic search", "AI integration", "Serverless deployment"],
+        impact: "Showcases cutting-edge AI/ML skills and full-stack capabilities",
+        tags: ["ai", "rag", "vector-search", "node.js", "gemini-ai", "featured", "portfolio", "serverless"]
     }
 ];
-
-
-
-// , {
-//     name: "CV Generator",
-//     description: "The CV Generator project was developed using React and Tailwind CSS with Vite. It allows users to quickly generate professional resumes by inputting their personal details and skills.",
-//     details: "In addition to creating a well-structured CV, the app provides customizable templates, making the resume-building experience intuitive and user-friendly.",
-//     imageUrl: cvImage,
-//     alternate_image: cvDarkImage,
-//     linkUrl: "https://cv-generator-2024.netlify.app/",
-//     githubUrl: "https://github.com/jgchoti/cv-generator",
-//     linkTitle: "CV Generator built with React and Tailwind",
-//     shortDescription: "Built with HTML, Tailwind CSS, and React using Vite",
-//     technologies: [
-//         { name: 'HTML', logoUrl: htmlLogo },
-//         { name: 'Tailwind CSS', logoUrl: tailwindLogo },
-//         { name: 'JavaScript', logoUrl: jsLogo },
-//         { name: 'GitHub', logoUrl: gitHubLogo },
-//         { name: 'React', logoUrl: reactLogo },
-//         { name: 'Vite', logoUrl: viteLogo }
-//     ]
-// }
