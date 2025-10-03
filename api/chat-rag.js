@@ -28,7 +28,6 @@ META-AWARENESS:
 
 KEY FACTS:
 - Lived in 9 countries; based in Belgium; available Belgium/remote
-- Won Tech4Positive Futures Challenge 2024 (Capgemini Belgium)
 - LinkedIn: https://www.linkedin.com/in/chotirat/
 
 STYLE & VOICE:
