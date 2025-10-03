@@ -48,7 +48,7 @@
   {
     "repoName": "challenge-ci-cd-github",
     "displayName": "Challenge Ci Cd Github",
-    "description": "[](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/ci-git.yml) [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/cd.yml)",
+    "description": "A beginner-friendly project to learn basic CI/CD using GitHub Actions. Demonstrates simple automated workflows for testing and deploying Python projects.",
     "technologies": ["Python"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/challenge-ci-cd-github",
@@ -56,7 +56,7 @@
     "stars": 0,
     "lastUpdated": "2025-08-20T17:54:28Z",
     "businessSummary": "Project: Challenge Ci Cd Github | Type: Software Project | Description: [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/ci-git.yml) [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/cd.yml) | Technologies: Python",
-    "embeddingText": "Project: Challenge Ci Cd Github | Type: Software Project | Description: [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/ci-git.yml) [](https://github.com/jgchoti/challenge-ci-cd-github/actions/workflows/cd.yml) | Technologies: Python | Skills demonstrated: Python | Suitable for clients needing software project solutions",
+    "embeddingText": "Project: Challenge CI/CD GitHub | Type: Software Project | Description: A beginner-friendly project to learn basic CI/CD using GitHub Actions. Includes simple workflows for testing and deploying Python projects. | Technologies: Python, GitHub Actions | Skills demonstrated: Python, CI/CD, GitHub Actions | Suitable for clients needing software project solutions",
     "metadata": {
       "source": "github",
       "repoName": "challenge-ci-cd-github",
@@ -86,15 +86,15 @@
   {
     "repoName": "challenge-data-analysis-sql",
     "displayName": "Challenge Data Analysis Sql",
-    "description": "Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios.",
+    "description": "Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to sharpen SQL skills and apply them to real-world data analysis scenarios.",
     "technologies": ["Jupyter Notebook", "SQLite"],
     "projectType": "Software Project",
     "githubUrl": "https://github.com/jgchoti/challenge-data-analysis-sql",
     "demoLinks": [],
     "stars": 0,
     "lastUpdated": "2025-07-25T14:41:46Z",
-    "businessSummary": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook, SQLite",
-    "embeddingText": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to shraping SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook, SQLite | Skills demonstrated: Jupyter Notebook, SQLite | Suitable for clients needing software project solutions",
+    "businessSummary": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to sharpen SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook, SQLite",
+    "embeddingText": "Project: Challenge Data Analysis Sql | Type: Software Project | Description: Welcome to the Data Analysis with SQL challenge! This project is part of my learning journey with BeCode to sharpen SQL skills and apply them to real-world data analysis scenarios. | Technologies: Jupyter Notebook, SQLite | Skills demonstrated: Jupyter Notebook, SQLite | Suitable for clients needing software project solutions",
     "metadata": {
       "source": "github",
       "repoName": "challenge-data-analysis-sql",
@@ -105,45 +105,45 @@
   {
     "repoName": "coral-game",
     "displayName": "Coral Game",
-    "description": "using Twine making interactive game in saving corals",
+    "description": "An interactive Twine-based game focused on coral reef conservation.",
     "technologies": ["HTML", "JavaScript"],
-    "projectType": "Data Science",
+    "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/coral-game",
     "demoLinks": ["https://coral-game.netlify.app/"],
     "stars": 0,
     "lastUpdated": "2024-10-31T11:53:53Z",
-    "businessSummary": "Project: Coral Game | Type: Data Science | Description: using Twine making interactive game in saving corals | Technologies: HTML, JavaScript",
-    "embeddingText": "Project: Coral Game | Type: Data Science | Description: using Twine making interactive game in saving corals | Technologies: HTML, JavaScript | Skills demonstrated: HTML, JavaScript | Suitable for clients needing data science solutions",
+    "businessSummary": "Project: Coral Game | Type: Web Application | Description: Created an interactive game using Twine to promote coral reef conservation. | Technologies: HTML, JavaScript",
+    "embeddingText": "Project: Coral Game | Type: Web Application | Description: Created an interactive game using Twine to promote coral reef conservation. | Technologies: HTML, JavaScript | Skills demonstrated: HTML, JavaScript | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "coral-game",
-      "projectType": "Data Science",
+      "projectType": "Web Application",
       "technologies": ["HTML", "JavaScript"]
     }
   },
   {
     "repoName": "cv",
     "displayName": "Cv",
-    "description": "No description available",
+    "description": "A personal portfolio page built with HTML to showcase projects and skills.",
     "technologies": ["HTML"],
-    "projectType": "Data Science",
+    "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/cv",
     "demoLinks": [],
     "stars": 0,
     "lastUpdated": "2024-06-25T10:27:08Z",
-    "businessSummary": "Project: Cv | Type: Data Science | Description: No description available | Technologies: HTML",
-    "embeddingText": "Project: Cv | Type: Data Science | Description: No description available | Technologies: HTML | Skills demonstrated: HTML | Suitable for clients needing data science solutions",
+    "businessSummary": "Project: Cv | Type: Web Application | Description: No description available | Technologies: HTML",
+    "embeddingText": "Project: Cv | Type: Web Application| Description: No description available | Technologies: HTML | Skills demonstrated: HTML | Suitable for clients needing data science solutions",
     "metadata": {
       "source": "github",
       "repoName": "cv",
-      "projectType": "Data Science",
+      "projectType": "Web Application",
       "technologies": ["HTML"]
     }
   },
   {
     "repoName": "dictionary-react",
     "displayName": "Dictionary React",
-    "description": "This project was bootstrapped with Create React App.",
+    "description": "A React-based dictionary web app to search and learn English words.",
     "technologies": ["JavaScript", "React"],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/dictionary-react",
@@ -219,7 +219,7 @@
   {
     "repoName": "harry-potter-searcher",
     "displayName": "Harry Potter Searcher",
-    "description": "using Potter DB: API ",
+    "description": "Uses the Potter DB API to search for Harry Potter data.",
     "technologies": ["JavaScript"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/harry-potter-searcher",
@@ -368,7 +368,7 @@
   {
     "repoName": "studio-ghibli-searcher",
     "displayName": "Studio Ghibli Searcher",
-    "description": "using The Studio Ghibli API",
+    "description": "Uses the Studio Ghibli API to explore movies and characters.",
     "technologies": ["JavaScript"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/studio-ghibli-searcher",
@@ -419,24 +419,24 @@
       "source": "github",
       "repoName": "studynote-data",
       "projectType": "Software Project",
-      "technologies": []
+      "Technologies": "None (documentation/contributions)"
     }
   },
   {
     "repoName": "tlaas",
     "displayName": "Tlaas",
-    "description": "(But let’s be honest, you're probably too lazy to read it.....)",
+    "description": "A humorous novelty app (Too Lazy as a Service) built with Python, FastAPI, and Docker that generates playful excuses for avoiding work.",
     "technologies": ["Python", "FastAPI", "Docker"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/tlaas",
     "demoLinks": [
       "https://too-lazy-as-a-service.onrender.com/",
-      "https://too-lazy-as-a-service.onrender.com/redoc](https://too-lazy-as-a-service.onrender.com/redoc"
+      "https://too-lazy-as-a-service.onrender.com/redoc"
     ],
     "stars": 0,
     "lastUpdated": "2025-07-07T20:44:03Z",
-    "businessSummary": "Project: Tlaas | Type: Backend API | Description: (But let’s be honest, you're probably too lazy to read it.....) | Technologies: Python, FastAPI, Docker",
-    "embeddingText": "Project: Tlaas | Type: Backend API | Description: (But let’s be honest, you're probably too lazy to read it.....) | Technologies: Python, FastAPI, Docker | Skills demonstrated: Python, FastAPI, Docker | Suitable for clients needing backend api solutions",
+    "businessSummary": "Project: Tlaas | Type: Backend API | Description: A humorous novelty app (Too Lazy as a Service) that generates playful excuses for avoiding work. | Technologies: Python, FastAPI, Docker",
+    "embeddingText": "Project: Tlaas | Type: Backend API | Description: A humorous novelty app (Too Lazy as a Service) that generates playful excuses for avoiding work.| Technologies: Python, FastAPI, Docker | Skills demonstrated: Python, FastAPI, Docker | Suitable for clients needing backend api solutions",
     "metadata": {
       "source": "github",
       "repoName": "tlaas",
@@ -466,7 +466,7 @@
   {
     "repoName": "weather-react",
     "displayName": "Weather React",
-    "description": "This project was bootstrapped with Create React App.",
+    "description": "A React-based weather app fetching live weather data for different locations.",
     "technologies": ["JavaScript", "React"],
     "projectType": "Web Application",
     "githubUrl": "https://github.com/jgchoti/weather-react",
@@ -504,15 +504,15 @@
   {
     "repoName": "wikipedia-searcher",
     "displayName": "Wikipedia Searcher",
-    "description": "wikipedia API practice project",
+    "description": "A project practicing use of the Wikipedia API.",
     "technologies": ["CSS"],
     "projectType": "Backend API",
     "githubUrl": "https://github.com/jgchoti/wikipedia-searcher",
     "demoLinks": ["https://jgchoti.github.io/wikipedia-searcher/"],
     "stars": 0,
     "lastUpdated": "2025-05-28T12:44:01Z",
-    "businessSummary": "Project: Wikipedia Searcher | Type: Backend API | Description: wikipedia API practice project | Technologies: CSS",
-    "embeddingText": "Project: Wikipedia Searcher | Type: Backend API | Description: wikipedia API practice project | Technologies: CSS | Skills demonstrated: CSS | Suitable for clients needing backend api solutions",
+    "businessSummary": "Project: Wikipedia Searcher | Type: Backend API | Description: A project practicing use of the Wikipedia API. | Technologies: CSS",
+    "embeddingText": "Project: Wikipedia Searcher | Type: Backend API | Description: A project practicing use of the Wikipedia API. | Technologies: CSS | Skills demonstrated: CSS | Suitable for clients needing backend api solutions",
     "metadata": {
       "source": "github",
       "repoName": "wikipedia-searcher",
