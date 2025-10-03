@@ -9,6 +9,7 @@ dotenv.config({ path: '.env.local' });
 import { projectData } from '../data/projectData.js';
 import { profileData } from '../data/profileData.js';
 import { contactInfo } from '../data/contactInfo.js';
+import { blogData } from '../data/blogData.js';
 
 let githubData = [];
 try {
@@ -236,6 +237,27 @@ Repository: ${repo.githubUrl}`;
         }
     });
 
+    blogData.forEach((blog, index) => {
+        const content = `${blog.title}: ${blog.shortDescription || blog.summary || ''}
+
+Read the full post: ${blog.url}
+
+Key topics: ${blog.tags ? blog.tags.join(', ') : 'general'}.
+
+Career relevance: Demonstrates problem-solving, creative thinking, and technical application relevant to data and software roles.`;
+
+        documents.push({
+            id: `blog-${index}`,
+            content,
+            metadata: {
+                type: 'blog',
+                title: blog.title,
+                tags: blog.tags || [],
+                source: 'blog',
+                careerRelevance: 'medium'
+            }
+        });
+    });
     return documents;
 }
 
