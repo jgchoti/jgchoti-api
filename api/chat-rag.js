@@ -60,15 +60,10 @@ RESPONSE PATTERN:
 - End with simple question, next step, or open-ended CTA
 `;
 
-function sanitizeRagLinks(text) {
-    return text.replace(/"\s*target="_blank"[^>]*>/g, '>');
+function sanitizeLinks(text) {
+    return text.replace(/" target="_blank" rel="noopener noreferrer" class="text-primary">/g, '');
 }
 
-function wrapLinks(text) {
-    return text.replace(/(?<!<a href=")(https?:\/\/[^\s"<>]+)/g,
-        '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-primary">$1</a>'
-    );
-}
 
 export default async function handler(req, res) {
     const origin = req.headers.origin;
@@ -186,8 +181,7 @@ ${conversationContext}
         const result = await model.generateContent(prompt);
         const response = result.response;
         let responseText = response.text();
-        responseText = sanitizeRagLinks(responseText);
-
+        responseText = sanitizeLinks(responseText);
         if (context.includes('[project]') || context.includes('[github-project]')) {
             const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
             const wrongLink = isDataProject ? 'https://jgchoti.github.io/project' : 'https://jgchoti.github.io/data';
@@ -198,7 +192,6 @@ ${conversationContext}
             }
         }
 
-        responseText = wrapLinks(responseText);
 
 
         console.log('✅ Response generated successfully');
