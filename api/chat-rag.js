@@ -181,6 +181,10 @@ ${conversationContext}
         const result = await model.generateContent(prompt);
         const response = result.response;
         let responseText = response.text();
+
+        console.log('🔹 RAW GEMINI RESPONSE:', responseText);
+
+
         responseText = sanitizeLinks(responseText);
         if (context.includes('[project]') || context.includes('[github-project]')) {
             const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
