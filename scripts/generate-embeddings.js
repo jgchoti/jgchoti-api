@@ -35,6 +35,36 @@ function normalizeTechNames(technologies) {
     });
 }
 
+function cleanText(text) {
+    if (!text) return '';
+    return text
+        .replace(/\s+/g, ' ') 
+        .replace(/('|\"|\`)/g, "'") 
+        .trim();
+}
+
+function chunkText(text, chunkSize = 250, overlap = 50) {
+    const chunks = [];
+    if (!text) return chunks;
+
+    const sentences = text.split(/(?<=[.?!])\s+/);
+    let currentChunk = '';
+
+    for (const sentence of sentences) {
+        if (currentChunk.length + sentence.length > chunkSize) {
+            chunks.push(currentChunk.trim());
+            currentChunk = currentChunk.slice(-overlap);
+        }
+        currentChunk += (currentChunk.length > 0 ? ' ' : '') + sentence;
+    }
+
+    if (currentChunk) {
+        chunks.push(currentChunk.trim());
+    }
+
+    return chunks;
+}
+
 function getDataSkillCategories(technologies) {
     const techNames = normalizeTechNames(technologies);
     const skillCategories = [];
@@ -121,40 +151,38 @@ function getCareerPathApplications(project, careerPaths) {
 function createDocuments() {
     const documents = [];
 
-    // PROFILE DATA
+    // PROFILE DATA 
     profileData.forEach((section, index) => {
-        let enhancedContent = `${section.title}: ${section.content}${section.subtitle ? ` ${section.subtitle}` : ''}`;
+        const baseId = `profile-${index}`;
+        const baseMetadata = {
+            type: 'profile',
+            section: section.title,
+            source: 'profile',
+            careerRelevance: 'high'
+        };
 
-        if (section.title.includes('Technical Skills') || section.title.includes('Skills')) {
-            enhancedContent += ` These versatile technical skills apply across multiple data career paths including Data Engineering, Data Science, ML Engineering, and Backend Development roles.`;
-        }
+        const chunks = section.content.split(/\n|\. /).filter(c => c.trim().length > 10);
 
-        if (section.title.includes('International Experience') || section.title.includes('Experience')) {
-            enhancedContent += ` This global perspective is valuable across all data-focused roles, bringing cross-cultural collaboration skills and diverse problem-solving approaches.`;
-        }
-
-        if (section.title.includes('Learning') || section.title.includes('Journey')) {
-            enhancedContent += ` Open to various data career paths, with particular interest in roles combining technical skills with data systems, analysis, and engineering.`;
-        }
-
-        if (section.title.includes('Accomplishments') || section.title.includes('Challenge')) {
-            enhancedContent += ` This achievement demonstrates ability to work across the full data stack - from problem identification to technical implementation to solution delivery.`;
-        }
-
-        documents.push({
-            id: `profile-${index}`,
-            content: enhancedContent,
-            metadata: {
-                type: 'profile',
-                section: section.title,
-                source: 'profile',
-                careerRelevance: 'high'
-            }
+        chunks.forEach((chunk, chunkIndex) => {
+            documents.push({
+                id: `${baseId}-${chunkIndex}`,
+                content: cleanText(`${section.title}: ${chunk.trim()}`),
+                metadata: { ...baseMetadata, chunk: chunkIndex }
+            });
         });
+
+        if (section.subtitle) {
+            documents.push({
+                id: `${baseId}-subtitle`,
+                content: cleanText(`${section.title} (Subtitle): ${section.subtitle}`),
+                metadata: { ...baseMetadata, chunk: 'subtitle' }
+            });
+        }
     });
 
-    // PROJECT DATA
+    // PROJECT DATA 
     projectData.forEach((project, index) => {
+        const baseId = `project-${index}`;
         const skillCategories = getDataSkillCategories(project.technologies);
         const careerPaths = getCareerPathRelevanceFromTechs(project.technologies);
         const topPaths = Object.entries(careerPaths)
@@ -162,103 +190,120 @@ function createDocuments() {
             .map(([path, _]) => path)
             .join(', ');
 
-        const content = `${project.name}: ${project.shortDescription || project.description}
+        const baseMetadata = {
+            type: 'project',
+            projectName: project.name,
+            projectType: project.type,
+            technologies: normalizeTechNames(project.technologies),
+            skillCategories: skillCategories,
+            careerPathScores: careerPaths,
+            topCareerPaths: Object.entries(careerPaths)
+                .filter(([_, score]) => score >= 4)
+                .map(([path, _]) => path),
+            source: 'projects'
+        };
 
-Multi-Path Career Relevance: This project demonstrates skills applicable to ${topPaths || 'multiple data career paths'}. The technical implementation showcases ${skillCategories.length > 0 ? skillCategories.join(', ') : 'versatile software engineering capabilities'}.
-
-Technical Stack: Built with ${project.technologies.map(t => t.name).join(', ')}, showing proficiency across the modern data technology ecosystem.
-
-Detailed Description: ${project.description}
-
-${project.features ? `Key Features: ${project.features.join(', ')}.` : ''}
-${project.demoCallToAction ? `Live Demo Available: ${project.demoCallToAction}` : ''}
-${project.demoNote ? project.demoNote : ''}
-
-Career Path Applications:
-${getCareerPathApplications(project, careerPaths)}
-
-Available at: ${project.githubUrl || project.webUrl || 'Contact for details'}`;
-
+        // Core project info
         documents.push({
-            id: `project-${index}`,
-            content: content,
-            metadata: {
-                type: 'project',
-                projectName: project.name,
-                projectType: project.type,
-                technologies: normalizeTechNames(project.technologies),
-                skillCategories: skillCategories,
-                careerPathScores: careerPaths,
-                topCareerPaths: Object.entries(careerPaths)
-                    .filter(([_, score]) => score >= 4)
-                    .map(([path, _]) => path),
-                source: 'projects'
-            }
+            id: `${baseId}-core`,
+            content: cleanText(`${project.name}: ${project.shortDescription || project.description}`),
+            metadata: { ...baseMetadata, chunk: 'core' }
+        });
+
+        // Career relevance
+        documents.push({
+            id: `${baseId}-relevance`,
+            content: cleanText(`Multi-Path Career Relevance for ${project.name}: This project demonstrates skills applicable to ${topPaths || 'multiple data career paths'}. The technical implementation showcases ${skillCategories.length > 0 ? skillCategories.join(', ') : 'versatile software engineering capabilities'}.`),
+            metadata: { ...baseMetadata, chunk: 'relevance' }
+        });
+
+        // Tech stack
+        documents.push({
+            id: `${baseId}-stack`,
+            content: cleanText(`Technical Stack for ${project.name}: Built with ${project.technologies.map(t => t.name).join(', ')}, showing proficiency across the modern data technology ecosystem.`),
+            metadata: { ...baseMetadata, chunk: 'stack' }
+        });
+
+        //Features
+        if (project.features && project.features.length > 0) {
+            documents.push({
+                id: `${baseId}-features`,
+                content: cleanText(`Key Features of ${project.name}: ${project.features.join(', ')}.`), 
+                metadata: { ...baseMetadata, chunk: 'features' }
+            });
+        }
+        
+        // Career applications
+        documents.push({
+            id: `${baseId}-applications`,
+            content: cleanText(`Career Path Applications for ${project.name}:\n${getCareerPathApplications(project, careerPaths)}`),
+            metadata: { ...baseMetadata, chunk: 'applications' }
+        });
+
+        // Links
+        documents.push({
+            id: `${baseId}-links`,
+            content: cleanText(`Links for ${project.name}: Available at ${project.githubUrl || project.webUrl || 'Contact for details'}. ${project.demoCallToAction || ''} ${project.demoNote || ''}`),
+            metadata: { ...baseMetadata, chunk: 'links' }
         });
     });
 
-    // GITHUB DATA - ONLY ONE LOOP WITH CROSS-REFERENCES
+    // GITHUB DATA
     githubData.forEach((repo, index) => {
+        const baseId = `github-${index}`;
         const techs = normalizeTechNames(repo.technologies);
         const skillCategories = getDataSkillCategories(techs);
         const careerPaths = getCareerPathRelevanceFromTechs(techs);
-
-        // Get cross-reference data
         const crossRef = githubCrossReferences[repo.repoName] || {};
         const finalCareerPaths = crossRef.careerRelevance || careerPaths;
-
         const topPaths = Object.entries(finalCareerPaths)
             .filter(([_, score]) => score >= 4)
             .map(([path, _]) => path)
             .join(', ');
 
-        const content = `${repo.displayName || repo.repoName}: ${repo.description || repo.businessSummary}
+        const baseMetadata = {
+            type: 'github-project',
+            projectName: repo.displayName || repo.repoName,
+            projectType: repo.projectType,
+            technologies: techs,
+            skillCategories: skillCategories,
+            careerPathScores: finalCareerPaths,
+            topCareerPaths: Object.entries(finalCareerPaths)
+                .filter(([_, score]) => score >= 4)
+                .map(([path, _]) => path),
+            source: 'github',
+            stars: repo.stars || 0,
+            ...crossRef
+        };
 
-Multi-Path Career Relevance: This project demonstrates skills applicable to ${topPaths || 'multiple data career paths'}. The technical implementation showcases ${skillCategories.length > 0 ? skillCategories.join(', ') : 'versatile software engineering capabilities'}.
-
-Technical Stack: Built with ${techs.join(', ') || 'varied technologies'}.
-
-${crossRef.featured ? '⭐ Featured Project: Highlighted work demonstrating advanced capabilities.' : ''}
-${crossRef.bootcampProject ? `Bootcamp: ${crossRef.bootcampProject} training project` : ''}
-${crossRef.award ? `🏆 Award: ${crossRef.award}` : ''}
-${crossRef.teamProject ? '👥 Team Project: Collaborative development experience' : ''}
-
-Detailed Summary: ${repo.businessSummary || repo.description}
-
-${crossRef.relatedProjectData && crossRef.relatedProjectData.length > 0 ?
-                `Related Projects: ${crossRef.relatedProjectData.join(', ')}` : ''}
-
-${repo.demoLinks && repo.demoLinks.length ? `Live Demo: ${repo.demoLinks[0]}` : ''}
-
-Repository: ${repo.githubUrl}`;
-
+        //Core repo info
         documents.push({
-            id: `github-${index}`,
-            content: content,
-            metadata: {
-                type: 'github-project',
-                projectName: repo.displayName || repo.repoName,
-                projectType: repo.projectType,
-                technologies: techs,
-                skillCategories: skillCategories,
-                careerPathScores: finalCareerPaths,
-                topCareerPaths: Object.entries(finalCareerPaths)
-                    .filter(([_, score]) => score >= 4)
-                    .map(([path, _]) => path),
-                source: 'github',
-                stars: repo.stars || 0,
-                relatedProfileSections: crossRef.relatedProfileSections || [],
-                relatedProjectData: crossRef.relatedProjectData || [],
-                skillsHighlighted: crossRef.skillsHighlighted || [],
-                bootcampProject: crossRef.bootcampProject,
-                featured: crossRef.featured || false,
-                award: crossRef.award,
-                teamProject: crossRef.teamProject || false,
-                passionProject: crossRef.passionProject || false,
-                firstProject: crossRef.firstProject || false,
-                completedDate: crossRef.completedDate,
-                tags: crossRef.tags || []
-            }
+            id: `${baseId}-core`,
+            content: cleanText(`${repo.displayName || repo.repoName}: ${repo.description || repo.businessSummary}`),
+            metadata: { ...baseMetadata, chunk: 'core' }
+        });
+
+        //Career relevance
+        documents.push({
+            id: `${baseId}-relevance`,
+            content: cleanText(`Multi-Path Career Relevance for ${repo.displayName || repo.repoName}: This project demonstrates skills applicable to ${topPaths || 'multiple data career paths'}. The technical implementation showcases ${skillCategories.length > 0 ? skillCategories.join(', ') : 'versatile software engineering capabilities'}.`),
+            metadata: { ...baseMetadata, chunk: 'relevance' }
+        });
+
+        //Tech stack
+        documents.push({
+            id: `${baseId}-stack`,
+            content: cleanText(`Technical Stack for ${repo.displayName || repo.repoName}: Built with ${techs.join(', ') || 'varied technologies'}.`),
+            metadata: { ...baseMetadata, chunk: 'stack' }
+        });
+
+        //Summary and Links
+        const summaryContent = `Detailed Summary for ${repo.displayName || repo.repoName}: ${repo.businessSummary || repo.description}
+Repository: ${repo.githubUrl}`;
+        documents.push({
+            id: `${baseId}-summary`,
+            content: cleanText(summaryContent),
+            metadata: { ...baseMetadata, chunk: 'summary' }
         });
     });
 
@@ -273,7 +318,7 @@ Repository: ${repo.githubUrl}`;
 
     documents.push({
         id: 'contact-0',
-        content: `Contact Choti for data-focused opportunities.\n\n${contactLines}`,
+        content: cleanText(`Contact Choti for data-focused opportunities.\n\n${contactLines}`),
         metadata: {
             type: 'contact',
             source: 'contact',
@@ -284,24 +329,25 @@ Repository: ${repo.githubUrl}`;
 
     // BLOG DATA
     blogData.forEach((blog, index) => {
-        const content = `${blog.title}: ${blog.shortDescription || blog.summary || ''}
+        const blogContent = `${blog.title}: ${blog.shortDescription || blog.summary || ''}`;
+        const chunks = chunkText(blogContent, 200, 40);
+        const tags = blog.tags || [];
+        const careerRelevance = tags.some(t => ['data', 'ai', 'ml', 'engineering'].includes(t.toLowerCase())) ? 'high' : 'medium';
 
-Read the full post: ${blog.url}
-
-Key topics: ${blog.tags ? blog.tags.join(', ') : 'general'}.
-
-Career relevance: Demonstrates problem-solving, creative thinking, and technical application relevant to data and software roles.`;
-
-        documents.push({
-            id: `blog-${index}`,
-            content,
-            metadata: {
-                type: 'blog',
-                title: blog.title,
-                tags: blog.tags || [],
-                source: 'blog',
-                careerRelevance: 'medium'
-            }
+        chunks.forEach((chunk, chunkIndex) => {
+            const content = `${chunk}\n\nRead the full post: ${blog.url}. Key topics: ${tags.join(', ')}.`;
+            documents.push({
+                id: `blog-${index}-${chunkIndex}`,
+                content: cleanText(content),
+                metadata: {
+                    type: 'blog',
+                    title: blog.title,
+                    tags: tags,
+                    source: 'blog',
+                    careerRelevance: careerRelevance,
+                    chunk: chunkIndex
+                }
+            });
         });
     });
 

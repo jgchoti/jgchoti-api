@@ -430,19 +430,21 @@ export const profileData = [
         ]
     },
     {
-        id: "community-involvement",
-        title: "🤝 Community & Professional Network",
-        content: "Meetup Co-organizer - Belgian JavaScript Community & ReactJS Belgium (Starting October 2025): Supporting organization of local JavaScript and React meetups in Belgium. Contributing to event hosting, speaker coordination, community engagement, and fostering collaborative learning environment for developers. Goals include connecting developers, sharing knowledge, promoting best practices, and building inclusive tech community in Belgium. Tech4Positive Network: Connected with Capgemini Belgium network through hackathon win. Access to sustainability-focused tech professionals and potential mentorship opportunities. Bootcamp Alumni Networks: Active member of HackYourFuture Belgium alumni network and BeCode Belgium community. Participating in alumni events, supporting current students, sharing job opportunities, peer learning and collaboration. GitHub Presence: Maintaining active GitHub profile (github.com/jgchoti) with project portfolio, code samples, contribution history, and open-source potential. LinkedIn Professional Network: Active on LinkedIn (linkedin.com/in/chotirat) connecting with tech professionals across Europe and Asia, sharing learnings, engaging with tech content, building professional relationships. International Connections: Maintained professional network across 9 countries through work and study experiences, connections in tourism, hospitality, finance, and tech industries, cross-cultural professional relationships. Open to: Attending tech conferences and meetups, contributing to open-source projects, mentoring newcomers to tech, speaking at community events, collaborating on side projects, networking coffee chats.",
-        subtitle: "Active in Belgian JavaScript community and tech networks",
-        keywords: ["community", "meetup", "JavaScript", "React", "networking", "GitHub", "LinkedIn", "open-source", "Belgium"],
-        questions: [
-            "Is Choti involved in tech communities?",
-            "Does Choti attend meetups?",
-            "Is Choti active in the developer community?",
-            "Can I connect with Choti on LinkedIn?",
-            "Does Choti contribute to open-source?"
-        ]
-    },
+    id: "community-involvement",
+    title: "🤝 Community & Professional Network",
+    content: "Meetup Co-organizer - Belgian JavaScript Community (BEJS) & ReactJS Belgium (Starting October 2025): Supporting organization of local JavaScript and React meetups in Belgium. Contributing to event hosting, speaker coordination, community engagement, and fostering collaborative learning environment for developers. Goals include connecting developers, sharing knowledge, promoting best practices, and building inclusive tech community in Belgium. Join us: https://www.meetup.com/bejs-belgian-javascript-community/ - Always welcoming newcomers and happy to answer questions about Belgium's developer scene. Tech4Positive Network: Connected with Capgemini Belgium network through hackathon win. Access to sustainability-focused tech professionals and potential mentorship opportunities. Bootcamp Alumni Networks: Active member of HackYourFuture Belgium alumni network and BeCode Belgium community. Participating in alumni events, supporting current students, sharing job opportunities, peer learning and collaboration. GitHub Presence: Maintaining active GitHub profile (github.com/jgchoti) with project portfolio, code samples, contribution history, and open-source potential. LinkedIn Professional Network: Active on LinkedIn (linkedin.com/in/chotirat) connecting with tech professionals across Europe and Asia, sharing learnings, engaging with tech content, building professional relationships. International Connections: Maintained professional network across 9 countries through work and study experiences, connections in tourism, hospitality, finance, and tech industries, cross-cultural professional relationships. Open to: Attending tech conferences and meetups, contributing to open-source projects, mentoring newcomers to tech, speaking at community events, collaborating on side projects, networking coffee chats.",
+    subtitle: "Active in Belgian JavaScript community and tech networks",
+    keywords: ["community", "meetup", "BEJS", "Belgian JavaScript", "React", "networking", "GitHub", "LinkedIn", "open-source", "Belgium"],
+    questions: [
+        "Is Choti involved in tech communities?",
+        "Does Choti attend meetups?",
+        "How can I join the Belgian JavaScript meetup?",
+        "Where is the BEJS meetup?",
+        "Is Choti active in the developer community?",
+        "Can I connect with Choti on LinkedIn?",
+        "Does Choti contribute to open-source?"
+    ]
+},
     {
         id: "work-authorization",
         title: "📋 Work Authorization & Logistics",
@@ -539,6 +541,19 @@ export const profileData = [
             "How does Choti approach learning and growth?",
             "What drives Choti's curiosity and creativity?"
         ]
-    }
+    },{
+    id: "gaming-hobbies",
+    title: "🎮 Gaming & Creative Hobbies",
+    content: "Passionate about cozy, story-driven games that emphasize creativity, community, and relaxation. Favorite games include Stardew Valley and Havermoon, where I enjoy the blend of resource management, character relationships, and peaceful progression. These games inspire my approach to problem-solving: methodical planning, attention to detail, and finding joy in gradual improvement. The farming and simulation genre appeals to my love of systems thinking and optimization, which translates well to data pipeline design and process automation. Gaming provides a creative outlet and stress relief while also sharpening strategic thinking and pattern recognition skills. Appreciate games that reward patience, experimentation, and long-term planning - values that align with my approach to learning new technologies and building sustainable solutions.",
+    subtitle: "Cozy gaming enthusiast: Stardew Valley, Havermoon, and story-driven simulations",
+    keywords: ["gaming", "Stardew Valley", "Havermoon", "cozy games", "hobbies", "creative outlet", "systems thinking", "simulation games"],
+    questions: [
+        "What are Choti's hobbies?",
+        "Does Choti play video games?",
+        "What games does Choti like?",
+        "What does Choti do for fun?",
+        "Tell me about Choti's interests outside work"
+    ]
+},
 
 ];

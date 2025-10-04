@@ -64,6 +64,43 @@ function sanitizeLinks(text) {
     return text.replace(/" target="_blank" rel="noopener noreferrer" class="text-primary">/g, '');
 }
 
+async function rerankDocuments(genAI, originalQuery, documents) {
+    if (documents.length === 0) {
+        return [];
+    }
+
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
+
+    const documentsAsString = documents
+        .map((doc, i) => `Document ${i + 1} (ID: ${doc.id}): "${doc.content}"`)
+        .join('\n\n');
+
+    const prompt = `User query: "${originalQuery}"
+
+I have the following documents. Please identify the most relevant ones to answer the user's query. List the document numbers (e.g., 1, 3, 5) that are directly relevant. Prioritize relevance and accuracy.
+
+${documentsAsString}
+
+Relevant documents:`;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const response = result.response;
+        const text = response.text().trim();
+
+        const relevantIndices = text.match(/\d+/g)?.map(n => parseInt(n, 10) - 1) || [];
+        const uniqueIndices = [...new Set(relevantIndices)];
+
+        return uniqueIndices
+            .map(index => documents[index])
+            .filter(Boolean);
+
+    } catch (error) {
+        console.error('Error reranking documents in a batch:', error);
+        return documents.slice(0, 5); 
+    }
+}
+
 
 export default async function handler(req, res) {
     const origin = req.headers.origin;
@@ -124,20 +161,28 @@ export default async function handler(req, res) {
                     console.warn('⚠️ Vector store not ready or empty');
                 } else {
 
-                    console.log('🔍 Searching with query:', message);
-                    const allResults = await vectorStore.search(message, 10, 0.0);
+                    console.log('🔍 Searching and reranking with query:', message);
+                    
+                    // Fetch a larger pool of documents
+                    const initialResults = await vectorStore.search(message, 15, 0.1, 0.7);
+                    console.log(`Initial search found ${initialResults.length} documents.`);
 
-                    console.log('🎯 Raw search results:', {
-                        totalFound: allResults.length,
-                        topScores: allResults.slice(0, 5).map(d => ({
+                    // Rerank the documents
+                    const rerankedResults = await rerankDocuments(genAI, message, initialResults);
+                    console.log(`Reranking filtered to ${rerankedResults.length} documents.`);
+
+                    const goodResults = rerankedResults;
+
+                    console.log('🎯 Reranked search results:', {
+                        totalFound: goodResults.length,
+                        topScores: goodResults.slice(0, 5).map(d => ({
                             similarity: d.similarity?.toFixed(3),
                             type: d.metadata?.type,
                             contentPreview: d.content?.substring(0, 80) + '...'
                         }))
                     });
 
-                    const goodResults = allResults.filter(doc => doc.similarity > 0.1);
-                    console.log(`✅ Good results (similarity > 0.1): ${goodResults.length}`);
+                    console.log(`✅ Good results after reranking: ${goodResults.length}`);
 
                     if (goodResults.length > 0) {
                         const topResults = goodResults.slice(0, 3);
