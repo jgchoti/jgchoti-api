@@ -225,8 +225,12 @@ ${conversationContext}
         }
 
         if (error.message.includes('quota') || error.message.includes('rate')) {
+            console.error('Rate limit exceeded for Gemini API:', {
+                message: error.message,
+            });
+            res.setHeader('X-Retry-After', 60);
             return res.status(429).json({
-                error: 'Rate limit exceeded',
+                error: 'Rate limit exceeded. Please try again later.',
                 retryAfter: 60
             });
         }
