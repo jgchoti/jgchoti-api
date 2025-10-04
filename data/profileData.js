@@ -2,7 +2,7 @@ export const profileData = [
     {
         id: "intro",
         title: "👋 Hello! I'm Choti",
-        content: "A globally-minded data professional passionate about digital skills, data analysis, machine learning, and solving complex problems step-by-step. Based in Antwerp, Belgium 🇧🇪, I've lived and worked in 9 countries (Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium) and adapt quickly, working across diverse cultures and international business environments. This extensive international experience shapes how I approach data challenges, cross-cultural analysis, and global market understanding. Available for remote work, hybrid positions, and international opportunities across Europe and beyond.",
+        content: "A globally-minded data professional focused on data analysis, machine learning, and solving complex problems step-by-step. Based in Antwerp, Belgium 🇧🇪, I've lived and worked in 9 countries (Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium) and adapt quickly, working across diverse cultures and international business environments. This extensive international experience shapes how I approach data challenges, cross-cultural analysis, and global market understanding. Available for remote work, hybrid positions, and international opportunities across Europe and beyond.",
         subtitle: "Currently completing BeCode AI/Data Science Bootcamp in Brussels, with full-stack web development certification from HackYourFuture Belgium",
         keywords: ["data professional", "international experience", "Belgium", "Antwerp", "remote work", "Europe", "multicultural", "BeCode", "HackYourFuture"],
         questions: [
@@ -30,7 +30,7 @@ export const profileData = [
     {
         id: "contact",
         title: "📞 Contact Information",
-        content: "Phone: +32 456 31 68 24 | Email: jgchotirat@gmail.com | Location: Antwerp, Belgium | LinkedIn: linkedin.com/in/chotirat | GitHub: github.com/jgchoti | Portfolio Website: jgchoti.github.io. Preferred contact method is email. Available for calls during CET business hours. Response time typically within 24 hours. Open to networking, collaboration, and job opportunities. Feel free to reach out for project discussions, technical consultations, or coffee chats about data and technology.",
+        content: "Phone: +32 456 31 68 24 | Email: jgchotirat@gmail.com | Location: Antwerp, Belgium | LinkedIn: linkedin.com/in/chotirat | GitHub: github.com/jgchoti | Portfolio Website: jgchoti.github.io . Available for calls during CET business hours. Response time typically within 24 hours. Open to networking, collaboration, and job opportunities. Feel free to reach out for project discussions, technical consultations, or coffee chats about data and technology.",
         subtitle: "Always happy to connect and discuss opportunities",
         keywords: ["contact", "email", "phone", "LinkedIn", "GitHub", "portfolio", "jgchotirat@gmail.com", "Antwerp"],
         questions: [
@@ -57,7 +57,7 @@ export const profileData = [
     {
         id: "accomplishments",
         title: "🎯 Key Accomplishments & Awards",
-        content: "Winner of Tech4Positive Futures Challenge 2024 at Capgemini Belgium, developing innovative coral reef monitoring solutions using advanced data visualization, interactive dashboard development, machine learning applications, and engaging presentation technology to address climate change impacts. Successfully transitioned from international tourism and finance background into data science and tech industry, completing intensive HackYourFuture full-stack web development program and currently advancing through BeCode AI/Data Science bootcamp. Delivered a client website and web applications with demonstrated 25% average traffic increases through strategic SEO optimization, technical implementation, and user experience improvements.",
+        content: "Winner of Tech4Positive Futures Challenge 2024 at Capgemini Belgium, developing innovative coral reef monitoring solutions using advanced data visualization, interactive dashboard development, machine learning applications, and engaging presentation technology to address climate change impacts. Successfully transitioned from international tourism and finance background into data science and tech industry, completing intensive HackYourFuture full-stack web development program and currently advancing through BeCode AI/Data Science bootcamp.",
         subtitle: "Award winner with proven track record in AI solutions, data-driven business results, international project management, and measurable client outcomes",
         keywords: ["Capgemini", "Tech4Positive", "hackathon winner", "coral reef", "climate change", "25% traffic increase", "20% renewal increase", "35% cost reduction"],
         questions: [
@@ -241,7 +241,7 @@ export const profileData = [
     {
         id: "experience-hospitality-condensed",
         title: "🌏 Early Career & Data-Focused Projects",
-        content: "Early professional experience in Malaysia, Maldives, and Thailand involved roles in management and finance with focus on process optimization, data analysis, and stakeholder management. Delivered measurable improvements such as 40% efficiency gains and 35% cost reductions through data-driven decision making. Applied project management, reporting, and analytics skills in multinational environments, laying the foundation for transition into technology and data engineering roles.",
+        content: "Early professional experience in Malaysia, Maldives, and Thailand involved roles in management and finance with focus on process optimization, data analysis, and stakeholder management. Applied project management, reporting, and analytics skills in multinational environments, laying the foundation for transition into technology and data engineering roles.",
         subtitle: "Data analysis, process optimization, and international experience",
         keywords: ["data analysis", "process optimization", "international experience", "finance", "early career"],
         questions: [
@@ -390,7 +390,7 @@ export const profileData = [
     {
         id: "work-style",
         title: "💡 Work Style & Approach",
-        content: "Learning by Doing: Preference for hands-on, practical learning through building real projects rather than just theoretical study. Experimental approach to new technologies. Data-Driven Decision Making: Applying analytical thinking to business problems, using metrics and data to guide decisions, A/B testing mindset, measuring impact of changes. Attention to Detail: Swiss hospitality training background instilled strong attention to detail, quality assurance mindset, thorough testing, documentation, and maintaining high standards. Agile & Iterative: Comfortable with agile methodologies, iterative development, sprint-based work, continuous improvement, adapting to changing requirements. Remote & Hybrid Work: Experience with remote collaboration tools, self-management in remote environment, effective virtual communication, maintaining productivity independently, and also comfortable with hybrid and on-site arrangements. Client-Focused: Understanding client needs and requirements, translating business requirements into technical solutions, managing client relationships, delivering value-driven solutions, post-delivery support. Results-Oriented: Focus on measurable business outcomes, ROI thinking, pragmatic solutions that work, delivering projects on time, achieving KPIs (25% traffic increase, 20% renewal increase, 40% complaint resolution improvement). Collaborative: Enjoy pair programming and code reviews, knowledge sharing with team members, open to feedback, contributing to team success.",
+        content: "Learning by Doing: Preference for hands-on, practical learning through building real projects rather than just theoretical study. Experimental approach to new technologies. Data-Driven Decision Making: Applying analytical thinking to business problems, using metrics and data to guide decisions, A/B testing mindset, measuring impact of changes. Attention to Detail: Swiss hospitality training background instilled strong attention to detail, quality assurance mindset, thorough testing, documentation, and maintaining high standards. Agile & Iterative: Comfortable with agile methodologies, iterative development, sprint-based work, continuous improvement, adapting to changing requirements. Remote & Hybrid Work: Experience with remote collaboration tools, self-management in remote environment, effective virtual communication, maintaining productivity independently, and also comfortable with hybrid and on-site arrangements. Client-Focused: Understanding client needs and requirements, translating business requirements into technical solutions, managing client relationships, delivering value-driven solutions. Collaborative: knowledge sharing with team members, open to feedback, contributing to team success.",
         subtitle: "Hands-on learner, data-driven, detail-oriented, agile, results-focused",
         keywords: ["work style", "hands-on", "data-driven", "agile", "remote work", "client-focused", "results-oriented", "collaborative"],
         questions: [
@@ -402,17 +402,17 @@ export const profileData = [
         ]
     },
     {
-        id: "interests-values",
-        title: "🌟 Interests, Values & Motivations",
-        content: "Climate & Sustainability: Passionate about using technology for environmental solutions, climate change mitigation, conservation efforts. Winner of coral reef preservation challenge demonstrates commitment to climate tech. Interest in sustainability-focused companies and projects. Data for Good: Motivated by projects that create positive social impact, using data science for social good, addressing real-world problems, contributing to communities through technology. Continuous Learning: Genuinely enjoy learning new technologies, experimenting with new tools, staying current with industry trends, reading technical blogs and documentation, participating in tech communities. Travel & Cultural Exploration: Love exploring new places and cultures, trying local cuisines (especially spicy food!), understanding different perspectives, collecting international experiences. Reading: Avid fiction reader who gets absorbed in novels, reading for creative inspiration, storytelling appreciation, diverse genres from mystery to science fiction. Community Involvement: Starting as Meetup Co-organizer for Belgian JavaScript Community & ReactJS Belgium (October 2025), contributing to tech community, knowledge sharing, supporting local developer ecosystem. Work-Life Balance: Successfully balancing technical career development with motherhood, valuing flexibility and understanding employers, maintaining personal interests alongside professional growth. Making Impact: Driven by projects with measurable outcomes, seeing tangible results of work, creating solutions that help businesses and people, contributing to larger goals beyond just code.",
-        subtitle: "Climate tech, data for good, continuous learning, travel, reading, community",
-        keywords: ["climate", "sustainability", "data for good", "learning", "travel", "reading", "community", "work-life balance", "impact"],
+        id: "unique-value",
+        title: "⭐ Unique Value Proposition",
+        content: "What makes Choti unique? Rare combination of international business background (hospitality, finance, tourism) with technical data engineering skills. This blend provides: Business acumen to understand stakeholder needs and deliver business value, not just technical solutions. Cross-cultural intelligence from living in 9 countries, enabling effective work in diverse international teams and understanding global markets. Career pivot success demonstrates strong learning ability, adaptability, and determination - successfully transitioned from hospitality/finance into tech through self-study and bootcamps. Multilingual communication (Thai, English, Dutch) facilitating work across European and Asian markets. Hands-on problem-solving approach with practical project portfolio demonstrating real-world applications, not just theoretical knowledge. Award recognition (Tech4Positive Challenge winner) validating technical and presentation skills. Mature professional perspective shaped by diverse international work experience across multiple industries. Sustainability focus and passion for climate tech aligning with companies' ESG goals. Balance of technical depth (Python, SQL, cloud) with breadth (full-stack, data science, business intelligence). For Employers: Get a data engineer who understands business context, communicates effectively with stakeholders, adapts quickly to new challenges, brings international perspective, delivers measurable results, and is passionate about continuous learning and making impact.",
+        subtitle: "International business background + technical skills + proven results",
+        keywords: ["unique value", "international", "business background", "career transition", "measurable results", "multilingual", "adaptable"],
         questions: [
-            "What motivates Choti?",
-            "What are Choti's interests?",
-            "What does Choti care about?",
-            "What are Choti's values?",
-            "What kind of projects interest Choti?"
+            "What makes Choti unique?",
+            "Why should I hire Choti?",
+            "What makes Choti different?",
+            "What is Choti's unique value proposition?",
+            "What special skills does Choti bring?"
         ]
     },
     {
@@ -430,21 +430,21 @@ export const profileData = [
         ]
     },
     {
-    id: "community-involvement",
-    title: "🤝 Community & Professional Network",
-    content: "Meetup Co-organizer - Belgian JavaScript Community (BEJS) & ReactJS Belgium (Starting October 2025): Supporting organization of local JavaScript and React meetups in Belgium. Contributing to event hosting, speaker coordination, community engagement, and fostering collaborative learning environment for developers. Goals include connecting developers, sharing knowledge, promoting best practices, and building inclusive tech community in Belgium. Join us: https://www.meetup.com/bejs-belgian-javascript-community/ - Always welcoming newcomers and happy to answer questions about Belgium's developer scene. Tech4Positive Network: Connected with Capgemini Belgium network through hackathon win. Access to sustainability-focused tech professionals and potential mentorship opportunities. Bootcamp Alumni Networks: Active member of HackYourFuture Belgium alumni network and BeCode Belgium community. Participating in alumni events, supporting current students, sharing job opportunities, peer learning and collaboration. GitHub Presence: Maintaining active GitHub profile (github.com/jgchoti) with project portfolio, code samples, contribution history, and open-source potential. LinkedIn Professional Network: Active on LinkedIn (linkedin.com/in/chotirat) connecting with tech professionals across Europe and Asia, sharing learnings, engaging with tech content, building professional relationships. International Connections: Maintained professional network across 9 countries through work and study experiences, connections in tourism, hospitality, finance, and tech industries, cross-cultural professional relationships. Open to: Attending tech conferences and meetups, contributing to open-source projects, mentoring newcomers to tech, speaking at community events, collaborating on side projects, networking coffee chats.",
-    subtitle: "Active in Belgian JavaScript community and tech networks",
-    keywords: ["community", "meetup", "BEJS", "Belgian JavaScript", "React", "networking", "GitHub", "LinkedIn", "open-source", "Belgium"],
-    questions: [
-        "Is Choti involved in tech communities?",
-        "Does Choti attend meetups?",
-        "How can I join the Belgian JavaScript meetup?",
-        "Where is the BEJS meetup?",
-        "Is Choti active in the developer community?",
-        "Can I connect with Choti on LinkedIn?",
-        "Does Choti contribute to open-source?"
-    ]
-},
+        id: "community-involvement",
+        title: "🤝 Community & Professional Network",
+        content: "Meetup Co-organizer - Belgian JavaScript Community (BEJS) & ReactJS Belgium (Starting October 2025): Supporting organization of local JavaScript and React meetups in Belgium. Contributing to event hosting, speaker coordination, community engagement, and fostering collaborative learning environment for developers. Goals include connecting developers, sharing knowledge, promoting best practices, and building inclusive tech community in Belgium. Join us: https://www.meetup.com/bejs-belgian-javascript-community/ - Always welcoming newcomers and happy to answer questions about Belgium's developer scene. Tech4Positive Network: Connected with Capgemini Belgium network through hackathon win. Access to sustainability-focused tech professionals and potential mentorship opportunities. Bootcamp Alumni Networks: Active member of HackYourFuture Belgium alumni network and BeCode Belgium community. Participating in alumni events, supporting current students, sharing job opportunities, peer learning and collaboration. GitHub Presence: Maintaining active GitHub profile (github.com/jgchoti) with project portfolio, code samples, contribution history, and open-source potential. LinkedIn Professional Network: Active on LinkedIn (linkedin.com/in/chotirat) connecting with tech professionals across Europe and Asia, sharing learnings, engaging with tech content, building professional relationships. International Connections: Maintained professional network across 9 countries through work and study experiences, connections in tourism, hospitality, finance, and tech industries, cross-cultural professional relationships. Open to: Attending tech conferences and meetups, contributing to open-source projects, mentoring newcomers to tech, speaking at community events, collaborating on side projects, networking coffee chats.",
+        subtitle: "Active in Belgian JavaScript community and tech networks",
+        keywords: ["community", "meetup", "BEJS", "Belgian JavaScript", "React", "networking", "GitHub", "LinkedIn", "open-source", "Belgium"],
+        questions: [
+            "Is Choti involved in tech communities?",
+            "Does Choti attend meetups?",
+            "How can I join the Belgian JavaScript meetup?",
+            "Where is the BEJS meetup?",
+            "Is Choti active in the developer community?",
+            "Can I connect with Choti on LinkedIn?",
+            "Does Choti contribute to open-source?"
+        ]
+    },
     {
         id: "work-authorization",
         title: "📋 Work Authorization & Logistics",
@@ -463,7 +463,7 @@ export const profileData = [
     {
         id: "portfolio-projects",
         title: "🎨 Portfolio & Online Presence",
-        content: "Portfolio Website: jgchoti.github.io - Personal portfolio showcasing projects, skills, experience, and contact information. Features interactive RAG chatbot for visitor Q&A about background and capabilities. Built with modern web technologies and deployed on GitHub Pages. GitHub Profile: github.com/jgchoti - Code repository containing project work, including RAG chatbot implementation, web development projects, data analysis notebooks, technical experiments, contribution history. Demonstrates coding style, documentation practices, and technical capabilities. LinkedIn Profile: linkedin.com/in/chotirat - Professional profile with detailed work history, skills endorsements, recommendations, educational background, articles and posts about tech journey, professional network and connections. Project Showcases: Tech4Positive coral reef monitoring dashboard (winner), Orange Belgium Customer Experience Dashboard (Power BI), Personal RAG Portfolio Bot (Node.js, Gemini AI, Vercel), freelance client websites (25% traffic increase results), full-stack web applications from bootcamp projects. Code Samples Available: Python data analysis scripts, FastAPI backend implementations, React component examples, SQL queries and database designs, ETL pipeline code, data visualization examples. Resume/CV: Available in PDF format (provided), formatted for ATS systems, regularly updated with latest projects and skills, tailored versions for different role applications. Online Activity: Occasional tech blog posts or articles, sharing learning experiences, engaging with developer community content, participating in discussions on tech topics.",
+        content: "Portfolio Website: jgchoti.github.io - Personal portfolio showcasing projects, skills, experience, and contact information. Features interactive RAG chatbot for visitor Q&A about background and capabilities. Built with modern web technologies and deployed on GitHub Pages. GitHub Profile: github.com/jgchoti - Code repository containing project work, including RAG chatbot implementation, web development projects, data analysis notebooks, technical experiments, contribution history. LinkedIn Profile: linkedin.com/in/chotirat - Professional profile with detailed work history, skills endorsements, recommendations, educational background, articles and posts about tech journey, professional network and connections. Project Showcases: Tech4Positive coral reef monitoring dashboard (winner), Orange Belgium Customer Experience Dashboard (Power BI), Personal RAG Portfolio Bot (Node.js, Gemini AI, Vercel), freelance client websites, full-stack web applications from bootcamp projects. Code Samples Available: Python data analysis scripts, FastAPI backend implementations, React component examples, SQL queries and database designs, ETL pipeline code, data visualization examples.",
         subtitle: "Portfolio website, GitHub projects, professional LinkedIn, code samples",
         keywords: ["portfolio", "GitHub", "LinkedIn", "website", "projects", "jgchoti.github.io", "github.com/jgchoti", "code samples"],
         questions: [
@@ -502,20 +502,7 @@ export const profileData = [
             "What type of company does Choti want to work for?"
         ]
     },
-    {
-        id: "unique-value",
-        title: "⭐ Unique Value Proposition",
-        content: "What makes Choti unique? Rare combination of international business background (hospitality, finance, tourism) with technical data engineering skills. This blend provides: Business acumen to understand stakeholder needs and deliver business value, not just technical solutions. Cross-cultural intelligence from living in 9 countries, enabling effective work in diverse international teams and understanding global markets. Proven track record of measurable business impact (25% traffic increases, 20% renewal improvements, 40% efficiency gains, 35% cost reductions). Career pivot success demonstrates strong learning ability, adaptability, and determination - successfully transitioned from hospitality/finance into tech through self-study and bootcamps. Multilingual communication (Thai, English, Dutch) facilitating work across European and Asian markets. Hands-on problem-solving approach with practical project portfolio demonstrating real-world applications, not just theoretical knowledge. Award recognition (Tech4Positive Challenge winner) validating technical and presentation skills. Mature professional with diverse work experience bringing different perspective than typical bootcamp graduate. Sustainability focus and passion for climate tech aligning with companies' ESG goals. Balance of technical depth (Python, SQL, cloud) with breadth (full-stack, data science, business intelligence). For Employers: Get a data engineer who understands business context, communicates effectively with stakeholders, adapts quickly to new challenges, brings international perspective, delivers measurable results, and is passionate about continuous learning and making impact.",
-        subtitle: "International business background + technical skills + proven results",
-        keywords: ["unique value", "international", "business background", "career transition", "measurable results", "multilingual", "adaptable"],
-        questions: [
-            "What makes Choti unique?",
-            "Why should I hire Choti?",
-            "What makes Choti different?",
-            "What is Choti's unique value proposition?",
-            "What special skills does Choti bring?"
-        ]
-    },
+
     {
         id: "faq",
         title: "❓ Frequently Asked Questions",
@@ -533,7 +520,7 @@ export const profileData = [
     {
         id: "philosophy",
         title: "💡 My Philosophy",
-        content: "I believe in staying curious and ambitious: 'Stay hungry, stay foolish.' At the same time, I strive to 'be the senior I needed when I was a junior,' guiding my approach to mentorship, collaboration, and continuous learning. I aim to share knowledge, support growth, and tackle challenges creatively and persistently.",
+        content: "I believe in staying curious and ambitious: 'Stay hungry, stay foolish.' I strive to 'be the senior I needed when I was a junior,' guiding my approach to mentorship, collaboration, and continuous learning.",
         keywords: ["mentorship", "continuous learning", "growth mindset", "philosophy", "quote", "curiosity", "innovation", "guidance"],
         questions: [
             "What is Choti's personal philosophy?",
@@ -541,19 +528,19 @@ export const profileData = [
             "How does Choti approach learning and growth?",
             "What drives Choti's curiosity and creativity?"
         ]
-    },{
-    id: "gaming-hobbies",
-    title: "🎮 Gaming & Creative Hobbies",
-    content: "Passionate about cozy, story-driven games that emphasize creativity, community, and relaxation. Favorite games include Stardew Valley and Havermoon, where I enjoy the blend of resource management, character relationships, and peaceful progression. These games inspire my approach to problem-solving: methodical planning, attention to detail, and finding joy in gradual improvement. The farming and simulation genre appeals to my love of systems thinking and optimization, which translates well to data pipeline design and process automation. Gaming provides a creative outlet and stress relief while also sharpening strategic thinking and pattern recognition skills. Appreciate games that reward patience, experimentation, and long-term planning - values that align with my approach to learning new technologies and building sustainable solutions.",
-    subtitle: "Cozy gaming enthusiast: Stardew Valley, Havermoon, and story-driven simulations",
-    keywords: ["gaming", "Stardew Valley", "Havermoon", "cozy games", "hobbies", "creative outlet", "systems thinking", "simulation games"],
-    questions: [
-        "What are Choti's hobbies?",
-        "Does Choti play video games?",
-        "What games does Choti like?",
-        "What does Choti do for fun?",
-        "Tell me about Choti's interests outside work"
-    ]
-},
+    }, {
+        id: "gaming-hobbies",
+        title: "🎮 Gaming & Creative Hobbies",
+        content: "Passionate about cozy, story-driven games that emphasize creativity, community, and relaxation. Favorite games include Stardew Valley and Havermoon, where I enjoy the blend of resource management, character relationships, and peaceful progression. These games inspire my approach to problem-solving: methodical planning, attention to detail, and finding joy in gradual improvement. The farming and simulation genre appeals to my love of systems thinking and optimization, which translates well to data pipeline design and process automation. Gaming provides a creative outlet and stress relief while also sharpening strategic thinking and pattern recognition skills. Appreciate games that reward patience, experimentation, and long-term planning - values that align with my approach to learning new technologies and building sustainable solutions.",
+        subtitle: "Cozy gaming enthusiast: Stardew Valley, Havermoon, and story-driven simulations",
+        keywords: ["gaming", "Stardew Valley", "Havermoon", "cozy games", "hobbies", "creative outlet", "systems thinking", "simulation games"],
+        questions: [
+            "What are Choti's hobbies?",
+            "Does Choti play video games?",
+            "What games does Choti like?",
+            "What does Choti do for fun?",
+            "Tell me about Choti's interests outside work"
+        ]
+    },
 
 ];

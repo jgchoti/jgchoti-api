@@ -56,7 +56,7 @@ export const projectData = [
         id: 3,
         name: "Monitoring Dashboard",
         type: "data",
-        description: "A data visualization tool designed to monitor coral health using data from Smart Buoy sensors. Developed as part of Tech4Sustainable Futures Challenge's presentation, this dashboard leverages Chart.js for real-time data visualization and Leaflet.js for interactive mapping. It provides insights into key coral health metrics like temperature and pH levels, helping communities and researchers make informed decisions to protect coral reefs.",
+        description: "A data visualization tool designed to monitor coral health using data from Smart Buoy sensors. Developed as part of Tech4Positive Futures Challenge's presentation, this dashboard leverages Chart.js for real-time data visualization and Leaflet.js for interactive mapping. It provides insights into key coral health metrics like temperature and pH levels, helping communities and researchers make informed decisions to protect coral reefs.",
         shortDescription: "Built with HTML, CSS, JavaScript, Chart.js, and Leaflet.js",
         technologies: [
             { name: "HTML" },
@@ -180,7 +180,7 @@ export const projectData = [
         ],
         githubUrl: "https://github.com/jgchoti/studio-ghibli-searcher/",
         webUrl: "https://jgchoti.github.io/studio-ghibli-searcher/",
-        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning", "beyond"],
+        relatedProfileSections: ["tech-stack-web", "education-hackyourfuture", "learning"],
         skillsHighlighted: ["JavaScript", "State Management", "Client-side Filtering", "API Integration"],
         bootcampProject: "HackYourFuture",
         passionProject: true,
@@ -331,10 +331,10 @@ export const projectData = [
     },
     {
         id: 13,
-        name: "Online Resume",
+        name: "First Landing Page",
         type: "web",
-        description: "My first ever landing page! This project marks my initial steps into the exciting world of web development, primarily using vanilla HTML and CSS with a bit of JavaScript. I learned the basics of HTML, CSS, and JavaScript while creating my very own landing page. It's where I laid the foundation for all the coding adventures I've been having since then.",
-        shortDescription: "Built with HTML, CSS and JavaScript",
+        description: "My first web development project, marking the beginning of my coding journey. Built with vanilla HTML, CSS, and JavaScript to learn web fundamentals. While simple, this project represents the foundation that led to all subsequent work.",
+        shortDescription: "First web project - HTML, CSS, JavaScript fundamentals",
         technologies: [
             { name: "HTML" },
             { name: "CSS" },
@@ -346,14 +346,14 @@ export const projectData = [
         relatedProfileSections: ["tech-stack-web", "learning", "career-goals"],
         skillsHighlighted: ["HTML", "CSS", "JavaScript Basics", "Responsive Design"],
         firstProject: true,
-        milestone: "First web development project",
+        milestone: "First web development project - foundation of coding journey",
         careerRelevance: {
-            dataEngineering: 1,
-            backendDev: 3,
+            dataEngineering: 2,
+            backendDev: 2,
             dataScience: 1,
             dataAnalyst: 2
         },
-        tags: ["web-development", "first-project", "html", "css", "milestone"]
+        tags: ["web-development", "first-project", "html", "css", "milestone", "learning-journey"]
     },
     {
         id: 14,
@@ -421,5 +421,109 @@ export const projectData = [
         keyLearnings: ["RAG architecture", "Vector embeddings", "Semantic search", "AI integration", "Serverless deployment"],
         impact: "Showcases cutting-edge AI/ML skills and full-stack capabilities",
         tags: ["ai", "rag", "vector-search", "node.js", "gemini-ai", "featured", "portfolio", "serverless"]
+    },
+    {
+        id: 16,
+        name: "Customer Experience Dashboard - Orange Belgium",
+        type: "data",
+        description: "Built a comprehensive monthly Power BI dashboard for Orange Belgium to monitor customer experience metrics. Provided management with interactive visualizations and drill-down analytics to track service trends, identify pain points, and improve KPIs. Enabled data-driven decision making for customer service improvements.",
+        shortDescription: "Power BI dashboard for customer analytics and KPI monitoring",
+        technologies: [
+            { name: "Power BI" },
+            { name: "DAX" },
+            { name: "SQL" },
+            { name: "Data Modeling" }
+        ],
+        relatedProfileSections: ["projects-orange-belgium", "education-becode", "skills-data-analysis"],
+        skillsHighlighted: ["Power BI", "Data Visualization", "DAX", "SQL", "Business Intelligence"],
+        clientWork: true,
+        bootcampProject: "BeCode",
+        careerRelevance: {
+            dataEngineering: 8,
+            backendDev: 4,
+            dataScience: 7,
+            dataAnalyst: 10
+        },
+        impact: "Real-world business intelligence project with Orange Belgium",
+        tags: ["power-bi", "dashboard", "client-project", "business-intelligence", "bootcamp-project"]
+    },
+    {
+        id: 17,
+        name: "Real Estate Data Pipeline with Airflow",
+        type: "data",
+        description: "Orchestrated web scraping pipeline using Apache Airflow to collect Belgian real estate data from Zimmo.be. Automated data extraction, transformation, and loading into PostgreSQL with scheduled DAGs, error handling, and monitoring. Built with Docker for containerized deployment.",
+        shortDescription: "Apache Airflow ETL pipeline for real estate data",
+        technologies: [
+            { name: "Python" },
+            { name: "Apache Airflow" },
+            { name: "PostgreSQL" },
+            { name: "Docker" },
+            { name: "HTML" }
+        ],
+        githubUrl: "https://github.com/jgchoti/immoeliza-airflow",
+        webUrl: "https://immo-be.streamlit.app/",
+        relatedProfileSections: ["tech-stack-primary", "skills-data-engineering", "education-becode"],
+        skillsHighlighted: ["Apache Airflow", "ETL Pipeline", "PostgreSQL", "Docker", "Data Orchestration"],
+        bootcampProject: "BeCode",
+        careerRelevance: {
+            dataEngineering: 10,
+            backendDev: 7,
+            dataScience: 6,
+            dataAnalyst: 5
+        },
+        keyLearnings: ["Airflow DAGs", "Pipeline orchestration", "Scheduled jobs", "Error handling"],
+        impact: "Demonstrates production-ready data pipeline skills",
+        tags: ["airflow", "etl", "pipeline", "postgresql", "docker", "bootcamp-project"]
+    },
+    {
+        id: 18,
+        name: "CSV Processing with Redis Caching",
+        type: "data",
+        description: "Optimized large CSV file processing using Redis as a caching layer. Implemented hash operations (HSET/HGET) for chunked data storage with PostgreSQL and MongoDB backends. Demonstrates advanced Redis features and performance optimization for handling large datasets.",
+        shortDescription: "Redis caching layer for efficient CSV processing",
+        technologies: [
+            { name: "Python" },
+            { name: "Redis" },
+            { name: "PostgreSQL" },
+            { name: "MongoDB" },
+            { name: "Docker" }
+        ],
+        githubUrl: "https://github.com/jgchoti/challenge-caching-csv-redis",
+        relatedProfileSections: ["skills-data-engineering", "education-becode"],
+        skillsHighlighted: ["Redis", "Caching", "Performance Optimization", "PostgreSQL", "MongoDB"],
+        bootcampProject: "BeCode",
+        careerRelevance: {
+            dataEngineering: 9,
+            backendDev: 8,
+            dataScience: 5,
+            dataAnalyst: 4
+        },
+        keyLearnings: ["Redis caching", "Hash operations", "Performance optimization", "Multi-database architecture"],
+        tags: ["redis", "caching", "performance", "postgresql", "mongodb", "bootcamp-project"]
+    }, {
+        id: 19,
+        name: "Music Analytics Platform with Elasticsearch",
+        type: "data",
+        description: "Built a music analytics platform using Elasticsearch, FastAPI, and Streamlit for exploring Spotify track data. Features advanced search capabilities, AI-powered recommendations, and data visualization. Demonstrates search engine integration and modern API architecture.",
+        shortDescription: "Elasticsearch-powered music search with AI recommendations",
+        technologies: [
+            { name: "Python" },
+            { name: "Elasticsearch" },
+            { name: "FastAPI" },
+            { name: "Streamlit" },
+            { name: "Docker" }
+        ],
+        githubUrl: "https://github.com/jgchoti/elastic-search-music-explorer",
+        relatedProfileSections: ["tech-stack-primary", "skills-data-engineering", "education-becode"],
+        skillsHighlighted: ["Elasticsearch", "FastAPI", "Search Engine", "API Development", "Docker"],
+        bootcampProject: "BeCode",
+        careerRelevance: {
+            dataEngineering: 9,
+            backendDev: 9,
+            dataScience: 6,
+            dataAnalyst: 7
+        },
+        keyLearnings: ["Elasticsearch integration", "Search optimization", "FastAPI backend", "Data indexing"],
+        tags: ["elasticsearch", "fastapi", "search", "api", "docker", "bootcamp-project"]
     }
 ];
