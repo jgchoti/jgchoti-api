@@ -97,7 +97,7 @@ Relevant documents:`;
 
     } catch (error) {
         console.error('Error reranking documents in a batch:', error);
-        return documents.slice(0, 5); 
+        return documents.slice(0, 5);
     }
 }
 
@@ -162,7 +162,7 @@ export default async function handler(req, res) {
                 } else {
 
                     console.log('🔍 Searching and reranking with query:', message);
-                    
+
                     // Fetch a larger pool of documents
                     const initialResults = await vectorStore.search(message, 15, 0.1, 0.7);
                     console.log(`Initial search found ${initialResults.length} documents.`);
@@ -231,15 +231,15 @@ ${conversationContext}
 
 
         responseText = sanitizeLinks(responseText);
-        if (context.includes('[project]') || context.includes('[github-project]')) {
-            const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
-            const wrongLink = isDataProject ? 'https://jgchoti.github.io/project' : 'https://jgchoti.github.io/data';
-            const correctLink = isDataProject ? 'https://jgchoti.github.io/data' : 'https://jgchoti.github.io/project';
+        // if (context.includes('[project]') || context.includes('[github-project]')) {
+        //     const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
+        //     const wrongLink = isDataProject ? 'https://jgchoti.github.io/project' : 'https://jgchoti.github.io/data';
+        //     const correctLink = isDataProject ? 'https://jgchoti.github.io/data' : 'https://jgchoti.github.io/project';
 
-            if (responseText.includes(wrongLink)) {
-                responseText = responseText.replaceAll(wrongLink, correctLink);
-            }
-        }
+        //     if (responseText.includes(wrongLink)) {
+        //         responseText = responseText.replaceAll(wrongLink, correctLink);
+        //     }
+        // }
 
 
 
