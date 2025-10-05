@@ -241,8 +241,6 @@ ${conversationContext}
         //     }
         // }
 
-
-
         console.log('✅ Response generated successfully');
         console.log('📤 Final response preview:', responseText.substring(0, 100));
 
