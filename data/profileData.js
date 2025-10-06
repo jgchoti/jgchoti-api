@@ -253,7 +253,7 @@ export const profileData = [
     {
         id: "education-hospitality-condensed",
         title: "🎓 Early Education in Hospitality Management",
-        content: "Postgraduate diploma in Hotel, Resort & Spa Management from Swiss Hotel Management School, Switzerland (2008-2012). Education emphasized operational efficiency, project management, process optimization, and analytical thinking. Developed transferable skills in managing data-driven projects, cross-functional collaboration, and attention to detail applicable to technology and data roles.",
+        content: "Postgraduate diploma in Hotel, Resort & Spa Management from Swiss Hotel Management School, Switzerland (2013-2014). Education emphasized operational efficiency, project management, process optimization, and analytical thinking. Developed transferable skills in managing data-driven projects, cross-functional collaboration, and attention to detail applicable to technology and data roles.",
         subtitle: "Swiss hospitality education with transferable analytical and project management skills",
         keywords: ["Swiss Hotel Management", "hospitality", "postgraduate", "project management", "process optimization"],
         questions: [
@@ -266,9 +266,9 @@ export const profileData = [
     {
         id: "education-bachelors",
         title: "🎓 Bachelor's Degree - Thammasat University",
-        content: "Bachelor's in Business Administration with specialization in Finance & Real Estate Management from Thammasat University, Thailand (February 2013 - November 2014). Thammasat is one of Thailand's most prestigious universities. Program provided comprehensive business education including: Corporate finance and financial analysis, investment analysis and portfolio management, real estate development and valuation, accounting principles and financial reporting, business statistics and quantitative methods, economics and market analysis, business strategy and management. This business foundation developed analytical thinking, financial modeling skills, quantitative analysis abilities, and business acumen that now applies to data analysis, business intelligence, and understanding business requirements in tech projects. The finance specialization particularly supports current work in data-driven decision making, metrics analysis, and ROI evaluation for technical projects.",
+        content: "Bachelor's in Business Administration with specialization in Finance & Real Estate Management from Thammasat University, Thailand (2008-2012). Thammasat is one of Thailand's most prestigious universities. Program provided comprehensive business education including: Corporate finance and financial analysis, investment analysis and portfolio management, real estate development and valuation, accounting principles and financial reporting, business statistics and quantitative methods, economics and market analysis, business strategy and management. This business foundation developed analytical thinking, financial modeling skills, quantitative analysis abilities, and business acumen that now applies to data analysis, business intelligence, and understanding business requirements in tech projects. The finance specialization particularly supports current work in data-driven decision making, metrics analysis, and ROI evaluation for technical projects.",
         subtitle: "Finance & Real Estate - Thammasat University, Thailand",
-        keywords: ["Bachelor's degree", "Finance", "Thammasat", "Thailand", "Business Administration", "2013-2014"],
+        keywords: ["Bachelor's degree", "Finance", "Thammasat", "Thailand", "Business Administration", "2008-2012"],
         questions: [
             "What is Choti's Bachelor's degree?",
             "Where did Choti study finance?",
