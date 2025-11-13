@@ -525,5 +525,41 @@ export const projectData = [
         },
         keyLearnings: ["Elasticsearch integration", "Search optimization", "FastAPI backend", "Data indexing"],
         tags: ["elasticsearch", "fastapi", "search", "api", "docker", "bootcamp-project"]
+    },
+    {
+        id: 20,
+        name: "Deepfake Detection System - Hackathon Winner",
+        type: "data",
+        description: "Built an award-winning multi-layer deepfake detection system at 2025 Orange Hackathon addressing digital trust and misinformation. Implemented sophisticated detection pipeline combining metadata analysis, visual frame scanning, audio processing, and conditional deep video processing with smart scoring algorithms. Featured graceful degradation for system reliability and scalable architecture for production readiness. Contributed to both technical development and strategic positioning, helping frame the solution as 'rebuilding trust in the digital world' rather than just technical detection. Demonstrates AI safety focus, computer vision expertise, and ability to build high-impact solutions under pressure.",
+        shortDescription: "Award-winning multi-layer AI system for deepfake detection and digital trust restoration",
+        technologies: [
+            { name: "Python" },
+            { name: "Computer Vision" },
+            { name: "Machine Learning" },
+            { name: "Audio Processing" },
+            { name: "Multi-layer Architecture" }
+        ],
+        githubUrl: null, // Team hackathon project - private repo
+        relatedProfileSections: ["hackathon-wins", "skills-machine-learning", "skills-problem-solving"],
+        skillsHighlighted: ["Computer Vision", "Machine Learning", "AI Safety", "Multi-layer Systems", "Team Collaboration"],
+        hackathonProject: "Deepfake Detection Hackathon 2024",
+        hackathonWin: true,
+        careerRelevance: {
+            dataEngineering: 7,
+            backendDev: 6,
+            dataScience: 9,
+            mlEngineer: 10,
+            aiSafety: 10
+        },
+        keyLearnings: [
+            "Multi-layer detection architecture",
+            "Graceful degradation design",
+            "Computer vision for deepfake detection",
+            "Audio analysis for synthetic voice detection",
+            "Smart scoring algorithms",
+            "Team collaboration under pressure",
+            "Strategic narrative crafting"
+        ],
+        tags: ["hackathon-winner", "deepfake-detection", "ai-safety", "computer-vision", "machine-learning", "digital-trust", "misinformation", "team-project", "2024"]
     }
 ];

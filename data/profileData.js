@@ -57,14 +57,17 @@ export const profileData = [
     {
         id: "accomplishments",
         title: "🎯 Key Accomplishments & Awards",
-        content: "Winner of Tech4Positive Futures Challenge 2024 at Capgemini Belgium, developing innovative coral reef monitoring solutions using advanced data visualization, interactive dashboard development, machine learning applications, and engaging presentation technology to address climate change impacts. Successfully transitioned from international tourism and finance background into data science and tech industry, completing intensive HackYourFuture full-stack web development program and currently advancing through BeCode AI/Data Science bootcamp.",
-        subtitle: "Award winner with proven track record in AI solutions, data-driven business results, international project management, and measurable client outcomes",
-        keywords: ["Capgemini", "Tech4Positive", "hackathon winner", "coral reef", "climate change", "25% traffic increase", "20% renewal increase", "35% cost reduction"],
+        content: "2x Hackathon Winner: Won Tech4Positive Futures Challenge at Capgemini Belgium (2014), developing innovative coral reef monitoring solution using computer vision for coral bleaching detection, advanced data visualization, interactive dashboard development, and engaging presentation technology to address climate change impacts on coastal communities. Delivered compelling pitch leveraging personal connection to Thailand and communities dependent on coral reef ecosystems. Won Orange Hackathon 2025, building sophisticated multi-layer AI detection system combining metadata analysis, visual frame scanning, audio processing, and conditional deep video processing with smart scoring and graceful degradation. Contributed to technical development and strategic narrative crafting, framing solution as 'rebuilding trust in the digital world' rather than just technical detection. Both wins demonstrate ability to deliver under pressure, combine technical execution with strategic storytelling, and work effectively in competitive team environments. Successfully transitioned from international tourism and finance background into data science and tech industry, completing intensive HackYourFuture full-stack web development program and currently advancing through BeCode AI/Data Science bootcamp. Active in Belgian tech community as co-organizer of Belgian JavaScript Community meetups in Antwerp.",
+        subtitle: "2x Hackathon Winner with proven track record in AI solutions, competitive technical delivery, strategic storytelling, and community leadership",
+        keywords: ["2x hackathon winner", "Capgemini", "Tech4Positive", "deepfake detection", "hackathon winner", "coral reef", "climate change", "AI safety", "digital trust", "computer vision", "machine learning", "storytelling", "pitching", "Belgian tech community", "JavaScript meetup"],
         questions: [
             "What awards has Choti won?",
             "What are Choti's achievements?",
             "Has Choti won any competitions?",
-            "What measurable results has Choti achieved?"
+            "What measurable results has Choti achieved?",
+            "How many hackathons has Choti won?",
+            "What makes Choti competitive?",
+            "Is Choti involved in the tech community?"
         ]
     },
     {
@@ -109,6 +112,23 @@ export const profileData = [
             "Is Choti a full-stack developer?",
             "What web technologies does Choti know?",
             "Can Choti do frontend development?"
+        ]
+    },
+    {
+        id: "projects-deepfake-detection",
+        title: "🏆 Orange Hackathon Winner (2025)",
+        content: "Winner of 2025 Orange Hackathon. Collaborated with a team to design and build a sophisticated multi-layer AI detection system addressing the critical challenge of rebuilding trust in digital media. The solution combined multiple detection approaches: metadata analysis for file integrity verification, visual frame scanning for inconsistencies, audio analysis for synthetic voice detection, and conditional deep video processing with smart scoring algorithms. Implemented graceful degradation to ensure system reliability even when individual detection layers fail. Contributed to both technical development and strategic narrative crafting, helping frame the solution not just as 'detecting deepfakes' but as 'restoring trust in the digital world'—a positioning that resonated strongly with judges. Technologies used: Python for core detection algorithms, machine learning models for pattern recognition, computer vision techniques for frame analysis, audio processing libraries, multi-layer architecture design. The project addressed the urgent societal problem of misinformation and erosion of digital trust, demonstrating ability to work on high-impact AI safety solutions, collaborate effectively in hackathon team environments, contribute to both technical execution and strategic positioning, and understand the broader societal implications of technical solutions beyond just the code.",
+        subtitle: "Award-winning AI solution for deepfake detection and digital trust restoration",
+        keywords: ["deepfake detection", "hackathon", "winner", "2025", "AI safety", "digital trust", "misinformation", "multi-layer detection", "computer vision", "audio analysis", "machine learning", "team collaboration", "trust restoration"],
+        questions: [
+            "What is the deepfake detection project?",
+            "Did Choti win any hackathons?",
+            "What hackathons has Choti won?",
+            "Has Choti worked on AI safety?",
+            "Tell me about Choti's deepfake project",
+            "What AI projects has Choti worked on?",
+            "Has Choti worked on misinformation problems?",
+            "What computer vision projects has Choti done?"
         ]
     },
     {
@@ -506,15 +526,17 @@ export const profileData = [
     {
         id: "faq",
         title: "❓ Frequently Asked Questions",
-        content: "Q: Why did you transition from hospitality/finance to tech? A: During career break, discovered passion for problem-solving through programming. Self-taught during 2020-2023, then formalized through bootcamps. Tech offers continuous learning, global opportunities, and ability to create measurable impact - all things I value. Q: Do you have professional coding experience? A: Currently building professional experience through BeCode projects (Orange Belgium dashboard), freelance web development (2024), hackathon win (Tech4Positive), and portfolio projects. Previous roles involved data analysis and Big Data projects in hospitality sector. Q: Can you work independently? A: Yes - self-taught programming demonstrates independent learning. Also experienced in team collaboration through bootcamp group projects, previous management roles, and international team coordination. Q: Why should we hire a bootcamp graduate? A: Bootcamp training provides current, industry-relevant skills with hands-on project experience. My unique advantage is combining fresh technical skills with business experience and proven ability to deliver results. Q: Are you still learning or job-ready? A: Both - currently completing BeCode (ongoing learning) while actively building production projects and ready to contribute immediately. Continuous learning is essential in tech. Q: What's your availability? A: Immediate availability for right opportunity. Can start with short notice while completing bootcamp (which is project-based and flexible). Q: Do you need visa sponsorship? A: No - have EU work authorization for Belgium and Europe. Q: What's your expected salary? A: Open to market rates for junior-mid level data engineer in Belgium (typically €35K-50K+ depending on experience level), prioritizing learning opportunities and interesting projects alongside compensation. Q: Why Belgium? A: Moved to Belgium for family reasons, completed Dutch language training, and now building tech career here. Love Belgium's central European location, international atmosphere, and growing tech scene.",
+        content: "Q: Why did you transition from hospitality/finance to tech? A: During career break, discovered passion for problem-solving through programming. Self-taught during 2020-2023, then formalized through bootcamps. Tech offers continuous learning, global opportunities, and ability to create measurable impact - all things I value. Q: Do you have professional coding experience? A: Currently building professional experience through BeCode projects (Orange Belgium dashboard), freelance web development (2024), 2x hackathon wins (Tech4Positive coral reef conservation (2024) and Deepfake Detection (2025)), and portfolio projects. Previous roles involved data analysis and Big Data projects in hospitality sector. Won hackathons by combining technical execution with compelling storytelling that connects solutions to real-world impact. Q: Can you work independently? A: Yes - self-taught programming demonstrates independent learning. Also experienced in team collaboration through bootcamp group projects, hackathon team wins, previous management roles, and international team coordination. Q: Why should we hire a bootcamp graduate? A: Bootcamp training provides current, industry-relevant skills with hands-on project experience. My unique advantage is combining fresh technical skills with business experience, proven ability to deliver results under pressure (2x hackathon winner), and strategic mindset that bridges technical execution and business value. Q: Are you still learning or job-ready? A: Both - currently completing BeCode (ongoing learning) while actively building production projects, winning competitive hackathons, and ready to contribute immediately. Continuous learning is essential in tech. Q: What's your availability? A: Immediate availability for right opportunity. Can start with short notice while completing bootcamp (which is project-based and flexible). Q: Do you need visa sponsorship? A: No - have EU work authorization for Belgium and Europe. Q: What's your expected salary? A: Open to market rates for junior-mid level data engineer in Belgium (typically €35K-50K+ depending on experience level), prioritizing learning opportunities and interesting projects alongside compensation. Q: Why Belgium? A: Moved to Belgium for family reasons, completed Dutch language training, and now building tech career here. Love Belgium's central European location, international atmosphere, and growing tech scene. Active in Belgian tech community through JavaScript meetup co-organization in Antwerp.",
         subtitle: "Common questions about career transition, experience, and availability",
-        keywords: ["FAQ", "questions", "career transition", "experience", "bootcamp", "availability", "visa", "salary"],
+        keywords: ["FAQ", "questions", "career transition", "experience", "bootcamp", "availability", "visa", "salary", "hackathon winner", "2x hackathon winner", "tech community"],
         questions: [
             "Why did Choti change careers?",
             "Does Choti have work experience?",
             "Why hire a bootcamp graduate?",
             "Common questions about Choti",
-            "Frequently asked questions"
+            "Frequently asked questions",
+            "Has Choti won any competitions?",
+            "What makes Choti different from other bootcamp graduates?"
         ]
     },
     {
@@ -542,5 +564,11 @@ export const profileData = [
             "Tell me about Choti's interests outside work"
         ]
     },
+    {
+        id: "elevator-pitch",
+        title: "🎯 Why Hire Choti",
+        content: "Data engineer who bridges business and tech. I bring: international business experience (9 countries), proven ability to deliver under pressure (2x hackathon winner), and strategic mindset from finance/hospitality background. I don't just code—I understand WHY we're building it and HOW it creates business value.",
+        keywords: ["pitch", "value proposition", "why hire", "unique"]
+    }
 
 ];
