@@ -1,6 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-
-
+import { RunTree } from "langsmith";
 
 let getVectorStore;
 try {
@@ -16,6 +15,7 @@ const allowedOrigins = [
     'https://jgchoti.vercel.app',
     'http://localhost:3000'
 ];
+
 const SYSTEM_PROMPT = `
 You are Choti's professional career agent — confident, warm, and direct.
 Represent Choti as a data professional with international experience.
@@ -30,7 +30,7 @@ META-AWARENESS:
 - About chatbot: "I'm the AI career agent Choti built using RAG technology with Google Gemini"
 
 KEY FACTS:
-- Lived in 9 countries; based in Belgium; available Belgium/remote
+- Lived in 9 countries; based in Belgium; available Belgium/remote; 2X Hackathon winner
 - LinkedIn: https://www.linkedin.com/in/chotirat/
 - PAGE GUIDANCE:
   - About Me page: overall background, accomplishments → https://jgchoti.github.io/about
@@ -71,7 +71,14 @@ function sanitizeLinks(text) {
 export const config = {
     maxDuration: 30,
 };
+
 export default async function handler(req, res) {
+    // Check LangSmith configuration
+    const langsmithEnabled = !!(
+        process.env.LANGCHAIN_API_KEY &&
+        process.env.LANGCHAIN_TRACING_V2 === 'true'
+    );
+
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
@@ -80,7 +87,6 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Max-Age', '86400');
-
 
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
@@ -93,15 +99,34 @@ export default async function handler(req, res) {
         });
     }
 
-    try {
-        const { message, conversationHistory = [] } = req.body;
+    const { message, conversationHistory = [] } = req.body;
 
+    let trace = null;
+    if (langsmithEnabled) {
+        try {
+            trace = new RunTree({
+                name: "Choti Career Agent",
+                run_type: "chain",
+                inputs: { message, conversationHistory },
+                project_name: process.env.LANGCHAIN_PROJECT || "jgchoti-api",
+            });
+            await trace.postRun();
+            console.log('✅ LangSmith trace created:', trace.id);
+        } catch (traceError) {
+            console.error('❌ Failed to create LangSmith trace:', traceError.message);
+            trace = null;
+        }
+    }
+
+    try {
         if (!process.env.GEMINI_API_KEY) {
             console.error('Gemini API key not configured');
+            if (trace) await trace.end({ error: "Gemini API key not configured" });
             return res.status(500).json({ error: 'Gemini API key not configured' });
         }
 
         if (!message?.trim()) {
+            if (trace) await trace.end({ error: "Message is required" });
             return res.status(400).json({ error: 'Message is required' });
         }
 
@@ -122,6 +147,21 @@ export default async function handler(req, res) {
         let vectorDebugInfo = {};
 
         if (getVectorStore) {
+            let ragTrace = null;
+            if (trace) {
+                try {
+                    ragTrace = await trace.createChild({
+                        name: "RAG Search",
+                        run_type: "retriever",
+                        inputs: { query: message },
+                    });
+                    await ragTrace.postRun();
+                    console.log('✅ RAG trace created:', ragTrace.id);
+                } catch (childError) {
+                    console.error('❌ Failed to create RAG child trace:', childError.message);
+                }
+            }
+
             try {
                 const vectorStore = getVectorStore();
                 await vectorStore.initialize();
@@ -129,11 +169,8 @@ export default async function handler(req, res) {
                 if (!vectorStore) {
                     console.warn('⚠️ Vector store not ready or empty');
                 } else {
-
                     console.log('🔍 Searching with query:', message);
-
                     const goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
-
                     console.log('🎯 Search results:', {
                         totalFound: goodResults.length,
                         topScores: goodResults.slice(0, 5).map(d => ({
@@ -143,8 +180,6 @@ export default async function handler(req, res) {
                         }))
                     });
 
-
-
                     if (goodResults.length > 0) {
                         const topResults = goodResults.slice(0, 3);
                         context = topResults
@@ -153,15 +188,27 @@ export default async function handler(req, res) {
                         vectorUsed = true;
                     }
                 }
+
+                if (ragTrace) {
+                    await ragTrace.end({
+                        outputs: { context, vectorUsed, resultsCount: goodResults?.length || 0 }
+                    });
+                    await ragTrace.patchRun();
+                    console.log('✅ RAG trace ended');
+                }
             } catch (ragError) {
                 console.error('RAG search failed:', {
                     message: ragError.message,
                     stack: ragError.stack?.split('\n')[0]
                 });
                 vectorDebugInfo = { error: ragError.message };
+
+                if (ragTrace) {
+                    await ragTrace.end({ error: ragError.message });
+                    await ragTrace.patchRun();
+                }
             }
         }
-
 
         let conversationContext = '';
         if (conversationHistory.length > 0) {
@@ -183,44 +230,68 @@ ${conversationContext}
 
 **Instructions:** Use the context above to provide accurate answers about Choti. Keep responses to 2-3 sentences maximum. Always include relevant portfolio links when appropriate.`;
 
+        let llmTrace = null;
+        if (trace) {
+            try {
+                llmTrace = await trace.createChild({
+                    name: "Gemini Call",
+                    run_type: "llm",
+                    inputs: { prompt },
+                });
+                await llmTrace.postRun();
+                console.log('✅ LLM trace created:', llmTrace.id);
+            } catch (childError) {
+                console.error('❌ Failed to create LLM child trace:', childError.message);
+            }
+        }
 
         const result = await model.generateContent(prompt);
         const response = result.response;
         let responseText = response.text();
 
+        if (llmTrace) {
+            await llmTrace.end({ outputs: { response: responseText } });
+            await llmTrace.patchRun();
+            console.log('✅ LLM trace ended');
+        }
+
         console.log('🔹 RAW GEMINI RESPONSE:', responseText);
 
-
         responseText = sanitizeLinks(responseText);
-        // if (context.includes('[project]') || context.includes('[github-project]')) {
-        //     const isDataProject = /(data|ai|ml|machine learning|pipeline|analysis|tlaas|nl-to-sql)/i.test(context);
-        //     const wrongLink = isDataProject ? 'https://jgchoti.github.io/project' : 'https://jgchoti.github.io/data';
-        //     const correctLink = isDataProject ? 'https://jgchoti.github.io/data' : 'https://jgchoti.github.io/project';
-
-        //     if (responseText.includes(wrongLink)) {
-        //         responseText = responseText.replaceAll(wrongLink, correctLink);
-        //     }
-        // }
 
         console.log('✅ Response generated successfully');
         console.log('📤 Final response preview:', responseText.substring(0, 100));
 
-        return res.status(200).json({
+        const responsePayload = {
             response: responseText,
             metadata: {
                 model: 'gemini-2.0-flash-lite',
                 ragEnabled: !!getVectorStore,
                 vectorUsed,
                 contextLength: context.length,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                langsmithTraced: !!trace
             }
-        });
+        };
+
+        if (trace) {
+            await trace.end({ outputs: responsePayload });
+            await trace.patchRun();
+            console.log('✅ Main trace ended and posted to LangSmith');
+        }
+
+        return res.status(200).json(responsePayload);
 
     } catch (error) {
         console.error('Error:', {
             message: error.message,
             stack: error.stack?.split('\n')[0]
         });
+
+        if (trace) {
+            await trace.end({ error: error.message });
+            await trace.patchRun();
+        }
 
         if (error.message.includes('API_KEY') || error.message.includes('authentication')) {
             return res.status(401).json({

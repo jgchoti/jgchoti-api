@@ -1,19 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 import chatRagHandler from './api/chat-rag.js';
 import healthHandler from './api/health.js';
 import indexHandler from './api/index.js';
 
-config({ path: '.env.local' });
+// Load environment variables FIRST
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
 app.use(cors());
 app.use(express.json());
-
 
 function createMockReqRes(method, body = {}, headers = {}) {
     const req = {
@@ -36,7 +35,6 @@ function createMockReqRes(method, body = {}, headers = {}) {
 
     return { req, res };
 }
-
 
 app.get('/api/health', async (req, res) => {
     const { req: mockReq, res: mockRes } = createMockReqRes('GET');

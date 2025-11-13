@@ -17,10 +17,12 @@
     "axios": "^1.12.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "langchain": "^0.2.11",
+    "langsmith": "^0.3.79",
     "openai": "^4.0.0"
   },
   "devDependencies": {
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.6.1",
     "vercel": "^32.0.0"
   }
 }
