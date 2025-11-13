@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.local' });
+dotenv.config();
 
 import { projectData } from '../data/projectData.js';
 import { profileData } from '../data/profileData.js';
@@ -38,8 +38,8 @@ function normalizeTechNames(technologies) {
 function cleanText(text) {
     if (!text) return '';
     return text
-        .replace(/\s+/g, ' ') 
-        .replace(/('|\"|\`)/g, "'") 
+        .replace(/\s+/g, ' ')
+        .replace(/('|\"|\`)/g, "'")
         .trim();
 }
 
@@ -129,25 +129,6 @@ function getCareerPathRelevanceFromTechs(technologies) {
     return paths;
 }
 
-function getCareerPathApplications(project, careerPaths) {
-    const applications = [];
-
-    if (careerPaths.dataEngineering >= 4) {
-        applications.push(`• Data Engineering: Demonstrates pipeline development, data processing, and system architecture skills`);
-    }
-    if (careerPaths.dataScience >= 4) {
-        applications.push(`• Data Science: Shows analytical thinking, ML implementation, and statistical analysis capabilities`);
-    }
-    if (careerPaths.backendDev >= 4) {
-        applications.push(`• Backend Development: Highlights API development, scalable architecture, and system integration`);
-    }
-    if (careerPaths.dataAnalyst >= 4) {
-        applications.push(`• Data Analysis: Showcases data visualization, reporting, and insight generation abilities`);
-    }
-
-    return applications.length > 0 ? applications.join('\n') : '• Versatile project demonstrating foundational skills applicable across data careers';
-}
-
 function createDocuments() {
     const documents = [];
 
@@ -203,7 +184,7 @@ function createDocuments() {
             source: 'projects'
         };
 
-        // Core project info
+        // project info
         documents.push({
             id: `${baseId}-core`,
             content: cleanText(`${project.name}: ${project.shortDescription || project.description}`),
@@ -211,41 +192,51 @@ function createDocuments() {
         });
 
         // Career relevance
+        let relevanceText = topPaths
+            ? `${project.name} is relevant for: ${topPaths}`
+            : `${project.name} demonstrates versatile technical skills`;
+
+        if (skillCategories.length > 0) {
+            relevanceText += `. Skills: ${skillCategories.join(', ')}`;
+        }
+
         documents.push({
             id: `${baseId}-relevance`,
-            content: cleanText(`Multi-Path Career Relevance for ${project.name}: This project demonstrates skills applicable to ${topPaths || 'multiple data career paths'}. The technical implementation showcases ${skillCategories.length > 0 ? skillCategories.join(', ') : 'versatile software engineering capabilities'}.`),
+            content: cleanText(relevanceText),
             metadata: { ...baseMetadata, chunk: 'relevance' }
         });
 
         // Tech stack
+        const techNames = project.technologies.map(t => t.name || t).join(', ');
         documents.push({
             id: `${baseId}-stack`,
-            content: cleanText(`Technical Stack for ${project.name}: Built with ${project.technologies.map(t => t.name).join(', ')}, showing proficiency across the modern data technology ecosystem.`),
+            content: cleanText(`${project.name} uses: ${techNames}`),
             metadata: { ...baseMetadata, chunk: 'stack' }
         });
 
-        //Features
+        // Features
         if (project.features && project.features.length > 0) {
             documents.push({
                 id: `${baseId}-features`,
-                content: cleanText(`Key Features of ${project.name}: ${project.features.join(', ')}.`), 
+                content: cleanText(`${project.name} features: ${project.features.join(', ')}`),
                 metadata: { ...baseMetadata, chunk: 'features' }
             });
         }
-        
-        // Career applications
-        documents.push({
-            id: `${baseId}-applications`,
-            content: cleanText(`Career Path Applications for ${project.name}:\n${getCareerPathApplications(project, careerPaths)}`),
-            metadata: { ...baseMetadata, chunk: 'applications' }
-        });
 
         // Links
-        documents.push({
-            id: `${baseId}-links`,
-            content: cleanText(`Links for ${project.name}: Available at ${project.githubUrl || project.webUrl || 'Contact for details'}. ${project.demoCallToAction || ''} ${project.demoNote || ''}`),
-            metadata: { ...baseMetadata, chunk: 'links' }
-        });
+        const linkParts = [
+            project.githubUrl || project.webUrl,
+            project.demoCallToAction,
+            project.demoNote
+        ].filter(Boolean);
+
+        if (linkParts.length > 0) {
+            documents.push({
+                id: `${baseId}-links`,
+                content: cleanText(`${project.name}: ${linkParts.join('. ')}`),
+                metadata: { ...baseMetadata, chunk: 'links' }
+            });
+        }
     });
 
     // GITHUB DATA
@@ -276,35 +267,51 @@ function createDocuments() {
             ...crossRef
         };
 
-        //Core repo info
+        const displayName = repo.displayName || repo.repoName;
+
+        // Core repo info
         documents.push({
             id: `${baseId}-core`,
-            content: cleanText(`${repo.displayName || repo.repoName}: ${repo.description || repo.businessSummary}`),
+            content: cleanText(`${displayName}: ${repo.description || repo.businessSummary}`),
             metadata: { ...baseMetadata, chunk: 'core' }
         });
 
-        //Career relevance
+        // Career relevance
+        let relevanceText = topPaths
+            ? `${displayName} is relevant for: ${topPaths}`
+            : `${displayName} demonstrates versatile technical skills`;
+
+        if (skillCategories.length > 0) {
+            relevanceText += `. Skills: ${skillCategories.join(', ')}`;
+        }
+
         documents.push({
             id: `${baseId}-relevance`,
-            content: cleanText(`Multi-Path Career Relevance for ${repo.displayName || repo.repoName}: This project demonstrates skills applicable to ${topPaths || 'multiple data career paths'}. The technical implementation showcases ${skillCategories.length > 0 ? skillCategories.join(', ') : 'versatile software engineering capabilities'}.`),
+            content: cleanText(relevanceText),
             metadata: { ...baseMetadata, chunk: 'relevance' }
         });
 
-        //Tech stack
+        // Tech stack
+        const techList = techs.length > 0 ? techs.join(', ') : 'varied technologies';
         documents.push({
             id: `${baseId}-stack`,
-            content: cleanText(`Technical Stack for ${repo.displayName || repo.repoName}: Built with ${techs.join(', ') || 'varied technologies'}.`),
+            content: cleanText(`${displayName} uses: ${techList}`),
             metadata: { ...baseMetadata, chunk: 'stack' }
         });
 
-        //Summary and Links
-        const summaryContent = `Detailed Summary for ${repo.displayName || repo.repoName}: ${repo.businessSummary || repo.description}
-Repository: ${repo.githubUrl}`;
-        documents.push({
-            id: `${baseId}-summary`,
-            content: cleanText(summaryContent),
-            metadata: { ...baseMetadata, chunk: 'summary' }
-        });
+        // Summary with link
+        if (repo.businessSummary || repo.description) {
+            const summaryParts = [
+                repo.businessSummary || repo.description,
+                repo.githubUrl ? `Repository: ${repo.githubUrl}` : null
+            ].filter(Boolean);
+
+            documents.push({
+                id: `${baseId}-summary`,
+                content: cleanText(`${displayName}: ${summaryParts.join('. ')}`),
+                metadata: { ...baseMetadata, chunk: 'summary' }
+            });
+        }
     });
 
     // CONTACT DATA
@@ -335,10 +342,15 @@ Repository: ${repo.githubUrl}`;
         const careerRelevance = tags.some(t => ['data', 'ai', 'ml', 'engineering'].includes(t.toLowerCase())) ? 'high' : 'medium';
 
         chunks.forEach((chunk, chunkIndex) => {
-            const content = `${chunk}\n\nRead the full post: ${blog.url}. Key topics: ${tags.join(', ')}.`;
+            const contentParts = [
+                chunk,
+                blog.url ? `Read more: ${blog.url}` : null,
+                tags.length > 0 ? `Topics: ${tags.join(', ')}` : null
+            ].filter(Boolean);
+
             documents.push({
                 id: `blog-${index}-${chunkIndex}`,
-                content: cleanText(content),
+                content: cleanText(contentParts.join('. ')),
                 metadata: {
                     type: 'blog',
                     title: blog.title,
@@ -356,7 +368,7 @@ Repository: ${repo.githubUrl}`;
 
 
 async function generateEmbeddings() {
-    console.log('🚀 Starting flexible data professional embeddings generation...');
+    console.log('🚀 Starting embeddings generation...');
 
     if (!process.env.GEMINI_API_KEY) {
         throw new Error('GEMINI_API_KEY environment variable is required');
@@ -400,7 +412,7 @@ async function generateEmbeddings() {
 
     fs.writeFileSync(outputPath, JSON.stringify(embeddingsData, null, 2));
 
-    console.log(`✅ Flexible data professional embeddings saved to ${outputPath}`);
+    console.log(`✅ Embeddings saved to ${outputPath}`);
     console.log(`📊 Generated embeddings for ${embeddingsData.length} documents`);
 
     const summary = {
@@ -424,7 +436,7 @@ async function generateEmbeddings() {
 if (import.meta.url === `file://${process.argv[1]}`) {
     generateEmbeddings()
         .then(() => {
-            console.log('🎉 Flexible data professional embeddings generation completed!');
+            console.log('🎉 Embeddings generation completed!');
             process.exit(0);
         })
         .catch((error) => {
