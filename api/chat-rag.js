@@ -162,6 +162,7 @@ export default async function handler(req, res) {
                 }
             }
 
+            let goodResults = [];
             try {
                 const vectorStore = getVectorStore();
                 await vectorStore.initialize();
@@ -170,7 +171,7 @@ export default async function handler(req, res) {
                     console.warn('⚠️ Vector store not ready or empty');
                 } else {
                     console.log('🔍 Searching with query:', message);
-                    const goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
+                    goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
                     console.log('🎯 Search results:', {
                         totalFound: goodResults.length,
                         topScores: goodResults.slice(0, 5).map(d => ({
