@@ -17,35 +17,6 @@ RAG-powered serverless API that answers questions about me and my work. It uses 
 
 Just like Sabrina sings about wanting something real — this API delivers context-rich answers about my portfolio instead of the same old chatbot nonsense. 🎵
 
-## 📋 Table of Contents
-
-- [Choti Portfolio API — RAG Chatbot (Gemini)](#choti-portfolio-api--rag-chatbot-gemini)
-  - [The Story Behind This API](#the-story-behind-this-api)
-    - [Because "Please Please Please" Don't Give Me Generic Responses](#because-please-please-please-dont-give-me-generic-responses)
-  - [📋 Table of Contents](#-table-of-contents)
-  - [✨ Features](#-features)
-  - [🛠️ Tech Stack](#️-tech-stack)
-  - [📋 Prerequisites](#-prerequisites)
-  - [🚀 Installation](#-installation)
-  - [💻 Running Locally](#-running-locally)
-  - [📚 API Documentation](#-api-documentation)
-    - [Base URL](#base-url)
-    - [Endpoints](#endpoints)
-      - [GET /api/health](#get-apihealth)
-      - [GET /api/](#get-api)
-      - [POST /api/chat-rag](#post-apichat-rag)
-  - [🔍 Embeddings and RAG](#-embeddings-and-rag)
-  - [🔍 Dynamic Portfolio Integration](#-dynamic-portfolio-integration)
-    - [Generate/Refresh Embeddings](#generaterefresh-embeddings)
-  - [🔧 Environment Variables](#-environment-variables)
-  - [📁 Project Structure](#-project-structure)
-  - [🚀 Deployment (Vercel)](#-deployment-vercel)
-    - [Step-by-step deployment:](#step-by-step-deployment)
-    - [Alternative: Deploy via Vercel Dashboard](#alternative-deploy-via-vercel-dashboard)
-  - [🛠️ Troubleshooting](#️-troubleshooting)
-    - [Common Issues](#common-issues)
-  - [🤖 Demo](#-demo)
-
 ## ✨ Features
 
 - 🤖 **RAG answers**: Retrieves relevant snippets from contact details/profile/project documents
