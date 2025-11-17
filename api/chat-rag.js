@@ -230,7 +230,12 @@ ${conversationContext}
 
 **Current Question:** ${message}
 
-**Instructions:** Use the context above to provide accurate answers about Choti. Keep responses to 2-3 sentences maximum. Always include relevant portfolio links when appropriate.`;
+**Instructions:** 
+1. Check if the context above actually answers the question asked
+2. If context is relevant → Use it to give a specific answer
+3. If context exists but doesn't answer the question → "Choti doesn't have [X] experience. Her background includes [mention what IS in the context or her known skills: Python, Airflow, ML, data engineering]"
+4. Keep responses to 2-3 sentences maximum
+5. Include relevant portfolio links when appropriate`;
 
         let llmTrace = null;
         if (trace) {
