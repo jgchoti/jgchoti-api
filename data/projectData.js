@@ -526,6 +526,7 @@ export const projectData = [
         keyLearnings: ["Elasticsearch integration", "Search optimization", "FastAPI backend", "Data indexing"],
         tags: ["elasticsearch", "fastapi", "search", "api", "docker", "bootcamp-project"]
     },
+
     {
         id: 20,
         name: "Deepfake Detection System - Hackathon Winner",
@@ -542,7 +543,7 @@ export const projectData = [
         githubUrl: null, // Team hackathon project - private repo
         relatedProfileSections: ["hackathon-wins", "skills-machine-learning", "skills-problem-solving"],
         skillsHighlighted: ["Computer Vision", "Machine Learning", "AI Safety", "Multi-layer Systems", "Team Collaboration"],
-        hackathonProject: "Deepfake Detection Hackathon 2024",
+        hackathonProject: "Orange Hackathon 2025",
         hackathonWin: true,
         careerRelevance: {
             dataEngineering: 7,
@@ -561,5 +562,76 @@ export const projectData = [
             "Strategic narrative crafting"
         ],
         tags: ["hackathon-winner", "deepfake-detection", "ai-safety", "computer-vision", "machine-learning", "digital-trust", "misinformation", "team-project", "2024"]
+    },
+    {
+        id: 21,
+        name: "The Language of Rejection: NLP Analysis of Job Rejection Emails",
+        type: "data",
+        description: "Built a comprehensive NLP pipeline analyzing sentiment patterns in 14 real job rejection emails from my 2024-2025 job search. Deployed multi-model sentiment analysis using VADER, TextBlob, AFINN, RoBERTa, and DistilBERT to compare lexicon-based vs transformer-based approaches. Engineered 20+ linguistic features including NRC emotion lexicon scores, empathy/apology word detection, and readability metrics. Used SHAP explainability to reveal which specific words drive sentiment predictions, discovering that 'unfortunately' has -0.77 impact while 'appreciate' scores +0.39. Created interactive Streamlit dashboard with visualizations showing the 4:1 positive-to-apology ratio threshold for warm rejections. Findings reveal fundamental gaps between how lexicons and transformers interpret professional communication—lexicons achieve 0.73 correlation with each other but only 0.38 with transformers.",
+        shortDescription: "Multi-model NLP analysis revealing sentiment patterns in job rejection emails with SHAP explainability",
+        technologies: [
+            { name: "Python" },
+            { name: "RoBERTa" },
+            { name: "VADER Sentiment" },
+            { name: "TextBlob" },
+            { name: "SHAP" },
+            { name: "Transformers" },
+            { name: "DistilBERT" },
+            { name: "NRC Emotion Lexicon" },
+            { name: "Pandas" },
+            { name: "Matplotlib" },
+            { name: "Seaborn" },
+            { name: "Streamlit" }
+        ],
+        githubUrl: "https://github.com/jgchoti/job_rejection_analysis",
+        webUrl: "https://language-of-rejection.streamlit.app",
+        relatedProfileSections: ["skills-nlp", "skills-data-science", "career-transition-story", "skills-ml-models"],
+        skillsHighlighted: ["NLP", "Transformer Models", "Sentiment Analysis", "SHAP Explainability", "Feature Engineering", "Multi-Model Comparison", "Data Storytelling"],
+        bootcampProject: null,
+        careerRelevance: {
+            dataScience: 10,
+            dataAnalyst: 8,
+            mlEngineer: 9,
+            dataEngineering: 4,
+            backendDev: 3
+        },
+        keyLearnings: [
+            "Lexicon vs transformer model comparison",
+            "SHAP explainability for NLP",
+            "Multi-model sentiment analysis",
+            "Feature engineering for text data",
+            "NRC emotion lexicon analysis",
+            "Statistical pattern discovery (4:1 ratio)"
+        ],
+        impact: "Demonstrates advanced NLP skills, model explainability, and ability to extract actionable insights from unstructured text. Shows unique combination of technical depth and compelling personal storytelling.",
+        tags: [
+            "nlp",
+            "sentiment-analysis",
+            "transformers",
+            "roberta",
+            "shap",
+            "explainable-ai",
+            "text-processing",
+            "data-visualization",
+            "streamlit",
+            "personal-project",
+            "job-search",
+            "vader",
+            "textblob"
+        ],
+        highlights: [
+            "Discovered 4:1 positive-to-apology word ratio threshold for warm rejections",
+            "Revealed 0.38 correlation gap between lexicon and transformer models",
+            "Identified 'unfortunately' as single most damaging word (-0.77 SHAP impact)",
+            "Joy words 5× stronger predictor than trust words (r=0.605 vs 0.116)",
+            "Analyzed 14 real rejection emails with full explainability"
+        ],
+        technicalDepth: {
+            models: ["VADER", "TextBlob", "AFINN", "RoBERTa (cardiffnlp)", "DistilBERT (SST-2)"],
+            explainability: ["SHAP", "transformers-interpret"],
+            featureEngineering: ["NRC Emotion Lexicon", "Linguistic metrics", "Keyword detection", "Boolean features"],
+            analysis: ["Correlation analysis", "Linear regression", "Statistical thresholds", "Word-level attributions"]
+        },
+        uniqueValue: "Combines cutting-edge NLP techniques with deeply personal storytelling—turning job rejection into a compelling data science project that showcases both technical skills and emotional intelligence."
     }
 ];

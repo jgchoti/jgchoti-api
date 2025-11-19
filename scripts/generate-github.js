@@ -440,7 +440,7 @@ async function runGitHubProcessor() {
     });
 
 
-    const outputPath = path.resolve(__dirname, '../data/github_portfolio_data.json')
+    const outputPath = path.resolve(__dirname, '../data/github_portfolio_data_raw.json')
     fs.mkdirSync(path.dirname(outputPath), { recursive: true })
     fs.writeFileSync(outputPath, JSON.stringify(portfolioData, null, 2))
     console.log(`\n✅ Data saved to ${outputPath}`)

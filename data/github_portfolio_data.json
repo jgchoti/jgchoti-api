@@ -1,5 +1,54 @@
 [
   {
+    "repoName": "job_rejection_analysis",
+    "displayName": "The Language of Rejection: NLP Analysis",
+    "description": "Multi-model NLP pipeline analyzing sentiment patterns in job rejection emails. Compares lexicon-based (VADER, TextBlob, AFINN) vs transformer models (RoBERTa, DistilBERT) with SHAP explainability. Discovered the 4:1 positive-to-apology ratio for warm rejections and revealed 0.38 correlation gap between model paradigms. Interactive Streamlit dashboard with word-level attribution analysis.",
+    "technologies": [
+      "Python",
+      "RoBERTa",
+      "VADER",
+      "TextBlob",
+      "SHAP",
+      "Transformers",
+      "DistilBERT",
+      "NLP",
+      "Streamlit",
+      "Pandas",
+      "Seaborn",
+      "Matplotlib"
+    ],
+    "projectType": "Data Science",
+    "githubUrl": "https://github.com/jgchoti/job_rejection_analysis",
+    "demoLinks": ["https://language-of-rejection.streamlit.app/"],
+    "stars": 5,
+    "lastUpdated": "2025-11-07T13:08:18Z",
+    "businessSummary": "Project: The Language of Rejection: NLP Analysis | Type: Data Science | Description: Multi-model NLP pipeline analyzing sentiment patterns in job rejection emails. Compares lexicon-based (VADER, TextBlob, AFINN) vs transformer models (RoBERTa, DistilBERT) with SHAP explainability. Discovered the 4:1 positive-to-apology ratio for warm rejections and revealed 0.38 correlation gap between model paradigms. | Technologies: Python, RoBERTa, VADER, TextBlob, SHAP, Transformers, DistilBERT, NLP, Streamlit | GitHub Stars: 5",
+    "embeddingText": "Project: The Language of Rejection: NLP Analysis | Type: Data Science | Description: Multi-model NLP pipeline analyzing sentiment patterns in job rejection emails using VADER, TextBlob, AFINN, RoBERTa, and DistilBERT. SHAP explainability reveals word-level sentiment drivers. Key findings: joy words correlate +0.605 with warmth (5× stronger than trust), 4:1 positive-to-apology ratio threshold, 'unfortunately' has -0.77 impact. Lexicon models correlate 0.73 with each other but only 0.38 with transformers, revealing fundamental interpretation gaps. Interactive Streamlit dashboard with NRC emotion lexicon analysis and statistical pattern discovery. | Technologies: Python, RoBERTa, VADER, TextBlob, SHAP, Transformers, DistilBERT, NLP, Streamlit, Pandas, Seaborn, Matplotlib | Skills demonstrated: NLP, Sentiment Analysis, Transformer Models, SHAP Explainability, Multi-Model Comparison, Feature Engineering, Data Visualization, Statistical Analysis | GitHub Stars: 5 | Suitable for clients needing NLP analysis, sentiment analysis, model explainability, text mining, and data-driven communication insights",
+    "metadata": {
+      "source": "github",
+      "repoName": "job_rejection_analysis",
+      "projectType": "Data Science",
+      "technologies": [
+        "Python",
+        "RoBERTa",
+        "VADER",
+        "TextBlob",
+        "SHAP",
+        "Transformers",
+        "DistilBERT",
+        "NLP",
+        "Streamlit"
+      ],
+      "highlights": [
+        "Multi-model sentiment analysis comparison",
+        "SHAP explainability for NLP",
+        "4:1 positive-to-apology ratio discovery",
+        "Lexicon vs transformer correlation gap (0.38)",
+        "Word-level sentiment attribution"
+      ]
+    }
+  },
+  {
     "repoName": "ai-code-coach",
     "displayName": "Ai Code Coach",
     "description": "A farming-themed code coaching app inspired by Stardew Valley. Built with Flask and Google's Generative AI to make learning code more engaging through game-inspired mechanics.",

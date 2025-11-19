@@ -1,5 +1,5 @@
 {
-  "totalDocuments": 517,
+  "totalDocuments": 525,
   "documentTypes": [
     "profile",
     "project",
@@ -15,7 +15,7 @@
     "backend-development",
     "data-analysis"
   ],
-  "generatedAt": "2025-11-13T10:42:26.923Z",
+  "generatedAt": "2025-11-19T10:02:58.508Z",
   "embeddingModel": "text-embedding-004",
   "embeddingDimensions": 768,
   "provider": "google-gemini"
