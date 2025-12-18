@@ -68,15 +68,65 @@ function sanitizeLinks(text) {
     return text.replace(/" target="_blank" rel="noopener noreferrer" class="text-primary">/g, '');
 }
 
+// Simple in-memory rate limiter
+class RateLimiter {
+    constructor(maxRequests = 10, windowMs = 60000) {
+        this.maxRequests = maxRequests;
+        this.windowMs = windowMs;
+        this.requests = [];
+    }
+
+    async checkLimit() {
+        const now = Date.now();
+        // Clean old requests outside the window
+        this.requests = this.requests.filter(time => now - time < this.windowMs);
+
+        if (this.requests.length >= this.maxRequests) {
+            const oldestRequest = this.requests[0];
+            const waitTime = this.windowMs - (now - oldestRequest);
+            throw new Error(`Rate limit: Wait ${Math.ceil(waitTime / 1000)}s`);
+        }
+
+        this.requests.push(now);
+    }
+}
+
+// Create rate limiter: 10 requests per minute
+const rateLimiter = new RateLimiter(10, 60000);
+
+async function callGeminiWithRetry(model, prompt, maxRetries = 3) {
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+        try {
+            const result = await model.generateContent(prompt);
+            return result.response.text();
+        } catch (error) {
+            const isRateLimit = error.message?.includes('429') ||
+                error.message?.includes('quota') ||
+                error.message?.includes('rate');
+
+            if (isRateLimit && attempt < maxRetries - 1) {
+                const waitTime = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
+                // console.log(`⏳ Rate limited. Retrying in ${waitTime}ms (attempt ${attempt + 1}/${maxRetries})`);
+                await new Promise(resolve => setTimeout(resolve, waitTime));
+                continue;
+            }
+            throw error;
+        }
+    }
+}
+
 export const config = {
     maxDuration: 30,
 };
 
 export default async function handler(req, res) {
+    const startTime = Date.now();
+
     // Check LangSmith configuration
     const langsmithEnabled = !!(
         process.env.LANGCHAIN_API_KEY &&
-        process.env.LANGCHAIN_TRACING_V2 === 'true'
+        process.env.LANGCHAIN_TRACING_V2 === 'true' &&
+        process.env.ENABLE_LANGSMITH !== 'false'
     );
 
     const origin = req.headers.origin;
@@ -99,6 +149,17 @@ export default async function handler(req, res) {
         });
     }
 
+    // Check rate limit before processing
+    try {
+        await rateLimiter.checkLimit();
+    } catch (error) {
+        console.warn('⚠️ Rate limiter triggered:', error.message);
+        return res.status(429).json({
+            error: error.message,
+            retryAfter: 60
+        });
+    }
+
     const { message, conversationHistory = [] } = req.body;
 
     let trace = null;
@@ -111,12 +172,14 @@ export default async function handler(req, res) {
                 project_name: process.env.LANGCHAIN_PROJECT || "jgchoti-api",
             });
             await trace.postRun();
-            console.log('✅ LangSmith trace created:', trace.id);
+            // console.log('✅ LangSmith trace created:', trace.id);
         } catch (traceError) {
             console.error('❌ Failed to create LangSmith trace:', traceError.message);
             trace = null;
         }
     }
+
+    const timings = {};
 
     try {
         if (!process.env.GEMINI_API_KEY) {
@@ -130,7 +193,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        console.log('Processing message:', message.substring(0, 100));
+        // console.log('Processing message:', message.substring(0, 100));
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash-lite";
@@ -144,10 +207,12 @@ export default async function handler(req, res) {
 
         let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects.";
         let vectorUsed = false;
-        let vectorDebugInfo = {};
 
+        // RAG Search with timing
         if (getVectorStore) {
+            const ragStart = Date.now();
             let ragTrace = null;
+
             if (trace) {
                 try {
                     ragTrace = await trace.createChild({
@@ -156,30 +221,17 @@ export default async function handler(req, res) {
                         inputs: { query: message },
                     });
                     await ragTrace.postRun();
-                    console.log('✅ RAG trace created:', ragTrace.id);
                 } catch (childError) {
                     console.error('❌ Failed to create RAG child trace:', childError.message);
                 }
             }
 
-            let goodResults = [];
             try {
                 const vectorStore = getVectorStore();
                 await vectorStore.initialize();
 
-                if (!vectorStore) {
-                    console.warn('⚠️ Vector store not ready or empty');
-                } else {
-                    console.log('🔍 Searching with query:', message);
-                    goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
-                    console.log('🎯 Search results:', {
-                        totalFound: goodResults.length,
-                        topScores: goodResults.slice(0, 5).map(d => ({
-                            similarity: d.similarity?.toFixed(3),
-                            type: d.metadata?.type,
-                            contentPreview: d.content?.substring(0, 80) + '...'
-                        }))
-                    });
+                if (vectorStore) {
+                    const goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
 
                     if (goodResults.length > 0) {
                         const topResults = goodResults.slice(0, 3);
@@ -191,26 +243,21 @@ export default async function handler(req, res) {
                 }
 
                 if (ragTrace) {
-                    await ragTrace.end({
-                        outputs: { context, vectorUsed, resultsCount: goodResults?.length || 0 }
-                    });
+                    await ragTrace.end({ outputs: { vectorUsed, resultsCount: goodResults?.length || 0 } });
                     await ragTrace.patchRun();
-                    console.log('✅ RAG trace ended');
                 }
             } catch (ragError) {
-                console.error('RAG search failed:', {
-                    message: ragError.message,
-                    stack: ragError.stack?.split('\n')[0]
-                });
-                vectorDebugInfo = { error: ragError.message };
-
+                console.error('RAG search failed:', ragError.message);
                 if (ragTrace) {
                     await ragTrace.end({ error: ragError.message });
                     await ragTrace.patchRun();
                 }
             }
+
+            timings.rag = Date.now() - ragStart;
         }
 
+        // Build conversation context
         let conversationContext = '';
         if (conversationHistory.length > 0) {
             const recentHistory = conversationHistory.slice(-6);
@@ -235,7 +282,7 @@ ${conversationContext}
 2. If context is relevant → Use it to give a specific answer
 3. If context exists but doesn't answer the question → "Choti doesn't have [X] experience. Her background includes [mention what IS in the context or her known skills: Python, Airflow, ML, data engineering]"
 4. Keep responses to 2-3 sentences maximum
-5. Include relevant portfolio links when appropriate;`
+5. Include relevant portfolio links when appropriate;`;
 
         let llmTrace = null;
         if (trace) {
@@ -246,45 +293,43 @@ ${conversationContext}
                     inputs: { prompt },
                 });
                 await llmTrace.postRun();
-                console.log('✅ LLM trace created:', llmTrace.id);
             } catch (childError) {
-                console.error('❌ Failed to create LLM child trace:', childError.message);
+                console.error('❌ LLM trace failed (non-critical):', childError.message);
             }
         }
 
-        const result = await model.generateContent(prompt);
-        const response = result.response;
-        let responseText = response.text();
+        // Call Gemini with retry logic
+        const geminiStart = Date.now();
+        const responseText = await callGeminiWithRetry(model, prompt);
+        timings.gemini = Date.now() - geminiStart;
 
         if (llmTrace) {
             await llmTrace.end({ outputs: { response: responseText } });
             await llmTrace.patchRun();
-            console.log('✅ LLM trace ended');
         }
 
-        console.log('🔹 RAW GEMINI RESPONSE:', responseText);
+        const cleanedResponse = sanitizeLinks(responseText);
 
-        responseText = sanitizeLinks(responseText);
-
-        console.log('✅ Response generated successfully');
-        console.log('📤 Final response preview:', responseText.substring(0, 100));
-
+        timings.total = Date.now() - startTime;
         const responsePayload = {
-            response: responseText,
+            response: cleanedResponse,
             metadata: {
-                model: 'gemini-2.0-flash-lite',
+                model: modelName,
                 ragEnabled: !!getVectorStore,
                 vectorUsed,
                 contextLength: context.length,
                 timestamp: new Date().toISOString(),
-                langsmithTraced: !!trace
+                langsmithTraced: !!trace,
+                timings
             }
         };
 
+
         if (trace) {
-            await trace.end({ outputs: responsePayload });
-            await trace.patchRun();
-            console.log('✅ Main trace ended and posted to LangSmith');
+            trace.end({ outputs: responsePayload })
+                .then(() => trace.patchRun())
+                .then(() => console.log('✅ Trace posted to LangSmith'))
+                .catch(err => console.error('❌ Failed to post trace:', err.message));
         }
 
         return res.status(200).json(responsePayload);
@@ -296,8 +341,9 @@ ${conversationContext}
         });
 
         if (trace) {
-            await trace.end({ error: error.message });
-            await trace.patchRun();
+            trace.end({ error: error.message })
+                .then(() => trace.patchRun())
+                .catch(err => console.error('Failed to post error trace:', err.message));
         }
 
         if (error.message.includes('API_KEY') || error.message.includes('authentication')) {
@@ -306,13 +352,11 @@ ${conversationContext}
             });
         }
 
-        if (error.message.includes('quota') || error.message.includes('rate')) {
-            console.error('Rate limit exceeded for Gemini API:', {
-                message: error.message,
-            });
-            res.setHeader('X-Retry-After', 60);
+        if (error.message.includes('quota') || error.message.includes('rate') || error.message.includes('429')) {
+            console.error('Rate limit exceeded for Gemini API:', error.message);
+            res.setHeader('X-Retry-After', '60');
             return res.status(429).json({
-                error: 'Rate limit exceeded. Please try again later.',
+                error: 'Rate limit exceeded. Please try again in a moment.',
                 retryAfter: 60
             });
         }
