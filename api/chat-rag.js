@@ -190,7 +190,7 @@ export default async function handler(req, res) {
         console.log('Processing message:', message.substring(0, 100));
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash-lite";
+        const modelName = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
         const model = genAI.getGenerativeModel({
             model: modelName,
             generationConfig: {
