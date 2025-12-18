@@ -67,8 +67,6 @@ RESPONSE PATTERN:
 function sanitizeLinks(text) {
     return text.replace(/" target="_blank" rel="noopener noreferrer" class="text-primary">/g, '');
 }
-
-// Simple in-memory rate limiter
 class RateLimiter {
     constructor(maxRequests = 10, windowMs = 60000) {
         this.maxRequests = maxRequests;
@@ -78,7 +76,6 @@ class RateLimiter {
 
     async checkLimit() {
         const now = Date.now();
-        // Clean old requests outside the window
         this.requests = this.requests.filter(time => now - time < this.windowMs);
 
         if (this.requests.length >= this.maxRequests) {
@@ -91,7 +88,6 @@ class RateLimiter {
     }
 }
 
-// Create rate limiter: 10 requests per minute
 const rateLimiter = new RateLimiter(10, 60000);
 
 async function callGeminiWithRetry(model, prompt, maxRetries = 3) {
@@ -105,8 +101,8 @@ async function callGeminiWithRetry(model, prompt, maxRetries = 3) {
                 error.message?.includes('rate');
 
             if (isRateLimit && attempt < maxRetries - 1) {
-                const waitTime = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
-                // console.log(`⏳ Rate limited. Retrying in ${waitTime}ms (attempt ${attempt + 1}/${maxRetries})`);
+                const waitTime = Math.pow(2, attempt) * 1000;
+                console.log(`⏳ Rate limited. Retrying in ${waitTime}ms (attempt ${attempt + 1}/${maxRetries})`);
                 await new Promise(resolve => setTimeout(resolve, waitTime));
                 continue;
             }
@@ -116,13 +112,12 @@ async function callGeminiWithRetry(model, prompt, maxRetries = 3) {
 }
 
 export const config = {
-    maxDuration: 30,
+    maxDuration: 10,
 };
 
 export default async function handler(req, res) {
     const startTime = Date.now();
 
-    // Check LangSmith configuration
     const langsmithEnabled = !!(
         process.env.LANGCHAIN_API_KEY &&
         process.env.LANGCHAIN_TRACING_V2 === 'true' &&
@@ -149,7 +144,6 @@ export default async function handler(req, res) {
         });
     }
 
-    // Check rate limit before processing
     try {
         await rateLimiter.checkLimit();
     } catch (error) {
@@ -172,9 +166,9 @@ export default async function handler(req, res) {
                 project_name: process.env.LANGCHAIN_PROJECT || "jgchoti-api",
             });
             await trace.postRun();
-            // console.log('✅ LangSmith trace created:', trace.id);
+            console.log('✅ LangSmith trace created:', trace.id);
         } catch (traceError) {
-            console.error('❌ Failed to create LangSmith trace:', traceError.message);
+            console.error('❌ LangSmith trace failed (non-critical):', traceError.message);
             trace = null;
         }
     }
@@ -193,7 +187,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // console.log('Processing message:', message.substring(0, 100));
+        console.log('Processing message:', message.substring(0, 100));
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash-lite";
@@ -208,12 +202,11 @@ export default async function handler(req, res) {
         let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects.";
         let vectorUsed = false;
 
-        // RAG Search with timing
         if (getVectorStore) {
             const ragStart = Date.now();
             let ragTrace = null;
 
-            if (trace) {
+            if (trace && process.env.TRACE_RAG === 'true') {
                 try {
                     ragTrace = await trace.createChild({
                         name: "RAG Search",
@@ -222,32 +215,46 @@ export default async function handler(req, res) {
                     });
                     await ragTrace.postRun();
                 } catch (childError) {
-                    console.error('❌ Failed to create RAG child trace:', childError.message);
+                    console.error('❌ RAG trace failed (non-critical):', childError.message);
                 }
             }
 
             try {
-                const vectorStore = getVectorStore();
-                await vectorStore.initialize();
+                const ragPromise = (async () => {
+                    const vectorStore = getVectorStore();
+                    await vectorStore.initialize();
 
-                if (vectorStore) {
-                    const goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
+                    if (vectorStore) {
+                        const goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
+                        console.log('🎯 Found', goodResults.length, 'results in', Date.now() - ragStart, 'ms');
 
-                    if (goodResults.length > 0) {
-                        const topResults = goodResults.slice(0, 3);
-                        context = topResults
-                            .map(doc => `[${doc.metadata?.type || 'unknown'}] ${doc.content}`)
-                            .join('\n\n');
-                        vectorUsed = true;
+                        if (goodResults.length > 0) {
+                            const topResults = goodResults.slice(0, 3);
+                            return {
+                                context: topResults
+                                    .map(doc => `[${doc.metadata?.type || 'unknown'}] ${doc.content}`)
+                                    .join('\n\n'),
+                                vectorUsed: true
+                            };
+                        }
                     }
-                }
+                    return { context, vectorUsed: false };
+                })();
+
+                const timeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('RAG timeout')), 3000)
+                );
+
+                const result = await Promise.race([ragPromise, timeoutPromise]);
+                context = result.context;
+                vectorUsed = result.vectorUsed;
 
                 if (ragTrace) {
-                    await ragTrace.end({ outputs: { vectorUsed, resultsCount: goodResults?.length || 0 } });
+                    await ragTrace.end({ outputs: { vectorUsed } });
                     await ragTrace.patchRun();
                 }
             } catch (ragError) {
-                console.error('RAG search failed:', ragError.message);
+                console.warn('⚠️ RAG search failed/timeout:', ragError.message, '- using default context');
                 if (ragTrace) {
                     await ragTrace.end({ error: ragError.message });
                     await ragTrace.patchRun();
@@ -257,7 +264,6 @@ export default async function handler(req, res) {
             timings.rag = Date.now() - ragStart;
         }
 
-        // Build conversation context
         let conversationContext = '';
         if (conversationHistory.length > 0) {
             const recentHistory = conversationHistory.slice(-6);
@@ -285,7 +291,7 @@ ${conversationContext}
 5. Include relevant portfolio links when appropriate;`;
 
         let llmTrace = null;
-        if (trace) {
+        if (trace && process.env.TRACE_LLM === 'true') {
             try {
                 llmTrace = await trace.createChild({
                     name: "Gemini Call",
@@ -298,19 +304,21 @@ ${conversationContext}
             }
         }
 
-        // Call Gemini with retry logic
         const geminiStart = Date.now();
         const responseText = await callGeminiWithRetry(model, prompt);
         timings.gemini = Date.now() - geminiStart;
 
         if (llmTrace) {
-            await llmTrace.end({ outputs: { response: responseText } });
-            await llmTrace.patchRun();
+            llmTrace.end({ outputs: { response: responseText } })
+                .then(() => llmTrace.patchRun())
+                .catch(err => console.error('Failed to end LLM trace:', err.message));
         }
 
         const cleanedResponse = sanitizeLinks(responseText);
 
         timings.total = Date.now() - startTime;
+        console.log('⏱️ Timings:', timings);
+
         const responsePayload = {
             response: cleanedResponse,
             metadata: {
@@ -323,8 +331,6 @@ ${conversationContext}
                 timings
             }
         };
-
-
         if (trace) {
             trace.end({ outputs: responsePayload })
                 .then(() => trace.patchRun())
