@@ -30,6 +30,8 @@ META-AWARENESS:
 - About chatbot: "I'm the AI career agent Choti built using RAG technology with Google Gemini"
 
 KEY FACTS:
+- Current role: Data/AI Engineer at a startup in Antwerp, Belgium
+- Current focus: data pipelines (ETL), LLM/RAG/GenAI systems, internal tools & agents
 - Lived in 9 countries; based in Belgium; available Belgium/remote; 2X Hackathon winner
 - LinkedIn: https://www.linkedin.com/in/chotirat/
 - PAGE GUIDANCE:
@@ -64,30 +66,72 @@ RESPONSE PATTERN:
 - End with simple question, next step, or open-ended CTA
 `;
 
+const MAX_MESSAGE_LENGTH = 2000;
+const MAX_HISTORY_MESSAGES = 20;
+const MAX_HISTORY_CONTENT_LENGTH = 2000;
+
 function sanitizeLinks(text) {
-    return text.replace(/" target="_blank" rel="noopener noreferrer" class="text-primary">/g, '');
+    // Strip any stray HTML tags/attributes the model may have emitted.
+    return text
+        .replace(/<\/?a\b[^>]*>/gi, '')
+        .replace(/\s*target="_blank"\s*/gi, '')
+        .replace(/\s*rel="[^"]*"\s*/gi, '')
+        .replace(/\s*class="[^"]*"\s*/gi, '');
 }
+
+function getClientIp(req) {
+    const fwd = req.headers['x-forwarded-for'];
+    if (typeof fwd === 'string' && fwd.length > 0) {
+        return fwd.split(',')[0].trim();
+    }
+    return req.socket?.remoteAddress || 'unknown';
+}
+
+function sanitizeHistory(history) {
+    if (!Array.isArray(history)) return [];
+    return history
+        .filter(m => m && typeof m === 'object'
+            && (m.type === 'user' || m.type === 'bot' || m.type === 'assistant')
+            && typeof m.content === 'string')
+        .slice(-MAX_HISTORY_MESSAGES)
+        .map(m => ({
+            type: m.type,
+            content: m.content.slice(0, MAX_HISTORY_CONTENT_LENGTH)
+        }));
+}
+
 class RateLimiter {
     constructor(maxRequests = 10, windowMs = 60000) {
         this.maxRequests = maxRequests;
         this.windowMs = windowMs;
-        this.requests = [];
+        this.buckets = new Map(); // key -> number[] of timestamps
     }
 
-    async checkLimit() {
+    async checkLimit(key = 'global') {
         const now = Date.now();
-        this.requests = this.requests.filter(time => now - time < this.windowMs);
+        const timestamps = (this.buckets.get(key) || []).filter(t => now - t < this.windowMs);
 
-        if (this.requests.length >= this.maxRequests) {
-            const oldestRequest = this.requests[0];
-            const waitTime = this.windowMs - (now - oldestRequest);
+        if (timestamps.length >= this.maxRequests) {
+            const waitTime = this.windowMs - (now - timestamps[0]);
             throw new Error(`Rate limit: Wait ${Math.ceil(waitTime / 1000)}s`);
         }
 
-        this.requests.push(now);
+        timestamps.push(now);
+        this.buckets.set(key, timestamps);
+
+        // Opportunistic cleanup so the map does not grow unbounded.
+        if (this.buckets.size > 500) {
+            for (const [k, ts] of this.buckets) {
+                const kept = ts.filter(t => now - t < this.windowMs);
+                if (kept.length === 0) this.buckets.delete(k);
+                else this.buckets.set(k, kept);
+            }
+        }
     }
 }
 
+// NOTE: in-memory rate limiting is best-effort on serverless (each instance
+// has its own Map). For stricter limits, back this with Vercel KV / Upstash.
 const rateLimiter = new RateLimiter(10, 60000);
 
 async function callGeminiWithRetry(model, prompt, maxRetries = 3) {
@@ -144,17 +188,27 @@ export default async function handler(req, res) {
         });
     }
 
+    const clientIp = getClientIp(req);
     try {
-        await rateLimiter.checkLimit();
+        await rateLimiter.checkLimit(clientIp);
     } catch (error) {
-        console.warn('⚠️ Rate limiter triggered:', error.message);
+        console.warn('⚠️ Rate limiter triggered for', clientIp, '-', error.message);
         return res.status(429).json({
             error: error.message,
             retryAfter: 60
         });
     }
 
-    const { message, conversationHistory = [] } = req.body;
+    const body = req.body && typeof req.body === 'object' ? req.body : {};
+    const rawMessage = typeof body.message === 'string' ? body.message : '';
+    const message = rawMessage.trim();
+    const conversationHistory = sanitizeHistory(body.conversationHistory);
+
+    if (message.length > MAX_MESSAGE_LENGTH) {
+        return res.status(400).json({
+            error: `Message too long (max ${MAX_MESSAGE_LENGTH} characters)`
+        });
+    }
 
     let trace = null;
     if (langsmithEnabled) {
@@ -182,7 +236,7 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'Gemini API key not configured' });
         }
 
-        if (!message?.trim()) {
+        if (!message) {
             if (trace) await trace.end({ error: "Message is required" });
             return res.status(400).json({ error: 'Message is required' });
         }
@@ -202,7 +256,7 @@ export default async function handler(req, res) {
             }
         });
 
-        let context = "Choti is a data professional with extensive international experience, having lived in 9 countries: Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, and Belgium. She's currently based in Belgium and completing BeCode AI/Data Science Bootcamp. She adapts quickly, works across cultures, and has built multiple web applications and data projects.";
+        let context = "Choti is a Data/AI Engineer at a startup in Antwerp, Belgium. Her current work focuses on building data pipelines (ETL, ingestion, warehousing), LLM/RAG/GenAI systems (chatbots, agents, retrieval pipelines), and internal tools/agents. She completed the BeCode AI/Data Science Bootcamp and brings extensive international experience, having lived in 9 countries (Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium). 2x hackathon winner. Based in Belgium; available for Belgium-based or remote roles.";
         let vectorUsed = false;
 
         if (getVectorStore) {
@@ -275,25 +329,29 @@ export default async function handler(req, res) {
                 .join('\n') + '\n';
         }
 
+        const contextLabel = vectorUsed
+            ? "Retrieved from Choti's portfolio knowledge base (most relevant first)"
+            : "General profile (no specific documents retrieved for this query)";
+
         const prompt = `${SYSTEM_PROMPT}
 
-**Context about Choti:**
+**Context about Choti** (${contextLabel}):
 ${context}
 
 **Conversation History:**
-${conversationContext}
+${conversationContext || '(no prior messages)'}
 
 **Current Question:** ${message}
 
-**Instructions:** 
-0. All pronouns (her, she, their) refer to Choti - treat as career questions
-1. Check if the context above actually answers the question asked
-2. If context is relevant → Use it to give a specific answer
-3. If context exists but doesn't answer the question → "Choti doesn't have [X] experience. Her background includes [mention what IS in the context or her known skills: Python, Airflow, ML, data engineering]"
-4. Keep responses to 2-3 sentences maximum
-5. Include relevant portfolio links when appropriate
+**Instructions:**
+0. All pronouns (her, she, their) refer to Choti — treat as career questions.
+1. Ground your answer ONLY in the context above. Do not invent companies, titles, dates, or projects.
+2. If the context directly answers the question → give a specific answer with a concrete example.
+3. If the context is general but not specific to the question → answer from what IS known (current role: Data/AI Engineer at a startup in Antwerp focused on data pipelines, RAG/LLM, and agents; skills: Python, Airflow, ML, data engineering) and acknowledge the gap briefly.
+4. Never name the specific employer unless the context explicitly does.
+5. Keep responses to 2-3 sentences. Include one relevant portfolio link when it adds value.
 
-** Response:**`;
+**Response:**`;
 
         let llmTrace = null;
         if (trace && process.env.TRACE_LLM === 'true') {
@@ -372,10 +430,11 @@ ${conversationContext}
             });
         }
 
+        const requestId = Math.random().toString(36).substring(7);
+        console.error(`[${requestId}] Internal error:`, error.message);
         return res.status(500).json({
             error: 'Internal server error',
-            message: error.message,
-            requestId: Math.random().toString(36).substring(7)
+            requestId
         });
     }
 }
