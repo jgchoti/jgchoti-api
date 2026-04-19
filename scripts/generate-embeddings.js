@@ -375,7 +375,9 @@ async function generateEmbeddings() {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
+    const EMBED_MODEL = "gemini-embedding-001";
+    const EMBED_DIM = 768;
+    const model = genAI.getGenerativeModel({ model: EMBED_MODEL });
 
     const documents = createDocuments();
     const embeddingsData = [];
@@ -385,7 +387,10 @@ async function generateEmbeddings() {
         console.log(`📄 Processing document ${i + 1}/${documents.length}: ${doc.id}`);
 
         try {
-            const result = await model.embedContent(doc.content);
+            const result = await model.embedContent({
+                content: { parts: [{ text: doc.content }] },
+                outputDimensionality: EMBED_DIM
+            });
             const embedding = result.embedding;
 
             embeddingsData.push({
@@ -421,7 +426,7 @@ async function generateEmbeddings() {
         careerApproach: 'flexible-data-professional',
         careerPaths: ['data-engineering', 'data-science', 'ml-engineering', 'backend-development', 'data-analysis'],
         generatedAt: new Date().toISOString(),
-        embeddingModel: "text-embedding-004",
+        embeddingModel: EMBED_MODEL,
         embeddingDimensions: embeddingsData[0]?.embedding.length || 0,
         provider: "google-gemini"
     };

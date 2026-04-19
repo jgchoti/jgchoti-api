@@ -2,12 +2,13 @@ export const profileData = [
     {
         id: "intro",
         title: "👋 Hello! I'm Choti",
-        content: "A globally-minded data professional focused on data analysis, machine learning, and solving complex problems step-by-step. Based in Antwerp, Belgium 🇧🇪, I've lived in 9 countries (Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium) and adapt quickly, working across diverse cultures and international business environments. This extensive international experience shapes how I approach data challenges, cross-cultural analysis, and global market understanding. Available for remote work, hybrid positions, and international opportunities across Europe and beyond.",
-        subtitle: "Currently completing BeCode AI/Data Science Bootcamp in Brussels, with full-stack web development certification from HackYourFuture Belgium",
-        keywords: ["data professional", "international experience", "Belgium", "Antwerp", "remote work", "Europe", "multicultural", "BeCode", "HackYourFuture"],
+        content: "Data/AI Engineer at a startup in Antwerp, Belgium 🇧🇪, focused on data pipelines, LLM/RAG systems, and building internal tools and agents. I've lived in 9 countries (Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium) and bring that cross-cultural perspective to how I approach data, systems, and collaboration. I completed BeCode's AI/Data Science Bootcamp (Data Engineer specialization) in 2025 and hold a full-stack certification from HackYourFuture Belgium.",
+        subtitle: "Data/AI Engineer in Antwerp — pipelines, LLM/RAG, agents. BeCode AI/Data Science graduate and HackYourFuture full-stack alum.",
+        keywords: ["Data/AI Engineer", "data engineer", "AI engineer", "Antwerp", "Belgium", "startup", "LLM", "RAG", "agents", "data pipelines", "international experience", "BeCode graduate", "HackYourFuture"],
         questions: [
             "Where is Choti based?",
-            "Is Choti available for remote work?",
+            "What does Choti do?",
+            "Where does Choti work?",
             "What countries has Choti worked in?",
             "What is Choti's background?",
             "Does Choti have international experience?"
@@ -15,16 +16,18 @@ export const profileData = [
     },
     {
         id: "current-role",
-        title: "🎯 Current Focus & Availability",
-        content: "Currently enrolled as an AI/Data Science Trainee with Data Engineer specialization at BeCode Belgium (May 2025 - Present). Actively seeking opportunities in data engineering, data analysis, backend development, and AI/ML roles. Available for full-time positions, contract work, freelance projects, and consulting opportunities. Open to remote, hybrid, or on-site work arrangements across Belgium and Europe. Immediate availability for the right opportunity. Particularly interested in roles involving Python development, data pipeline engineering, cloud technologies (Azure/AWS), API development, and sustainability-focused tech projects.",
-        subtitle: "Actively seeking data engineering and backend development opportunities",
-        keywords: ["job seeking", "available", "data engineer", "BeCode", "immediate availability", "Python developer", "backend developer"],
+        title: "🎯 Current Role & Focus",
+        content: "Data/AI Engineer at a startup based in Antwerp, Belgium (December 2025 - Present). Day-to-day work spans three areas: (1) data engineering — building and maintaining data pipelines, ETL processes, and ingestion flows; (2) LLM / RAG / GenAI systems — designing retrieval pipelines, chatbots, and production GenAI features; (3) tools and agents — developing internal tooling and AI agents that help the team move faster. Tech stack includes Python, data orchestration tooling, vector stores, LLM APIs (Gemini and others), and cloud services. Currently enjoying the role. Not actively job-hunting, but always open to networking, coffee chats, and conversations about interesting projects or collaborations — especially in data engineering, LLM/RAG/agent development, and sustainability-focused tech.",
+        subtitle: "Data/AI Engineer in Antwerp — pipelines, LLM/RAG systems, internal tools & agents",
+        keywords: ["current role", "Data/AI Engineer", "Antwerp startup", "data pipelines", "LLM", "RAG", "agents", "GenAI", "not actively job-seeking", "open to networking", "open to collaboration"],
         questions: [
+            "What does Choti do now?",
+            "Where does Choti work?",
+            "What is Choti's current role?",
             "Is Choti looking for a job?",
-            "What positions is Choti interested in?",
-            "When is Choti available to start?",
-            "What is Choti currently doing?",
-            "Is Choti open to remote work?"
+            "Is Choti open to new opportunities?",
+            "What is Choti working on?",
+            "What does Choti work on day-to-day?"
         ]
     },
     {
@@ -218,16 +221,16 @@ export const profileData = [
     },
     {
         id: "education-becode",
-        title: "🎓 BeCode AI / Data Science Bootcamp (Current)",
-        content: "AI / Data Science Trainee - Data Engineer Specialization at BeCode, Belgium (May 2025 - Present). Intensive, project-based bootcamp focused on practical data engineering and data science skills. Curriculum includes: Python programming for data engineering, SQL and database management (MySQL, PostgreSQL), ETL pipeline development with Apache Airflow, cloud technologies including Azure Functions and Databricks with PySpark, FastAPI for building REST APIs and backend services, data visualization with Power BI and Streamlit, machine learning fundamentals and implementation, real-world projects with industry partners including Orange Belgium dashboard project. The program emphasizes hands-on learning, collaborative projects, Agile methodologies, and preparing for junior to mid-level data engineering roles. Learning environment focuses on practical problem-solving, peer collaboration, and industry-relevant skills. Expected completion: ongoing program with continuous project delivery.",
-        subtitle: "Data Engineer specialization - Python, SQL, Azure, Airflow, FastAPI",
-        keywords: ["BeCode", "data science", "data engineer", "bootcamp", "current", "2025", "Belgium", "Python", "SQL", "Azure"],
+        title: "🎓 BeCode AI / Data Science Bootcamp (Graduated 2025)",
+        content: "AI / Data Science — Data Engineer Specialization at BeCode, Belgium (May 2025 - November 2025, graduated). Intensive, project-based bootcamp focused on practical data engineering and data science. Curriculum covered: Python for data engineering, SQL and database management (MySQL, PostgreSQL), ETL pipeline development with Apache Airflow, cloud technologies (Azure Functions, Databricks with PySpark), FastAPI for REST APIs and backend services, data visualization with Power BI and Streamlit, machine learning fundamentals, and real-world projects with industry partners including the Orange Belgium dashboard project. Graduated and transitioned directly into a Data/AI Engineer role at a startup in Antwerp in December 2025.",
+        subtitle: "Data Engineer specialization graduate - Python, SQL, Azure, Airflow, FastAPI",
+        keywords: ["BeCode", "data science", "data engineer", "bootcamp", "graduated", "2025", "Belgium", "Python", "SQL", "Azure"],
         questions: [
-            "What is Choti currently studying?",
-            "Is Choti in a bootcamp?",
+            "Where did Choti study data engineering?",
+            "Did Choti attend a bootcamp?",
             "What is BeCode?",
-            "What is Choti learning at BeCode?",
-            "When did Choti start at BeCode?"
+            "What did Choti learn at BeCode?",
+            "When did Choti graduate BeCode?"
         ]
     },
     {
@@ -438,15 +441,14 @@ export const profileData = [
     {
         id: "career-goals",
         title: "🎯 Career Goals & Future Aspirations",
-        content: "Short-term Goals (2025-2026): Secure junior to mid-level data engineer or backend developer role in Belgium or Europe. Complete BeCode AI/Data Science bootcamp with strong portfolio. Gain production experience with cloud platforms (Azure/AWS). Contribute to open-source projects. Build expertise in data pipeline orchestration and scalable backend systems. Continue community involvement with Belgian JavaScript meetups. Medium-term Goals (2-3 years): Advance to mid-level or senior data engineer position. Deepen expertise in data architecture and distributed systems. Lead technical projects and mentor junior developers. Possibly pursue cloud certifications (Azure Data Engineer, AWS Solutions Architect). Contribute to climate tech or sustainability-focused companies. Long-term Vision: Become technical leader in data engineering or data science. Work on impactful projects addressing climate change, sustainability, or social good. Potentially bridge between European and Asian tech markets leveraging multicultural background. Continue learning and adapting to emerging technologies (AI/ML, real-time data processing, etc.). Maintain work-life balance and international lifestyle flexibility. Areas of Interest: Data engineering and pipeline development, backend API development, cloud infrastructure and architecture, AI/ML applications in production, climate tech and environmental solutions, international teams and projects, companies with strong engineering culture and continuous learning opportunities.",
-        subtitle: "Data engineer career path with focus on impact and continuous growth",
-        keywords: ["career goals", "data engineer", "backend developer", "climate tech", "technical leadership", "Europe", "growth"],
+        content: "Current (2026): Growing as a Data/AI Engineer in the Antwerp startup — deepening production experience with data pipelines, LLM/RAG systems, and agent-based tooling. Actively building real-world expertise with vector stores, LLM APIs, prompt engineering, and scalable pipeline design. Medium-term (2-3 years): Advance into mid/senior Data/AI Engineer or ML Engineer roles. Deepen expertise in GenAI systems, agent architectures, and data infrastructure at scale. Lead technical projects, mentor junior engineers, and possibly pursue cloud certifications. Strong interest in applying AI/data work to climate tech and sustainability-focused problems. Long-term Vision: Technical leadership in data/AI engineering, working on impactful projects addressing climate change, sustainability, or social good. Potentially bridge European and Asian tech markets leveraging multicultural background. Continue learning emerging technologies (advanced GenAI, real-time data processing, agentic systems). Maintain international lifestyle flexibility and healthy work-life balance. Areas of Interest: LLM/RAG/agent systems in production, data engineering and pipeline development, AI/ML infrastructure, climate tech, international teams, companies with strong engineering culture.",
+        subtitle: "Growing as Data/AI Engineer — long-term path into GenAI systems and technical leadership",
+        keywords: ["career goals", "Data/AI Engineer", "ML Engineer", "LLM systems", "agents", "climate tech", "technical leadership", "growth"],
         questions: [
             "What are Choti's career goals?",
-            "What kind of role is Choti looking for?",
-            "Where does Choti want to work?",
+            "Where does Choti want her career to go?",
             "What are Choti's aspirations?",
-            "What positions interest Choti?"
+            "What areas interest Choti?"
         ]
     },
     {
@@ -468,15 +470,14 @@ export const profileData = [
     {
         id: "work-authorization",
         title: "📋 Work Authorization & Logistics",
-        content: "Current Location: Based in Antwerp, Belgium with stable residence. EU/EEA Work Authorization: Legal authorization to work in Belgium and European Union. European residence permit holder. No visa sponsorship required for EU opportunities. Work Arrangements: Open to full-time permanent positions, contract work, freelance projects, consulting opportunities, remote work (preferred), hybrid arrangements, on-site work in Belgium/nearby. Willing to travel occasionally for meetings or team events. Geographic Preferences: Belgium (Antwerp, Brussels, Ghent, other cities), Netherlands (Amsterdam, Rotterdam, nearby border cities due to proximity to Antwerp), other EU countries for remote opportunities, open to full-remote positions with European companies, interested in international companies with European presence. Availability: Immediate availability for the right opportunity, can start with short notice, flexible regarding start dates, currently in active job search while completing BeCode program. Salary Expectations: Aligned with junior to mid-level data engineer/backend developer market rates in Belgium, open to discussion based on role, responsibilities, and growth opportunities, value learning opportunities and interesting projects alongside compensation. Additional Considerations: Comfortable with English as primary working language, can work in Dutch-speaking environments (B1 level), experience with distributed teams and remote collaboration, reliable internet and home office setup, EU timezone (CET/CEST) working hours or flexibility for other zones.",
-        subtitle: "EU work authorization, Belgium-based, open to remote/hybrid, immediate availability",
-        keywords: ["work authorization", "EU", "Belgium", "Antwerp", "remote work", "hybrid", "visa", "availability", "immediate"],
+        content: "Current Location: Based in Antwerp, Belgium with stable residence. EU/EEA Work Authorization: Legal authorization to work in Belgium and European Union. European residence permit holder. No visa sponsorship required for EU opportunities. Currently employed as a Data/AI Engineer at a startup in Antwerp (since December 2025). Not actively job-hunting, but open to networking, collaboration, and conversations about compelling projects. Additional Considerations: Comfortable with English as primary working language, can work in Dutch-speaking environments (B1 level), experience with distributed teams and remote collaboration, EU timezone (CET/CEST) working hours.",
+        subtitle: "EU work authorization, Belgium-based, currently employed — open to networking",
+        keywords: ["work authorization", "EU", "Belgium", "Antwerp", "employed", "visa", "networking", "open to collaboration"],
         questions: [
             "Does Choti need visa sponsorship?",
             "Can Choti work in the EU?",
             "Where is Choti located?",
-            "Is Choti available to start?",
-            "Can Choti work remotely?",
+            "Is Choti currently employed?",
             "Does Choti need a work permit?"
         ]
     },
@@ -510,33 +511,32 @@ export const profileData = [
     },
     {
         id: "ideal-role",
-        title: "🌟 Ideal Role & Company Culture",
-        content: "Ideal Position: Junior Data Engineer building data pipelines, ETL processes, and backend systems. Alternative roles: Backend Developer with Python/FastAPI, Data Analyst with engineering components, ML Engineer with focus on deployment and infrastructure, Full-Stack Developer with data engineering aspects. Company Size: Open to startups (fast learning, diverse responsibilities, close-knit team, rapid growth), scale-ups (established product, growth phase, opportunity to shape processes), established companies (structured environment, learning from experienced teams, clear career path). Tech Stack Preferences: Python-based data engineering stack, cloud platforms (Azure preferred, AWS also interested), modern data tools (Airflow, Databricks, etc.), API-first architecture, infrastructure as code, CI/CD pipelines. Company Culture Values: Continuous learning and professional development opportunities, diverse and inclusive international teams, work-life balance and flexibility, collaborative rather than competitive environment, meaningful projects with real-world impact, open communication and feedback culture, sustainability or social impact focus appreciated, remote-friendly or hybrid flexibility. Projects of Interest: Data infrastructure and pipeline development, backend services and APIs, data-driven products, climate tech and sustainability solutions, international or European market projects, business intelligence and analytics platforms, scalable systems and architecture. Deal Breakers to Avoid: Toxic work environment or poor work-life balance, no growth or learning opportunities, isolated work without team collaboration, unethical business practices, lack of support for diverse team members, micromanagement without autonomy.",
-        subtitle: "Data engineering role with learning opportunities and positive culture",
-        keywords: ["ideal role", "data engineer", "company culture", "work-life balance", "learning", "collaborative", "impact"],
+        title: "🌟 Interests & What Energizes Me",
+        content: "Currently happy at the Antwerp startup, not actively looking — but here's what energizes me professionally, for networking and future conversations: Areas of deep interest: LLM/RAG/agent systems in production, data pipeline and infrastructure work, GenAI product development, AI/ML applications at the intersection of data engineering and ML Ops. Tech I enjoy: Python-based data stacks, vector stores, Airflow, FastAPI, cloud platforms (Azure/AWS), modern GenAI APIs (Gemini, OpenAI, and similar). Culture values: Continuous learning, diverse and inclusive international teams, work-life balance, collaborative over competitive, meaningful projects with real-world impact, open communication, sustainability or social-impact focus appreciated. Projects I find exciting: Climate tech and sustainability solutions, agent-based tooling, RAG and retrieval systems, international or European market projects, scalable data infrastructure.",
+        subtitle: "Happy in current role — sharing what energizes me for networking purposes",
+        keywords: ["interests", "LLM", "RAG", "agents", "Data/AI Engineer", "company culture", "work-life balance", "learning", "collaborative", "impact", "networking"],
         questions: [
-            "What kind of role is Choti looking for?",
-            "What is Choti's ideal job?",
-            "What company culture does Choti prefer?",
             "What projects interest Choti?",
-            "What type of company does Choti want to work for?"
+            "What tech does Choti enjoy working with?",
+            "What company culture does Choti value?",
+            "What energizes Choti professionally?"
         ]
     },
 
     {
         id: "faq",
         title: "❓ Frequently Asked Questions",
-        content: "Q: Why did you transition from hospitality/finance to tech? A: During career break, discovered passion for problem-solving through programming. Self-taught during 2020-2023, then formalized through bootcamps. Tech offers continuous learning, global opportunities, and ability to create measurable impact - all things I value. Q: Do you have professional coding experience? A: Currently building professional experience through BeCode projects (Orange Belgium dashboard), freelance web development (2024), 2x hackathon wins (Tech4Positive coral reef conservation (2024) and Deepfake Detection (2025)), and portfolio projects. Previous roles involved data analysis and Big Data projects in hospitality sector. Won hackathons by combining technical execution with compelling storytelling that connects solutions to real-world impact. Q: Can you work independently? A: Yes - self-taught programming demonstrates independent learning. Also experienced in team collaboration through bootcamp group projects, hackathon team wins, previous management roles, and international team coordination. Q: Why should we hire a bootcamp graduate? A: Bootcamp training provides current, industry-relevant skills with hands-on project experience. My unique advantage is combining fresh technical skills with business experience, proven ability to deliver results under pressure (2x hackathon winner), and strategic mindset that bridges technical execution and business value. Q: Are you still learning or job-ready? A: Both - currently completing BeCode (ongoing learning) while actively building production projects, winning competitive hackathons, and ready to contribute immediately. Continuous learning is essential in tech. Q: What's your availability? A: Immediate availability for right opportunity. Can start with short notice while completing bootcamp (which is project-based and flexible). Q: Do you need visa sponsorship? A: No - have EU work authorization for Belgium and Europe. Q: What's your expected salary? A: Open to market rates for junior-mid level data engineer in Belgium (typically €35K-50K+ depending on experience level), prioritizing learning opportunities and interesting projects alongside compensation. Q: Why Belgium? A: Moved to Belgium for family reasons, completed Dutch language training, and now building tech career here. Love Belgium's central European location, international atmosphere, and growing tech scene. Active in Belgian tech community through JavaScript meetup co-organization in Antwerp.",
+        content: "Q: What does Choti do now? A: Data/AI Engineer at a startup in Antwerp since December 2025. Work spans data pipelines, LLM/RAG systems, and building internal tools and agents. Q: Is Choti looking for a job? A: Not actively — happy in the current role. Always open to networking, coffee chats, and conversations about interesting projects, collaborations, or community involvement. Q: Why did you transition from hospitality/finance to tech? A: During career break, discovered passion for problem-solving through programming. Self-taught during 2020-2023, then formalized through bootcamps (HackYourFuture full-stack, then BeCode AI/Data Science). Tech offers continuous learning, global opportunities, and ability to create measurable impact. Q: Do you have professional coding experience? A: Yes — currently working as Data/AI Engineer at an Antwerp startup. Prior to that: BeCode bootcamp projects (Orange Belgium Power BI dashboard), freelance web development (2024), 2x hackathon wins (Tech4Positive coral reef conservation 2024 and Orange Hackathon deepfake detection 2025), and portfolio projects. Q: Can you work independently? A: Yes — self-taught programming demonstrates independent learning. Also experienced in team collaboration through bootcamp group projects, hackathon team wins, current startup work, and international team coordination. Q: Do you need visa sponsorship? A: No — have EU work authorization for Belgium and Europe. Q: Why Belgium? A: Moved to Belgium for family reasons, completed Dutch language training, and built tech career here. Active in Belgian tech community through JavaScript / ReactJS meetup co-organization in Antwerp.",
         subtitle: "Common questions about career transition, experience, and availability",
         keywords: ["FAQ", "questions", "career transition", "experience", "bootcamp", "availability", "visa", "salary", "hackathon winner", "2x hackathon winner", "tech community"],
         questions: [
+            "What does Choti do now?",
+            "Is Choti looking for a job?",
             "Why did Choti change careers?",
             "Does Choti have work experience?",
-            "Why hire a bootcamp graduate?",
             "Common questions about Choti",
             "Frequently asked questions",
-            "Has Choti won any competitions?",
-            "What makes Choti different from other bootcamp graduates?"
+            "Has Choti won any competitions?"
         ]
     },
     {
@@ -566,9 +566,9 @@ export const profileData = [
     },
     {
         id: "elevator-pitch",
-        title: "🎯 Why Hire Choti",
-        content: "Data engineer who bridges business and tech. I bring: international business experience (9 countries), proven ability to deliver under pressure (2x hackathon winner), and strategic mindset from finance/hospitality background. I don't just code—I understand WHY we're building it and HOW it creates business value.",
-        keywords: ["pitch", "value proposition", "why hire", "unique"]
+        title: "🎯 About Choti in One Paragraph",
+        content: "Data/AI Engineer at an Antwerp startup, working on data pipelines, LLM/RAG systems, and building internal tools and agents. Bridges business and tech — international background across 9 countries, prior work in hospitality and finance, and a strategic mindset that asks WHY before HOW. 2x hackathon winner (Tech4Positive 2024, Orange Hackathon 2025). Happy in current role and open to networking, collaboration, and community.",
+        keywords: ["pitch", "about", "summary", "Data/AI Engineer", "elevator pitch"]
     }
 
 ];
