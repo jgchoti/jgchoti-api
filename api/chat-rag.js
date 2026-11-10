@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { RunTree } from "langsmith";
+import { describeGeminiError, getGeminiErrorInfo } from '../lib/geminiErrors.js';
 
 let getVectorStore;
 try {
@@ -134,23 +135,32 @@ class RateLimiter {
 // has its own Map). For stricter limits, back this with Vercel KV / Upstash.
 const rateLimiter = new RateLimiter(10, 60000);
 
+// Total time we're willing to spend sleeping between retries, so a retry
+// never pushes the request past the function's maxDuration.
+const MAX_TOTAL_RETRY_WAIT_MS = 4000;
+
 async function callGeminiWithRetry(model, prompt, maxRetries = 3) {
-    for (let attempt = 0; attempt < maxRetries; attempt++) {
+    let waitedMs = 0;
+    for (let attempt = 0; ; attempt++) {
         try {
             const result = await model.generateContent(prompt);
             return result.response.text();
         } catch (error) {
-            const isRateLimit = error.message?.includes('429') ||
-                error.message?.includes('quota') ||
-                error.message?.includes('rate');
+            const info = getGeminiErrorInfo(error);
+            error.geminiInfo = info;
 
-            if (isRateLimit && attempt < maxRetries - 1) {
-                const waitTime = Math.pow(2, attempt) * 1000;
-                console.log(`⏳ Rate limited. Retrying in ${waitTime}ms (attempt ${attempt + 1}/${maxRetries})`);
-                await new Promise(resolve => setTimeout(resolve, waitTime));
-                continue;
+            // Retrying a per-day quota only burns time until the daily reset,
+            // and 4xx errors other than 429 fail the same way every time.
+            const retryable = (info.isRateLimit && info.quotaWindow !== 'per-day') || info.isOverloaded;
+            const waitMs = info.retryDelayMs ?? Math.pow(2, attempt) * 1000;
+
+            if (!retryable || attempt >= maxRetries - 1 || waitedMs + waitMs > MAX_TOTAL_RETRY_WAIT_MS) {
+                throw error;
             }
-            throw error;
+
+            console.log(`⏳ Gemini ${describeGeminiError(info)}. Retrying in ${waitMs}ms (attempt ${attempt + 1}/${maxRetries})`);
+            await new Promise(resolve => setTimeout(resolve, waitMs));
+            waitedMs += waitMs;
         }
     }
 }
@@ -258,6 +268,7 @@ export default async function handler(req, res) {
 
         let context = "Choti is a Data/AI Engineer at a startup in Antwerp, Belgium. Her current work focuses on building data pipelines (ETL, ingestion, warehousing), LLM/RAG/GenAI systems (chatbots, agents, retrieval pipelines), and internal tools/agents. She completed the BeCode AI/Data Science Bootcamp and brings extensive international experience, having lived in 9 countries (Thailand, Switzerland, UK, Denmark, Slovenia, Spain, Maldives, Malaysia, Belgium). 2x hackathon winner. Based in Belgium; available for Belgium-based or remote roles.";
         let vectorUsed = false;
+        let retrieval = 'none';
 
         if (getVectorStore) {
             const ragStart = Date.now();
@@ -283,7 +294,8 @@ export default async function handler(req, res) {
 
                     if (vectorStore) {
                         const goodResults = await vectorStore.search(message, 3, 0.3, 0.7);
-                        console.log('🎯 Found', goodResults.length, 'results in', Date.now() - ragStart, 'ms');
+                        const searchMode = goodResults[0]?.retrieval || 'none';
+                        console.log('🎯 Found', goodResults.length, `results (${searchMode}) in`, Date.now() - ragStart, 'ms', vectorStore.queryEmbeddingStats);
 
                         if (goodResults.length > 0) {
                             const topResults = goodResults.slice(0, 3);
@@ -291,11 +303,12 @@ export default async function handler(req, res) {
                                 context: topResults
                                     .map(doc => `[${doc.metadata?.type || 'unknown'}] ${doc.content}`)
                                     .join('\n\n'),
-                                vectorUsed: true
+                                vectorUsed: true,
+                                retrieval: searchMode
                             };
                         }
                     }
-                    return { context, vectorUsed: false };
+                    return { context, vectorUsed: false, retrieval: 'none' };
                 })();
 
                 const timeoutPromise = new Promise((_, reject) =>
@@ -305,6 +318,7 @@ export default async function handler(req, res) {
                 const result = await Promise.race([ragPromise, timeoutPromise]);
                 context = result.context;
                 vectorUsed = result.vectorUsed;
+                retrieval = result.retrieval;
 
                 if (ragTrace) {
                     await ragTrace.end({ outputs: { vectorUsed } });
@@ -388,6 +402,7 @@ ${conversationContext || '(no prior messages)'}
                 model: modelName,
                 ragEnabled: !!getVectorStore,
                 vectorUsed,
+                retrieval,
                 contextLength: context.length,
                 timestamp: new Date().toISOString(),
                 langsmithTraced: !!trace,
@@ -404,7 +419,9 @@ ${conversationContext || '(no prior messages)'}
         return res.status(200).json(responsePayload);
 
     } catch (error) {
+        const info = error.geminiInfo || getGeminiErrorInfo(error);
         console.error('Error:', {
+            status: info.status,
             message: error.message,
             stack: error.stack?.split('\n')[0]
         });
@@ -415,18 +432,24 @@ ${conversationContext || '(no prior messages)'}
                 .catch(err => console.error('Failed to post error trace:', err.message));
         }
 
-        if (error.message.includes('API_KEY') || error.message.includes('authentication')) {
+        if (info.isAuth) {
             return res.status(401).json({
                 error: 'Gemini API authentication failed'
             });
         }
 
-        if (error.message.includes('quota') || error.message.includes('rate') || error.message.includes('429')) {
-            console.error('Rate limit exceeded for Gemini API:', error.message);
-            res.setHeader('X-Retry-After', '60');
+        if (info.isRateLimit) {
+            // Gemini's RetryInfo says when the quota frees up; fall back to 60s.
+            const retryAfter = info.retryDelayMs ? Math.ceil(info.retryDelayMs / 1000) : 60;
+            console.error(`Rate limit exceeded for Gemini API: ${describeGeminiError(info)}`);
+            if (info.quotaWindow === 'per-day') {
+                console.error('Daily Gemini quota exhausted - resets at midnight Pacific time. Enable billing in Google AI Studio to raise the limit.');
+            }
+            res.setHeader('Retry-After', String(retryAfter));
+            res.setHeader('X-Retry-After', String(retryAfter));
             return res.status(429).json({
                 error: 'Rate limit exceeded. Please try again in a moment.',
-                retryAfter: 60
+                retryAfter
             });
         }
 

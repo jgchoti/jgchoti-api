@@ -178,7 +178,27 @@ curl -s -X POST https://jgchoti-api.vercel.app/api/chat-rag \
 
 ## 🔍 Embeddings and RAG
 
-The vector store (`lib/HybridVectorStore.js`) loads from `data/embeddings-gemini.json` and uses cosine similarity to retrieve relevant snippets. Query embeddings are computed on-the-fly using Gemini `text-embedding-004`, so `GEMINI_API_KEY` is required both to generate embeddings and to serve queries.
+The vector store (`lib/HybridVectorStore.js`) loads from `data/embeddings-gemini.json` and uses cosine similarity to retrieve relevant snippets. Query embeddings are computed with Gemini `gemini-embedding-001`, so `GEMINI_API_KEY` is required both to generate embeddings and to serve queries.
+
+To save Gemini calls, query embeddings are cached:
+
+- **Suggested questions** are precomputed in `data/query-embeddings-cache.json`, so clicking one needs no embedding call, even on a cold start.
+- **Other questions** are kept in a per-instance in-memory LRU (500 entries), so repeat questions on a warm instance skip the API.
+- If the query can't be embedded (e.g. the embedding quota is exhausted), search falls back to keyword-only (TF-IDF) retrieval instead of the generic default context.
+
+When the suggested questions change in the frontend (`jgchoti.github.io` → `src/logic/Chatbot.js`), update `data/suggestedQuestions.js` and run:
+
+```bash
+npm run generate-query-embeddings
+```
+
+Run it again after changing the embedding model; a cache built for a different model is ignored.
+
+### Gemini rate limits
+
+On a Gemini error, the logs record the HTTP status. On a 429, they also record which quota was hit, e.g.
+`429 quota=GenerateRequestsPerDayPerProjectPerModel-FreeTier (per-day, free tier, limit 20) retryDelay=37s`.
+Per-minute limits are retried briefly, honouring Gemini's `retryDelay`. Per-day limits fail fast with a `Retry-After` header, because retrying won't help until the daily reset (midnight Pacific). Enabling billing in Google AI Studio raises both limits.
 
 ## 🔍 Dynamic Portfolio Integration
 
